@@ -58,6 +58,12 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
 main {
     flex: 1;
     display: flex;
