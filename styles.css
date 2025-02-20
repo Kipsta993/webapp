@@ -34,15 +34,22 @@ body {
     gap: 4px;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    transition: color 0.2s ease;
+}
+
+.nav-item:active,
+.nav-item.active {
+    color: #007AFF;
 }
 
 .nav-item svg {
     width: 24px;
     height: 24px;
+    transition: transform 0.2s ease;
 }
 
-.nav-item.active {
-    color: #007AFF;
+.nav-item:active svg {
+    transform: scale(0.9);
 }
 
 .nav-item span {
