@@ -181,3 +181,29 @@ h1 {
     font-weight: 600;
     letter-spacing: -0.2px;
 }
+
+.daily-tasks {
+    position: fixed;
+    top: 190px;
+    left: 0;
+    right: 0;
+    padding: 0 12px;
+}
+
+.daily-tasks .task-card {
+    margin-bottom: 8px;
+}
+
+.daily-tasks .task-card:last-child {
+    margin-bottom: 0;
+}
+
+.task-card.daily {
+    background: linear-gradient(145deg, #232323, #1a1a1a);
+    padding: 14px 16px;
+}
+
+.task-card.daily .task-text {
+    color: #ffffff;
+    opacity: 0.9;
+}
