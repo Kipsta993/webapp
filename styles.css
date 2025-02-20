@@ -75,7 +75,7 @@ h1 {
     position: fixed;
     top: 20px;
     background: #1E1E1E;
-    padding: 12px;
+    padding: 12px 10px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -88,19 +88,25 @@ h1 {
 }
 
 .streak-counter {
-    right: 120px;
+    right: 115px;
 }
 
 .coin-counter svg {
     width: 20px;
     height: 20px;
-    color: #FFD700;
+    color: #4CAF50;
 }
 
 .streak-counter svg {
     width: 20px;
     height: 20px;
     color: #FF4500;
+}
+
+.streak-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 .coin-counter span,
