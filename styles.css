@@ -130,9 +130,13 @@ h1 {
     padding: 16px;
     border-radius: 8px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .task-text {
@@ -141,8 +145,25 @@ h1 {
     font-weight: 500;
 }
 
+.task-duration {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .task-time {
     color: #007AFF;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 600;
+    font-size: 14px;
+}
+
+.duration-badge {
+    background: rgba(0, 122, 255, 0.1);
+    color: #007AFF;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 500;
 }
