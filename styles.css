@@ -88,7 +88,7 @@ h1 {
 }
 
 .streak-counter {
-    right: 115px;
+    right: 110px;
 }
 
 .coin-counter svg {
@@ -190,7 +190,7 @@ h1 {
 
 .daily-tasks {
     position: fixed;
-    top: 190px;
+    top: 210px;
     left: 0;
     right: 0;
     padding: 0 12px;
