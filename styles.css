@@ -73,7 +73,7 @@ h1 {
     position: fixed;
     top: 20px;
     background: #1E1E1E;
-    padding: 12px 16px;
+    padding: 12px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -86,7 +86,7 @@ h1 {
 }
 
 .streak-counter {
-    right: 100px;
+    right: 120px;
 }
 
 .coin-counter svg {
