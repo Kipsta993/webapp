@@ -207,3 +207,57 @@ h1 {
     color: #ffffff;
     opacity: 0.9;
 }
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.complete-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s ease;
+}
+
+.complete-btn svg {
+    width: 24px;
+    height: 24px;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.complete-btn:active {
+    transform: scale(0.9);
+}
+
+.complete-btn.completed svg {
+    color: #4CAF50;
+    fill: #4CAF50;
+}
+
+.complete-btn.completed path {
+    stroke-dasharray: 0;
+    stroke-dashoffset: 0;
+}
+
+/* Добавляем галочку внутрь круга при completed состоянии */
+.complete-btn.completed::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
