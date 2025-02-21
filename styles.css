@@ -327,3 +327,74 @@ h1 {
     background-repeat: no-repeat;
     pointer-events: none;
 }
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.theme-btn {
+    background: #1E1E1E;
+    border: none;
+    padding: 12px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.theme-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+}
+
+.moon-icon {
+    display: none;
+}
+
+/* Светлая тема */
+body.light-theme {
+    background-color: #f5f5f5;
+    color: #121212;
+}
+
+body.light-theme .bottom-nav,
+body.light-theme .coin-counter,
+body.light-theme .streak-counter,
+body.light-theme .theme-btn,
+body.light-theme .task-card {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .task-card.daily {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+}
+
+body.light-theme .nav-item {
+    color: #666;
+}
+
+body.light-theme .task-label {
+    color: #666;
+}
+
+body.light-theme .theme-btn svg,
+body.light-theme .coin-counter span,
+body.light-theme .streak-counter span {
+    color: #121212;
+}
+
+/* Класс для переключения иконок */
+body.light-theme .sun-icon {
+    display: none;
+}
+
+body.light-theme .moon-icon {
+    display: block;
+}
