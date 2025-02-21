@@ -465,12 +465,11 @@ body.light-theme .nav-item.active {
 }
 
 .available-quests .quest-card {
-    transform: translateY(10px);
+    transform: translateY(0);
     opacity: 0.8;
 }
 
 .available-quests .quest-card:hover {
-    transform: translateY(5px);
     opacity: 0.9;
 }
 
