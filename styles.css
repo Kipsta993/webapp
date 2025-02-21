@@ -401,6 +401,17 @@ body.light-theme .moon-icon {
 
 body.light-theme .task-text {
     color: #121212;
+    opacity: 1;
+}
+
+body.light-theme .task-card.daily .task-text {
+    color: #121212;
+    opacity: 1;
+}
+
+body.light-theme .task-time {
+    color: #007AFF;
+    background: rgba(0, 122, 255, 0.1);
 }
 
 body.light-theme .duration-badge {
