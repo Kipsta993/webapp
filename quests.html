@@ -9,7 +9,7 @@
 <body>
     <div class="coin-counter">
         <img src="image2.png" alt="Coin" class="coin-icon">
-        <span>1000</span>
+        <span>0,000</span>
     </div>
     <div class="streak-counter">
         <img src="image.png" alt="Streak counter" class="streak-icon">
@@ -19,15 +19,15 @@
         <p class="task-label">Активный квест (1/1):</p>
         <div class="quest-card active">
             <div class="quest-info">
-                <div class="quest-header">
-                    <span class="quest-text">Пробежать 5 километров</span>
-                </div>
                 <div class="quest-reward">
                     <img src="image2.png" alt="Coins" class="coin-icon-small">
                     <span>250</span>
                 </div>
-                <span class="quest-desc">Нужно пробежать 5 км за один раз</span>
-                <div class="task-header">
+                <div class="quest-content">
+                    <span class="quest-text">Пробежать 5 километров</span>
+                    <span class="quest-desc">Нужно пробежать 5 км за один раз</span>
+                </div>
+                <div class="quest-complete">
                     <button class="complete-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
@@ -42,29 +42,33 @@
         <div class="available-quests">
             <div class="quest-card">
                 <div class="quest-info">
-                    <div class="quest-header">
-                        <span class="quest-text">Медитация 7 дней подряд</span>
-                        <div class="quest-reward">
-                            <img src="image2.png" alt="Coins" class="coin-icon-small">
-                            <span>500</span>
-                        </div>
+                    <div class="quest-reward">
+                        <img src="image2.png" alt="Coins" class="coin-icon-small">
+                        <span>500</span>
                     </div>
-                    <span class="quest-desc">Медитируй каждый день по 10 минут</span>
-                    <button class="take-quest-btn">Взять квест</button>
+                    <div class="quest-content">
+                        <span class="quest-text">Медитация 7 дней подряд</span>
+                        <span class="quest-desc">Медитируй каждый день по 10 минут</span>
+                    </div>
+                    <div class="quest-complete">
+                        <button class="take-quest-btn">Взять квест</button>
+                    </div>
                 </div>
             </div>
 
             <div class="quest-card">
                 <div class="quest-info">
-                    <div class="quest-header">
-                        <span class="quest-text">Прочитать книгу</span>
-                        <div class="quest-reward">
-                            <img src="image2.png" alt="Coins" class="coin-icon-small">
-                            <span>300</span>
-                        </div>
+                    <div class="quest-reward">
+                        <img src="image2.png" alt="Coins" class="coin-icon-small">
+                        <span>300</span>
                     </div>
-                    <span class="quest-desc">Прочитай книгу из 200+ страниц за неделю</span>
-                    <button class="take-quest-btn">Взять квест</button>
+                    <div class="quest-content">
+                        <span class="quest-text">Прочитать книгу</span>
+                        <span class="quest-desc">Прочитай книгу из 200+ страниц за неделю</span>
+                    </div>
+                    <div class="quest-complete">
+                        <button class="take-quest-btn">Взять квест</button>
+                    </div>
                 </div>
             </div>
         </div>
