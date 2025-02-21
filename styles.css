@@ -143,7 +143,7 @@ h1 {
 
 .task-card {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    padding: 16px;
+    padding: 14px;
     border-radius: 8px;
     display: flex;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -153,7 +153,7 @@ h1 {
 .task-info {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     width: 100%;
 }
 
@@ -161,7 +161,7 @@ h1 {
     color: #ffffff;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: -0.3px;
 }
 
@@ -176,9 +176,9 @@ h1 {
     color: #007AFF;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
     background: rgba(0, 122, 255, 0.1);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 6px;
     letter-spacing: -0.2px;
 }
@@ -186,9 +186,9 @@ h1 {
 .duration-badge {
     background: rgba(255, 255, 255, 0.05);
     color: #888;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11px;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 600;
     letter-spacing: -0.2px;
