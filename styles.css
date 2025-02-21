@@ -97,10 +97,10 @@ h1 {
     right: 110px;
 }
 
-.coin-counter svg {
+.coin-icon {
     width: 20px;
     height: 20px;
-    color: #4CAF50;
+    object-fit: contain;
 }
 
 .streak-counter svg {
