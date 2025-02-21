@@ -398,3 +398,24 @@ body.light-theme .sun-icon {
 body.light-theme .moon-icon {
     display: block;
 }
+
+body.light-theme .task-text {
+    color: #121212;
+}
+
+body.light-theme .duration-badge {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+}
+
+body.light-theme .complete-btn svg {
+    color: #999;
+}
+
+body.light-theme .complete-btn.completed svg {
+    color: #4CAF50;
+}
+
+body.light-theme .nav-item.active {
+    color: #007AFF;
+}
