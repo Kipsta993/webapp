@@ -231,15 +231,15 @@ h1 {
     height: 300%;
     background: linear-gradient(
         45deg,
-        rgba(37, 37, 37, 0.8) 0%,
-        rgba(45, 45, 45, 0.8) 25%,
-        rgba(55, 55, 55, 0.8) 50%,
-        rgba(45, 45, 45, 0.8) 75%,
-        rgba(37, 37, 37, 0.8) 100%
+        rgba(0, 183, 255, 0.15),
+        rgba(101, 0, 255, 0.15),
+        rgba(255, 0, 200, 0.15),
+        rgba(0, 183, 255, 0.15)
     );
+    background-size: 400% 400%;
     transform: translate(-50%, -50%) scale(0);
     animation: gradientSpread 0.5s ease forwards,
-               gradientMove 4s linear infinite;
+               gradientMove 3s ease-in-out infinite alternate;
     z-index: 0;
 }
 
@@ -261,10 +261,10 @@ h1 {
 
 @keyframes gradientMove {
     0% {
-        background-position: 0% 0%;
+        background-position: 0% 50%;
     }
     100% {
-        background-position: 200% 0%;
+        background-position: 100% 50%;
     }
 }
 
