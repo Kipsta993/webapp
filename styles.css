@@ -430,3 +430,9 @@ body.light-theme .complete-btn.completed svg {
 body.light-theme .nav-item.active {
     color: #007AFF;
 }
+
+.task-text span {
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+}
