@@ -213,6 +213,59 @@ h1 {
 .task-card.daily {
     background: linear-gradient(145deg, #232323, #1a1a1a);
     padding: 14px 16px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.task-card.daily.completed {
+    background: linear-gradient(145deg, #232323, #1a1a1a);
+}
+
+.task-card.daily.completed::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(
+        45deg,
+        rgba(37, 37, 37, 0.8) 0%,
+        rgba(45, 45, 45, 0.8) 25%,
+        rgba(55, 55, 55, 0.8) 50%,
+        rgba(45, 45, 45, 0.8) 75%,
+        rgba(37, 37, 37, 0.8) 100%
+    );
+    transform: translate(-50%, -50%) scale(0);
+    animation: gradientSpread 0.5s ease forwards,
+               gradientMove 4s linear infinite;
+    z-index: 0;
+}
+
+.task-card.daily .task-header {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes gradientSpread {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
 }
 
 .task-card.daily .task-text {
