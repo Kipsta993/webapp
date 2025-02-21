@@ -585,3 +585,19 @@ body.light-theme .take-quest-btn {
     background: rgba(0, 122, 255, 0.1);
     color: #007AFF;
 }
+
+.quest-card .quest-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.quest-card .complete-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.quest-card.active .quest-header {
+    padding-right: 36px;
+}
