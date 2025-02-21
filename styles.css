@@ -448,62 +448,31 @@ body.light-theme .nav-item.active {
 }
 
 .quest-card {
-    position: relative;
     background: linear-gradient(145deg, #232323, #1a1a1a);
     padding: 16px;
     border-radius: 8px;
     margin-bottom: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.quest-card.active {
-    border: 1px solid rgba(0, 122, 255, 0.3);
-    background: linear-gradient(145deg, #1a1a1a, #232323);
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.available-quests .quest-card {
-    transform: translateY(0);
-    opacity: 0.8;
-}
-
-.available-quests .quest-card:hover {
-    opacity: 0.9;
-}
-
-.quest-header {
+.quest-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.quest-text {
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-}
-
-.quest-desc {
-    color: #888;
-    font-size: 13px;
-    display: block;
-}
-
+/* Стили для награды */
 .quest-reward {
+    align-self: flex-start;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     background: rgba(255, 255, 255, 0.05);
-    padding: 4px 8px;
+    padding: 6px 10px;
     border-radius: 6px;
-    width: fit-content;
 }
 
-.coin-icon-small {
+.quest-reward img {
     width: 16px;
     height: 16px;
 }
@@ -514,122 +483,58 @@ body.light-theme .nav-item.active {
     font-size: 14px;
 }
 
-/* Для светлой темы */
-body.light-theme .quest-card {
-    background: #ffffff;
-}
-
-body.light-theme .quest-text {
-    color: #121212;
-}
-
-body.light-theme .quest-desc {
-    color: #666;
-}
-
-body.light-theme .quest-reward {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-.quest-progress {
-    margin-top: 12px;
-}
-
-.quest-progress .progress-bar {
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 6px;
-}
-
-.quest-progress .progress-fill {
-    height: 100%;
-    background: #007AFF;
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
-
-.quest-progress .progress-text {
-    color: #888;
-    font-size: 12px;
-}
-
-.take-quest-btn {
-    margin-top: 12px;
-    background: rgba(0, 122, 255, 0.1);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    color: #007AFF;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.take-quest-btn:hover {
-    background: rgba(0, 122, 255, 0.2);
-}
-
-.take-quest-btn:active {
-    transform: scale(0.98);
-}
-
-/* Для светлой темы */
-body.light-theme .quest-card.active {
-    border: 1px solid rgba(0, 122, 255, 0.2);
-    background: #ffffff;
-}
-
-body.light-theme .take-quest-btn {
-    background: rgba(0, 122, 255, 0.1);
-    color: #007AFF;
-}
-
-.quest-card .quest-info {
-    position: relative;
+/* Стили для основного контента */
+.quest-content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    gap: 8px;
 }
 
-.quest-card .task-header {
+.quest-text {
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.quest-desc {
+    color: #888;
+    font-size: 13px;
+}
+
+/* Стили для чекбокса */
+.quest-complete {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
-    margin-top: 4px;
 }
 
-.quest-card .complete-btn {
-    position: relative;
+.complete-btn {
     width: 24px;
     height: 24px;
+    padding: 0;
     border: none;
     background: none;
-    padding: 0;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
     transition: transform 0.2s ease;
 }
 
-.quest-card .complete-btn svg {
+.complete-btn svg {
     width: 24px;
     height: 24px;
     color: #666;
     transition: all 0.2s ease;
 }
 
-.quest-card .complete-btn:active {
-    transform: scale(0.9);
-}
-
-.quest-card .complete-btn.completed svg {
+.complete-btn.completed svg {
     color: #4CAF50;
     fill: #4CAF50;
 }
 
+.complete-btn:active {
+    transform: scale(0.9);
+}
+
+/* Анимация при выполнении */
 .quest-card.completed {
     animation: slideOut 0.5s ease forwards;
 }
