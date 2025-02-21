@@ -436,3 +436,73 @@ body.light-theme .nav-item.active {
     font-size: 13px;
     font-weight: 500;
 }
+
+.quests-container {
+    padding: 20px 12px;
+}
+
+.quest-card {
+    background: linear-gradient(145deg, #232323, #1a1a1a);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.quest-text {
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.quest-desc {
+    color: #888;
+    font-size: 13px;
+    display: block;
+}
+
+.quest-reward {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.coin-icon-small {
+    width: 16px;
+    height: 16px;
+}
+
+.quest-reward span {
+    color: #FFD700;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Для светлой темы */
+body.light-theme .quest-card {
+    background: #ffffff;
+}
+
+body.light-theme .quest-text {
+    color: #121212;
+}
+
+body.light-theme .quest-desc {
+    color: #666;
+}
+
+body.light-theme .quest-reward {
+    background: rgba(0, 0, 0, 0.05);
+}
+
