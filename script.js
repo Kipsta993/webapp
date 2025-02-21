@@ -29,4 +29,29 @@ document.querySelectorAll('.complete-btn').forEach((button, index) => {
             localStorage.setItem(`task_${index}_completed`, 'true');
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const completeButtons = document.querySelectorAll('.complete-btn');
+    const streakCounter = document.querySelector('.streak-counter span');
+    
+    completeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Добавляем класс completed для кнопки
+            this.classList.add('completed');
+            
+            // Добавляем класс completed для карточки квеста
+            const questCard = this.closest('.quest-card');
+            questCard.classList.add('completed');
+            
+            // Увеличиваем счетчик дней
+            let currentStreak = parseInt(streakCounter.textContent);
+            streakCounter.textContent = currentStreak + 1;
+            
+            // Удаляем карточку после анимации
+            setTimeout(() => {
+                questCard.style.display = 'none';
+            }, 500);
+        });
+    });
 }); 
