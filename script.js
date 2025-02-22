@@ -58,65 +58,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Обработка кнопок "Взять квест"
     const takeQuestButtons = document.querySelectorAll('.take-quest-btn');
     const activeQuestSection = document.querySelector('.active-quest .quest-card');
-    const availableQuestsGrid = document.querySelector('.quest-grid');
     const coinCounter = document.querySelector('.coin-counter span');
 
     takeQuestButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const activeQuest = document.querySelector('.quest-card.active');
-            if (activeQuest && activeQuest.innerHTML.trim() !== '') {
-                alert('У вас уже есть активный квест. Сначала завершите его.');
-                return;
-            }
-
             const questCard = this.closest('.quest-card');
             const questContent = questCard.innerHTML;
 
-            const newActiveQuest = document.createElement('div');
-            newActiveQuest.className = 'quest-card active';
-            newActiveQuest.innerHTML = questContent;
-
-            const takeButton = newActiveQuest.querySelector('.take-quest-btn');
-            const completeButton = document.createElement('button');
-            completeButton.className = 'complete-btn';
-            completeButton.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                </svg>
-                <span>Завершить квест</span>
-            `;
-
-            takeButton.parentNode.replaceChild(completeButton, takeButton);
-
-            const questContentDiv = newActiveQuest.querySelector('.quest-content');
-            const progressDiv = document.createElement('div');
-            progressDiv.className = 'quest-progress';
-            progressDiv.innerHTML = `
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                </div>
-                <span>0%</span>
-            `;
-            questContentDiv.insertBefore(progressDiv, completeButton);
-
-            activeQuestSection.innerHTML = '';
-            activeQuestSection.appendChild(newActiveQuest);
-
-            questCard.remove();
+            activeQuestSection.innerHTML = questContent;
+            const completeButton = activeQuestSection.querySelector('.take-quest-btn');
+            completeButton.textContent = 'Завершить квест';
+            completeButton.classList.add('complete-btn');
 
             completeButton.addEventListener('click', function() {
                 if (!this.classList.contains('completed')) {
                     this.classList.add('completed');
-                    
-                    const questCard = this.closest('.quest-card');
-                    questCard.style.animation = 'questComplete 0.5s ease forwards';
                     
                     const reward = parseInt(questCard.querySelector('.quest-reward-badge span').textContent);
                     const currentCoins = parseInt(coinCounter.textContent.replace(',', ''));
                     coinCounter.textContent = (currentCoins + reward).toLocaleString();
                     
                     setTimeout(() => {
-                        questCard.remove();
+                        activeQuestSection.innerHTML = `
+                            <div class="quest-content">
+                                <h3>Нет активного квеста</h3>
+                                <p>Выберите квест из списка ниже</p>
+                            </div>
+                        `;
                     }, 500);
                 }
             });
