@@ -109,15 +109,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 const currentCoins = parseInt(coinCounter.textContent.replace(',', ''));
                 coinCounter.textContent = (currentCoins + reward).toLocaleString();
                 
+                // Анимируем исчезновение завершенного квеста
+                const questContent = activeQuestSection.querySelector('.quest-content');
+                questContent.style.opacity = '0';
+                questContent.style.transform = 'translateY(-10px)';
+                
                 setTimeout(() => {
                     activeQuestSection.innerHTML = `
-                        <div class="quest-content">
+                        <div class="quest-content" style="opacity: 0; transform: translateY(10px);">
                             <h3>Нет активного квеста</h3>
                             <p>Выберите квест из списка ниже</p>
                         </div>
                     `;
+                    
+                    // Плавно показываем сообщение
+                    requestAnimationFrame(() => {
+                        const newContent = activeQuestSection.querySelector('.quest-content');
+                        newContent.style.opacity = '1';
+                        newContent.style.transform = 'translateY(0)';
+                    });
+                    
                     saveQuestState();
-                }, 500);
+                }, 300);
             }
         });
     };
@@ -132,18 +145,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 const questCard = this.closest('.quest-card');
                 const questContent = questCard.querySelector('.quest-content').innerHTML;
                 
+                // Проверяем текущий активный квест
                 const currentActiveQuest = activeQuestSection.querySelector('.quest-content h3').textContent;
                 if (currentActiveQuest !== 'Нет активного квеста') {
                     alert('Сначала завершите текущий квест');
                     return;
                 }
 
-                activeQuestSection.querySelector('.quest-content').innerHTML = questContent;
-                
+                // Копируем квест в активную секцию
+                activeQuestSection.innerHTML = `
+                    <div class="quest-content">
+                        ${questContent}
+                    </div>
+                `;
+
+                // Настраиваем кнопку завершения
                 const completeButton = activeQuestSection.querySelector('.take-quest-btn');
                 completeButton.textContent = 'Завершить квест';
                 completeButton.classList.add('complete-btn');
 
+                // Удаляем кнопку деталей
                 const detailsBtn = activeQuestSection.querySelector('.details-btn');
                 if (detailsBtn) {
                     detailsBtn.remove();
@@ -151,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 setupCompleteButton(completeButton);
 
+                // Анимируем исчезновение квеста
                 questCard.style.opacity = '0';
                 questCard.style.transform = 'translateY(-10px)';
                 setTimeout(() => {
