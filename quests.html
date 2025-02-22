@@ -1,76 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квесты</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
     <div class="coin-counter">
         <img src="image2.png" alt="Coin" class="coin-icon">
-        <span>1000</span>
         <span>0,000</span>
     </div>
     <div class="streak-counter">
         <img src="image.png" alt="Streak counter" class="streak-icon">
-        <p class="task-label">Активный квест (1/1):</p>
-        <div class="quest-card active">
-            <div class="quest-info">
-                <div class="quest-header">
-                    <span class="quest-text">Пробежать 5 километров</span>
-                </div>
-                <div class="quest-reward">
-                    <img src="image2.png" alt="Coins" class="coin-icon-small">
-                    <span>250</span>
-                </div>
-                <span class="quest-desc">Нужно пробежать 5 км за один раз</span>
-                <div class="task-header">
-                <div class="quest-content">
-                    <span class="quest-text">Пробежать 5 километров</span>
-                    <span class="quest-desc">Нужно пробежать 5 км за один раз</span>
-                </div>
-                <div class="quest-complete">
-                    <button class="complete-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-@@ -42,29 +42,33 @@
-        <div class="available-quests">
-            <div class="quest-card">
-                <div class="quest-info">
-                    <div class="quest-header">
-                    <div class="quest-reward">
-                        <img src="image2.png" alt="Coins" class="coin-icon-small">
-                        <span>500</span>
-                    </div>
-                    <div class="quest-content">
-                        <span class="quest-text">Медитация 7 дней подряд</span>
-                        <div class="quest-reward">
-                            <img src="image2.png" alt="Coins" class="coin-icon-small">
-                            <span>500</span>
-                        </div>
-                        <span class="quest-desc">Медитируй каждый день по 10 минут</span>
-                    </div>
-                    <div class="quest-complete">
-                        <button class="take-quest-btn">Взять квест</button>
-                    </div>
-                    <span class="quest-desc">Медитируй каждый день по 10 минут</span>
-                    <button class="take-quest-btn">Взять квест</button>
-                </div>
-            </div>
-
-            <div class="quest-card">
-                <div class="quest-info">
-                    <div class="quest-header">
-                    <div class="quest-reward">
-                        <img src="image2.png" alt="Coins" class="coin-icon-small">
-                        <span>300</span>
-                    </div>
-                    <div class="quest-content">
-                        <span class="quest-text">Прочитать книгу</span>
-                        <div class="quest-reward">
-                            <img src="image2.png" alt="Coins" class="coin-icon-small">
-                            <span>300</span>
-                        </div>
-                        <span class="quest-desc">Прочитай книгу из 200+ страниц за неделю</span>
-                    </div>
-                    <div class="quest-complete">
-                        <button class="take-quest-btn">Взять квест</button>
-                    </div>
-                    <span class="quest-desc">Прочитай книгу из 200+ страниц за неделю</span>
-                    <button class="take-quest-btn">Взять квест</button>
-                </div>
-            </div>
-        </div>
+        <span>0</span>
+    </div>
+    <main>
+        <!-- Здесь будет новый дизайн -->
+    </main>
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <img src="image1.png" alt="Home" class="nav-icon">
+            <span>Главная</span>
+        </a>
+        <a href="quests.html" class="nav-item active">
+            <img src="image1.png" alt="Home" class="nav-icon">
+            <span>Квесты</span>
+        </a>
+        <a href="actions.html" class="nav-item">
+            <img src="image1.png" alt="Home" class="nav-icon">
+            <span>Действия</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span>Настройки</span>
+        </a>
+    </nav>
+</body>
+</html> 
