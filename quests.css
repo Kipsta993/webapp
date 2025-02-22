@@ -54,8 +54,7 @@
 
 .quest-card.active {
     border: 2px solid #007AFF;
-    padding: 10px;
-    height: 100px;
+    padding: 12px;
 }
 
 .quest-content {
