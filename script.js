@@ -54,4 +54,126 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
         });
     });
+
+    // Обработка кнопок "Взять квест"
+    const takeQuestButtons = document.querySelectorAll('.take-quest-btn');
+    const activeQuestSection = document.querySelector('.active-quest');
+    const availableQuestsGrid = document.querySelector('.quest-grid');
+
+    takeQuestButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Проверяем, есть ли уже активный квест
+            const activeQuest = document.querySelector('.quest-card.active');
+            if (activeQuest) {
+                alert('У вас уже есть активный квест. Сначала завершите его.');
+                return;
+            }
+
+            // Получаем карточку квеста
+            const questCard = this.closest('.quest-card');
+            const questContent = questCard.innerHTML;
+
+            // Создаем новую карточку для активного квеста
+            const newActiveQuest = document.createElement('div');
+            newActiveQuest.className = 'quest-card active';
+            newActiveQuest.innerHTML = questContent;
+
+            // Заменяем кнопку "Взять квест" на кнопку "Завершить"
+            const takeButton = newActiveQuest.querySelector('.take-quest-btn');
+            const completeButton = document.createElement('button');
+            completeButton.className = 'complete-btn';
+            completeButton.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                </svg>
+                <span>Завершить квест</span>
+            `;
+
+            takeButton.parentNode.replaceChild(completeButton, takeButton);
+
+            // Добавляем прогресс-бар
+            const questContentDiv = newActiveQuest.querySelector('.quest-content');
+            const progressDiv = document.createElement('div');
+            progressDiv.className = 'quest-progress';
+            progressDiv.innerHTML = `
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+                <span>0%</span>
+            `;
+            questContentDiv.insertBefore(progressDiv, completeButton);
+
+            // Обновляем активный квест
+            activeQuestSection.querySelector('.quest-card')?.remove();
+            activeQuestSection.appendChild(newActiveQuest);
+
+            // Удаляем квест из доступных
+            questCard.remove();
+
+            // Добавляем обработчик для кнопки завершения
+            completeButton.addEventListener('click', function() {
+                if (!this.classList.contains('completed')) {
+                    this.classList.add('completed');
+                    
+                    // Анимация завершения
+                    const questCard = this.closest('.quest-card');
+                    questCard.style.animation = 'questComplete 0.5s ease forwards';
+                    
+                    // Обновляем счетчик монет
+                    const reward = parseInt(questCard.querySelector('.quest-reward-badge span').textContent);
+                    const currentCoins = parseInt(document.querySelector('.coin-counter span').textContent.replace(',', ''));
+                    document.querySelector('.coin-counter span').textContent = (currentCoins + reward).toLocaleString();
+                    
+                    // Удаляем квест после анимации
+                    setTimeout(() => {
+                        questCard.remove();
+                    }, 500);
+                }
+            });
+        });
+    });
+
+    // Обновление таймера
+    function updateTimer() {
+        const timerElement = document.querySelector('.quest-timer span');
+        if (!timerElement) return;
+
+        let [hours, minutes, seconds] = timerElement.textContent.split(':').map(Number);
+        
+        setInterval(() => {
+            if (seconds > 0) {
+                seconds--;
+            } else if (minutes > 0) {
+                minutes--;
+                seconds = 59;
+            } else if (hours > 0) {
+                hours--;
+                minutes = 59;
+                seconds = 59;
+            }
+            
+            timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }, 1000);
+    }
+
+    updateTimer();
+
+    // Добавляем стили для анимации завершения квеста
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes questComplete {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 }); 
