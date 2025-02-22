@@ -49,6 +49,11 @@
 
 .quest-card.active {
     border: 2px solid #007AFF;
+    width: 100%;
+}
+
+.quest-card.active .quest-content {
+    width: 100%;
 }
 
 .quest-content {
@@ -140,6 +145,14 @@
 
 .take-quest-btn:active {
     transform: scale(0.98);
+}
+
+.take-quest-btn.complete-btn {
+    background: #4CAF50;
+}
+
+.take-quest-btn.complete-btn:active {
+    background: #43A047;
 }
 
 .quest-progress {
