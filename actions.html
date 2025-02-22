@@ -5,10 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Действия</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="actions.css">
 </head>
 <body>
     <main>
-        <h1>4</h1>
+        <!-- Счетчики -->
+        <div class="counters">
+            <div class="counter">
+                <span class="counter-value">1234</span>
+                <span class="counter-label">Монеты</span>
+            </div>
+            <div class="counter">
+                <span class="counter-value">4</span>
+                <span class="counter-label">Действия</span>
+            </div>
+        </div>
+
+        <!-- Блоки действий -->
+        <div class="actions-container">
+            <div class="action-block">
+                <h3>1 Действие</h3>
+                <p class="price">100 монет</p>
+                <button class="buy-button">Купить</button>
+            </div>
+            <div class="action-block">
+                <h3>3 Действия</h3>
+                <p class="price">250 монет</p>
+                <button class="buy-button">Купить</button>
+            </div>
+            <div class="action-block">
+                <h3>5 Действий</h3>
+                <p class="price">400 монет</p>
+                <button class="buy-button">Купить</button>
+            </div>
+        </div>
+
+        <!-- Ежедневный сундук -->
+        <div class="daily-chest">
+            <h2>Ежедневный сундук</h2>
+            <img src="image4.png" alt="Ежедневный сундук" class="chest-image">
+            <div class="timer">
+                <span>До обновления: </span>
+                <span class="time-left">12:30:45</span>
+            </div>
+        </div>
     </main>
     <div class="bottom-navigation">
         <a href="index.html" class="nav-item">
