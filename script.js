@@ -144,6 +144,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
         takeQuestButtons.forEach(button => {
             button.addEventListener('click', function() {
+                // Если кнопка уже в активном квесте, обрабатываем завершение
+                if (this.closest('.quest-card').closest('.active-quest')) {
+                    if (!this.classList.contains('completed')) {
+                        this.classList.add('completed');
+                        
+                        const questCard = this.closest('.quest-card');
+                        const reward = parseInt(questCard.querySelector('.quest-reward span').textContent);
+                        const currentCoins = parseInt(coinCounter.textContent.replace(',', ''));
+                        coinCounter.textContent = (currentCoins + reward).toLocaleString();
+                        
+                        questCard.style.opacity = '0';
+                        questCard.style.transform = 'translateY(-10px)';
+                        
+                        setTimeout(() => {
+                            activeQuestSection.innerHTML = `
+                                <div class="quest-card">
+                                    <div class="quest-content">
+                                        <h3>Нет активного квеста</h3>
+                                        <p>Выберите квест из списка ниже</p>
+                                    </div>
+                                </div>
+                            `;
+                            saveQuestState();
+                        }, 300);
+                    }
+                    return;
+                }
+
                 const questCard = this.closest('.quest-card');
                 
                 // Проверяем текущий активный квест
@@ -158,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Создаем копию карточки квеста
                 const questClone = questCard.cloneNode(true);
                 
-                // Меняем только текст кнопки
+                // Меняем только свойства кнопки
                 const cloneButton = questClone.querySelector('.take-quest-btn');
                 cloneButton.textContent = 'Завершить квест';
                 cloneButton.classList.add('complete-btn');
@@ -166,9 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Очищаем активную секцию и добавляем клон
                 activeQuestSection.innerHTML = '';
                 activeQuestSection.appendChild(questClone);
-
-                // Настраиваем кнопку завершения
-                setupCompleteButton(cloneButton);
 
                 // Анимируем исчезновение оригинального квеста
                 questCard.style.opacity = '0';
