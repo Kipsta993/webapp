@@ -1,6 +1,7 @@
 .quest-main {
     height: calc(100vh - 120px);
     overflow: hidden;
+    padding-top: 10px;
 }
 
 .quest-container {
@@ -10,8 +11,20 @@
     flex-direction: column;
 }
 
+.active-quest, .available-quests {
+    h2 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 13px;
+        color: #888;
+        margin-bottom: 8px;
+        margin-left: 4px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+    }
+}
+
 .active-quest {
-    flex: 1;
+    flex: 0.8;
     margin-bottom: 10px;
 }
 
@@ -23,15 +36,15 @@
 .quest-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
-    padding-bottom: 20px;
+    gap: 8px;
 }
 
 .quest-card {
     background: #1E1E1E;
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 12px;
+    padding: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .quest-card.active {
@@ -41,43 +54,73 @@
 .quest-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+}
+
+.quest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .quest-content h3 {
     color: #FFFFFF;
-    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
     margin: 0;
 }
 
-.quest-content p {
+.details-btn {
+    background: none;
+    border: none;
+    padding: 4px;
     color: #888;
-    font-size: 13px;
-    line-height: 1.3;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.details-btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 .quest-details {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
     align-items: center;
 }
 
-.quest-reward-badge {
+.quest-reward {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     background: rgba(255, 193, 7, 0.1);
-    color: #FFC107;
     padding: 4px 8px;
-    border-radius: 4px;
+    border-radius: 6px;
+}
+
+.reward-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.quest-reward span {
+    color: #FFC107;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 700;
     font-size: 13px;
-    font-weight: 600;
 }
 
 .quest-time-badge {
-    background: rgba(0, 122, 255, 0.1);
     color: #007AFF;
+    background: rgba(0, 122, 255, 0.1);
     padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 13px;
+    border-radius: 6px;
+    font-size: 12px;
     font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .take-quest-btn {
@@ -85,16 +128,18 @@
     background: #007AFF;
     color: #FFFFFF;
     border: none;
-    padding: 8px 16px;
+    padding: 8px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     cursor: pointer;
-    transition: background 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s ease;
 }
 
-.take-quest-btn:hover {
-    background: #0066CC;
+.take-quest-btn:active {
+    transform: scale(0.98);
 }
 
 .quest-progress {
@@ -254,4 +299,75 @@ body.light-theme .progress-bar {
 
 .quest-card {
     animation: questAppear 0.2s ease forwards;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #1E1E1E;
+    width: 90%;
+    max-width: 320px;
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.quest-description {
+    color: #888;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.quest-requirements h4,
+.quest-rewards h4 {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.quest-requirements ul {
+    list-style: none;
+    padding: 0;
+    color: #888;
+    font-size: 14px;
+}
+
+.quest-requirements li {
+    margin-bottom: 4px;
+}
+
+.modal.show {
+    display: flex;
 }
