@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Стили для счетчиков */
+.counters {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    margin: 15px;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counter-value {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.counter-label {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Стили для блоков действий */
+.actions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.action-block {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-block h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.price {
+    color: #666;
+    margin: 0;
+}
+
+.buy-button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: 500;
+}
+
+.buy-button:hover {
+    background: #45a049;
+}
+
+/* Стили для ежедневного сундука */
+.daily-chest {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.daily-chest h2 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.chest-image {
+    max-width: 150px;
+    margin: 15px 0;
+}
+
+.timer {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time-left {
+    font-weight: 600;
+}
