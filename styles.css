@@ -440,50 +440,74 @@ body.light-theme .nav-item.active {
     font-weight: 500;
 }
 
-/* Стили для награды */
-.quest-reward {
+/* Стили для страницы действий */
+.actions-container {
     display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.action-block {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px 8px;
-    border-radius: 6px;
-    width: fit-content;
-    margin-bottom: 8px;
 }
 
-.quest-reward span {
-    color: #FFD700;
+.action-block h3 {
+    margin: 0;
     font-weight: 600;
-    font-size: 14px;
 }
 
-.coin-icon-small {
-    width: 16px;
-    height: 16px;
+.price {
+    color: #666;
+    margin: 0;
 }
 
-/* Стиль для кнопки "Взять квест" */
-.take-quest-btn {
-    background: rgba(0, 122, 255, 0.1);
+.buy-button {
+    background: #4CAF50;
+    color: white;
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    color: #007AFF;
-    font-weight: 600;
-    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background 0.3s;
+    font-weight: 500;
 }
 
-.take-quest-btn:active {
-    transform: scale(0.95);
-    background: rgba(0, 122, 255, 0.2);
+.buy-button:hover {
+    background: #45a049;
 }
 
-/* Описание квеста */
-.task-desc {
-    color: #888;
-    font-size: 13px;
-    margin-top: 4px;
+/* Стили для ежедневного сундука */
+.daily-chest {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.daily-chest h2 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.chest-image {
+    max-width: 150px;
+    margin: 15px 0;
+}
+
+.timer {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time-left {
+    font-weight: 600;
 }
