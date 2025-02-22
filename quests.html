@@ -7,7 +7,23 @@
     <link rel="stylesheet" href="quests.css">
 </head>
 <body>
+    <div class="coin-counter">
+        <img src="image2.png" alt="Coin" class="coin-icon">
+        <span>0,000</span>
+    </div>
+    <div class="streak-counter">
+        <img src="image.png" alt="Streak counter" class="streak-icon">
+        <span>0</span>
+    </div>
     <div class="quest-container">
+        <div class="active-quest">
+            <h2>Активный квест</h2>
+            <div class="quest-card">
+                <div class="quest-header">
+                    <span class="quest-title">Нет активного квеста</span>
+                </div>
+            </div>
+        </div>
         <div class="quest-card">
             <div class="quest-header">
                 <span class="quest-title">Чтение книги</span>
@@ -16,6 +32,7 @@
             <div class="quest-details">
                 <span class="quest-reward">30 монет</span>
                 <button class="take-quest-btn">Взять квест</button>
+                <button class="details-btn">Подробнее</button>
             </div>
         </div>
         <div class="quest-card">
@@ -26,9 +43,28 @@
             <div class="quest-details">
                 <span class="quest-reward">50 монет</span>
                 <button class="take-quest-btn">Взять квест</button>
+                <button class="details-btn">Подробнее</button>
             </div>
         </div>
     </div>
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <img src="image1.png" alt="Home" class="nav-icon">
+            <span>Главная</span>
+        </a>
+        <a href="quests.html" class="nav-item">
+            <img src="image1.png" alt="Quests" class="nav-icon">
+            <span>Квесты</span>
+        </a>
+        <a href="actions.html" class="nav-item">
+            <img src="image1.png" alt="Actions" class="nav-icon">
+            <span>Действия</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+            <img src="image1.png" alt="Settings" class="nav-icon">
+            <span>Настройки</span>
+        </a>
+    </nav>
     <script src="script.js"></script>
 </body>
 </html> 
