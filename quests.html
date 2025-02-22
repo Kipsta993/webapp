@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="theme-toggle">
+        <button class="theme-btn">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 0v3M12 21v3M3.93 3.93l2.12 2.12M17.95 17.95l2.12 2.12M0 12h3M21 12h3M3.93 20.07l2.12-2.12M17.95 6.05l2.12-2.12"/>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </div>
     <div class="coin-counter">
         <img src="image2.png" alt="Coin" class="coin-icon">
         <span>0,000</span>
@@ -15,9 +26,91 @@
         <img src="image.png" alt="Streak counter" class="streak-icon">
         <span>0</span>
     </div>
-    <main>
-        <!-- Здесь будет новый дизайн -->
-    </main>
+    <div class="quest-container">
+        <div class="active-quest">
+            <div class="quest-header">
+                <h2>Активный квест</h2>
+                <div class="quest-timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>23:59:59</span>
+                </div>
+            </div>
+            
+            <div class="quest-card active">
+                <div class="quest-reward-badge">
+                    <img src="image2.png" alt="Coin" class="coin-icon-small">
+                    <span>250</span>
+                </div>
+                <div class="quest-content">
+                    <h3>Пробежать 5 километров</h3>
+                    <p>Пробеги 5 км за один раз, не останавливаясь</p>
+                    <div class="quest-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span>3 из 5 км</span>
+                    </div>
+                    <button class="complete-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>Завершить квест</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="available-quests">
+            <div class="section-header">
+                <h2>Доступные квесты</h2>
+                <span class="refresh-time">Обновление через 12:30:00</span>
+            </div>
+            
+            <div class="quest-grid">
+                <div class="quest-card">
+                    <div class="quest-difficulty easy">Легкий</div>
+                    <div class="quest-reward-badge">
+                        <img src="image2.png" alt="Coin" class="coin-icon-small">
+                        <span>100</span>
+                    </div>
+                    <div class="quest-content">
+                        <h3>Медитация</h3>
+                        <p>Медитируй 10 минут каждый день в течение недели</p>
+                        <button class="take-quest-btn">Взять квест</button>
+                    </div>
+                </div>
+
+                <div class="quest-card">
+                    <div class="quest-difficulty medium">Средний</div>
+                    <div class="quest-reward-badge">
+                        <img src="image2.png" alt="Coin" class="coin-icon-small">
+                        <span>250</span>
+                    </div>
+                    <div class="quest-content">
+                        <h3>Чтение</h3>
+                        <p>Прочитай книгу из 200+ страниц за неделю</p>
+                        <button class="take-quest-btn">Взять квест</button>
+                    </div>
+                </div>
+
+                <div class="quest-card">
+                    <div class="quest-difficulty hard">Сложный</div>
+                    <div class="quest-reward-badge">
+                        <img src="image2.png" alt="Coin" class="coin-icon-small">
+                        <span>500</span>
+                    </div>
+                    <div class="quest-content">
+                        <h3>Марафон</h3>
+                        <p>Пробеги 42 км за 5 часов</p>
+                        <button class="take-quest-btn">Взять квест</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item">
             <img src="image1.png" alt="Home" class="nav-icon">
@@ -39,5 +132,6 @@
             <span>Настройки</span>
         </a>
     </nav>
+    <script src="script.js"></script>
 </body>
 </html> 
