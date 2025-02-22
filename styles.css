@@ -439,3 +439,51 @@ body.light-theme .nav-item.active {
     font-size: 13px;
     font-weight: 500;
 }
+
+/* Стили для награды */
+.quest-reward {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-bottom: 8px;
+}
+
+.quest-reward span {
+    color: #FFD700;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.coin-icon-small {
+    width: 16px;
+    height: 16px;
+}
+
+/* Стиль для кнопки "Взять квест" */
+.take-quest-btn {
+    background: rgba(0, 122, 255, 0.1);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: #007AFF;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.take-quest-btn:active {
+    transform: scale(0.95);
+    background: rgba(0, 122, 255, 0.2);
+}
+
+/* Описание квеста */
+.task-desc {
+    color: #888;
+    font-size: 13px;
+    margin-top: 4px;
+}
