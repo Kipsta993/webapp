@@ -45,16 +45,14 @@
     padding: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     -webkit-tap-highlight-color: transparent;
+    transition: all 0.3s ease;
+    width: 100%;
 }
 
 .quest-card.active {
     border: 2px solid #007AFF;
-    width: 100%;
 }
 
-.quest-card.active .quest-content {
-    width: 100%;
-}
 
 .quest-content {
     display: flex;
@@ -383,4 +381,18 @@ body.light-theme .progress-bar {
 
 .modal.show {
     display: flex;
+}
+
+/* Анимация для перемещения квеста */
+@keyframes moveToActive {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+.quest-card.moving {
+    animation: moveToActive 0.3s ease forwards;
 }
