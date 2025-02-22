@@ -81,11 +81,11 @@ h1 {
     position: fixed;
     top: 20px;
     background: #1E1E1E;
-    padding: 12px 10px;
+    padding: 12px 7px;
     border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
