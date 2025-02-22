@@ -1,0 +1,248 @@
+.quest-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.active-quest {
+    margin-bottom: 40px;
+}
+
+.quest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.quest-card {
+    background: #1E1E1E;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.quest-card:hover {
+    transform: translateY(-5px);
+}
+
+.quest-card.active {
+    border: 2px solid #007AFF;
+}
+
+.quest-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quest-content h3 {
+    color: #FFFFFF;
+    font-size: 18px;
+    margin: 0;
+}
+
+.quest-content p {
+    color: #888;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.quest-details {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.quest-reward-badge {
+    background: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.quest-time-badge {
+    background: rgba(0, 122, 255, 0.1);
+    color: #007AFF;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.take-quest-btn {
+    background: #007AFF;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.take-quest-btn:hover {
+    background: #0066CC;
+}
+
+.quest-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #007AFF;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+@keyframes questComplete {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.quest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.quest-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.quest-timer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.quest-timer svg {
+    width: 16px;
+    height: 16px;
+    color: #FF6B6B;
+}
+
+.quest-timer span {
+    color: #FF6B6B;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 32px 0 20px;
+}
+
+.section-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.refresh-time {
+    color: #888;
+    font-size: 14px;
+}
+
+.quest-difficulty {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.quest-difficulty.easy {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.quest-difficulty.medium {
+    background: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+}
+
+.quest-difficulty.hard {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+}
+
+/* Светлая тема */
+body.light-theme .quest-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .quest-card.active {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 122, 255, 0.3);
+}
+
+body.light-theme .quest-content h3 {
+    color: #121212;
+}
+
+body.light-theme .quest-content p {
+    color: #666;
+}
+
+body.light-theme .quest-timer {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .progress-bar {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Анимации */
+@keyframes questAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quest-card {
+    animation: questAppear 0.3s ease forwards;
+}
