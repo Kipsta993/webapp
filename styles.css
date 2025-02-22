@@ -91,10 +91,13 @@ h1 {
 
 .coin-counter {
     right: 20px;
+    min-width: 87px;
 }
 
 .streak-counter {
-    right: 110px;
+    padding: 12px 8px;
+    right: calc(20px + 87px);
+    margin-right: 3px;
 }
 
 .coin-icon {
