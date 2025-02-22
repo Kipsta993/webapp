@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Действия</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="actions.css">
 </head>
 <body>
     <main>
         <!-- Счетчики -->
-        <div class="counters">
-            <div class="counter">
-                <span class="counter-value">1234</span>
-                <span class="counter-label">Монеты</span>
-            </div>
-            <div class="counter">
-                <span class="counter-value">4</span>
-                <span class="counter-label">Действия</span>
-            </div>
+        <div class="coin-counter">
+            <img src="image2.png" alt="Coin" class="coin-icon">
+            <span>0,000</span>
         </div>
+        <div class="streak-counter">
+            <img src="image.png" alt="Streak counter" class="streak-icon">
+            <span>0</span>
 
         <!-- Блоки действий -->
         <div class="actions-container">
@@ -50,19 +46,20 @@
             </div>
         </div>
     </main>
-    <div class="bottom-navigation">
-        <a href="index.html" class="nav-item">
-            <i class="fas fa-home"></i>
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <img src="image1.png" alt="Home" class="nav-icon">
             <span>Главная</span>
         </a>
-        <a href="actions.html" class="nav-item active">
-            <i class="fas fa-bolt"></i>
+        <a href="actions.html" class="nav-item">
+            <img src="image1.png" alt="Actions" class="nav-icon">
             <span>Действия</span>
         </a>
         <a href="settings.html" class="nav-item">
-            <i class="fas fa-cog"></i>
+            <img src="image1.png" alt="Settings" class="nav-icon">
             <span>Настройки</span>
         </a>
-    </div>
+    </nav>
+    <script src="script.js"></script>
 </body>
-</html> 
+</html>
