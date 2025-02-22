@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Квесты</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="quests.css">
 </head>
 <body>
     <div class="coin-counter">
@@ -15,59 +16,57 @@
         <img src="image.png" alt="Streak counter" class="streak-icon">
         <span>0</span>
     </div>
-
-    <div class="next-task">
-        <p class="task-label">Активный квест (1/1):</p>
-        <div class="task-card">
-            <div class="task-info">
-                <div class="quest-reward">
-                    <img src="image2.png" alt="Coin" class="coin-icon-small">
-                    <span>250</span>
+    <main>
+        <div class="quest-container">
+            <div class="active-quest">
+                <h2>Активный квест</h2>
+                <div class="quest-card active">
+                    <!-- Сюда будет вставляться активный квест -->
                 </div>
-                <div class="task-header">
-                    <span class="task-text">Пробежать 5 километров</span>
-                    <button class="complete-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                        </svg>
-                    </button>
+            </div>
+            
+            <div class="available-quests">
+                <h2>Доступные квесты</h2>
+                <div class="quest-grid">
+                    <div class="quest-card">
+                        <div class="quest-content">
+                            <h3>Утренняя зарядка</h3>
+                            <p>Сделай 20 отжиманий, 30 приседаний и 10 подтягиваний</p>
+                            <div class="quest-details">
+                                <span class="quest-reward-badge">+<span>50</span> монет</span>
+                                <span class="quest-time-badge">1 час</span>
+                            </div>
+                            <button class="take-quest-btn">Взять квест</button>
+                        </div>
+                    </div>
+                    
+                    <div class="quest-card">
+                        <div class="quest-content">
+                            <h3>Чтение книги</h3>
+                            <p>Прочитай 50 страниц любой книги</p>
+                            <div class="quest-details">
+                                <span class="quest-reward-badge">+<span>30</span> монет</span>
+                                <span class="quest-time-badge">2 часа</span>
+                            </div>
+                            <button class="take-quest-btn">Взять квест</button>
+                        </div>
+                    </div>
+                    
+                    <div class="quest-card">
+                        <div class="quest-content">
+                            <h3>Прогулка</h3>
+                            <p>Пройди 10,000 шагов</p>
+                            <div class="quest-details">
+                                <span class="quest-reward-badge">+<span>40</span> монет</span>
+                                <span class="quest-time-badge">3 часа</span>
+                            </div>
+                            <button class="take-quest-btn">Взять квест</button>
+                        </div>
+                    </div>
                 </div>
-                <span class="task-desc">Нужно пробежать 5 км за один раз</span>
             </div>
         </div>
-    </div>
-
-    <div class="daily-tasks">
-        <p class="task-label">Доступные квесты:</p>
-        <div class="task-card">
-            <div class="task-info">
-                <div class="quest-reward">
-                    <img src="image2.png" alt="Coin" class="coin-icon-small">
-                    <span>500</span>
-                </div>
-                <div class="task-header">
-                    <span class="task-text">Медитация 7 дней подряд</span>
-                    <button class="take-quest-btn">Взять квест</button>
-                </div>
-                <span class="task-desc">Медитируй каждый день по 10 минут</span>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="task-info">
-                <div class="quest-reward">
-                    <img src="image2.png" alt="Coin" class="coin-icon-small">
-                    <span>300</span>
-                </div>
-                <div class="task-header">
-                    <span class="task-text">Прочитать книгу</span>
-                    <button class="take-quest-btn">Взять квест</button>
-                </div>
-                <span class="task-desc">Прочитай книгу из 200+ страниц за неделю</span>
-            </div>
-        </div>
-    </div>
-
+    </main>
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item">
             <img src="image1.png" alt="Home" class="nav-icon">
