@@ -57,28 +57,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обработка кнопок "Взять квест"
     const takeQuestButtons = document.querySelectorAll('.take-quest-btn');
-    const activeQuestSection = document.querySelector('.active-quest');
+    const activeQuestSection = document.querySelector('.active-quest .quest-card');
     const availableQuestsGrid = document.querySelector('.quest-grid');
+    const coinCounter = document.querySelector('.coin-counter span');
 
     takeQuestButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Проверяем, есть ли уже активный квест
             const activeQuest = document.querySelector('.quest-card.active');
-            if (activeQuest) {
+            if (activeQuest && activeQuest.innerHTML.trim() !== '') {
                 alert('У вас уже есть активный квест. Сначала завершите его.');
                 return;
             }
 
-            // Получаем карточку квеста
             const questCard = this.closest('.quest-card');
             const questContent = questCard.innerHTML;
 
-            // Создаем новую карточку для активного квеста
             const newActiveQuest = document.createElement('div');
             newActiveQuest.className = 'quest-card active';
             newActiveQuest.innerHTML = questContent;
 
-            // Заменяем кнопку "Взять квест" на кнопку "Завершить"
             const takeButton = newActiveQuest.querySelector('.take-quest-btn');
             const completeButton = document.createElement('button');
             completeButton.className = 'complete-btn';
@@ -91,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             takeButton.parentNode.replaceChild(completeButton, takeButton);
 
-            // Добавляем прогресс-бар
             const questContentDiv = newActiveQuest.querySelector('.quest-content');
             const progressDiv = document.createElement('div');
             progressDiv.className = 'quest-progress';
@@ -103,28 +99,22 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             questContentDiv.insertBefore(progressDiv, completeButton);
 
-            // Обновляем активный квест
-            activeQuestSection.querySelector('.quest-card')?.remove();
+            activeQuestSection.innerHTML = '';
             activeQuestSection.appendChild(newActiveQuest);
 
-            // Удаляем квест из доступных
             questCard.remove();
 
-            // Добавляем обработчик для кнопки завершения
             completeButton.addEventListener('click', function() {
                 if (!this.classList.contains('completed')) {
                     this.classList.add('completed');
                     
-                    // Анимация завершения
                     const questCard = this.closest('.quest-card');
                     questCard.style.animation = 'questComplete 0.5s ease forwards';
                     
-                    // Обновляем счетчик монет
                     const reward = parseInt(questCard.querySelector('.quest-reward-badge span').textContent);
-                    const currentCoins = parseInt(document.querySelector('.coin-counter span').textContent.replace(',', ''));
-                    document.querySelector('.coin-counter span').textContent = (currentCoins + reward).toLocaleString();
+                    const currentCoins = parseInt(coinCounter.textContent.replace(',', ''));
+                    coinCounter.textContent = (currentCoins + reward).toLocaleString();
                     
-                    // Удаляем квест после анимации
                     setTimeout(() => {
                         questCard.remove();
                     }, 500);
