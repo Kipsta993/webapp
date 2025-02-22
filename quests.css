@@ -1,95 +1,46 @@
-.quest-main {
-    height: calc(100vh - 120px);
-    overflow: hidden;
-    padding-top: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
 }
 
 .quest-container {
-    padding: 10px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.active-quest, .available-quests {
-    h2 {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 13px;
-        color: #888;
-        margin-bottom: 8px;
-        margin-left: 4px;
-        font-weight: 500;
-        letter-spacing: 0.3px;
-    }
-}
-
-.active-quest {
-    flex: 0.8;
-    margin-bottom: 10px;
-    height: 120px;
-}
-
-.available-quests {
-    flex: 2;
-    overflow-y: auto;
-}
-
-.quest-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .quest-card {
-    background: #1E1E1E;
-    border-radius: 12px;
-    padding: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    -webkit-tap-highlight-color: transparent;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
-    height: 100px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px;
+    transition: border-color 0.3s ease;
 }
 
-.quest-card.active {
-    border: 2px solid #007AFF;
-    padding: 12px;
-}
-
-.quest-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.quest-card:hover {
+    border-color: #007AFF;
 }
 
 .quest-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-.quest-content h3 {
-    color: #FFFFFF;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    margin: 0;
-}
-
-.details-btn {
-    background: none;
-    border: none;
-    padding: 4px;
-    color: #888;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.details-btn svg {
-    width: 16px;
-    height: 16px;
+.quest-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
 }
 
 .quest-details {
@@ -98,306 +49,32 @@
     align-items: center;
 }
 
-.quest-reward {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: rgba(255, 193, 7, 0.1);
-    padding: 4px 8px;
-    border-radius: 6px;
-}
-
-.reward-icon {
-    width: 16px;
-    height: 16px;
-}
-
-.quest-reward span {
-    color: #FFC107;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-}
-
-.quest-time-badge {
-    color: #007AFF;
-    background: rgba(0, 122, 255, 0.1);
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.quest-reward, .quest-time {
+    font-size: 14px;
+    color: #555;
 }
 
 .take-quest-btn {
+    display: block;
     width: 100%;
-    background: #007AFF;
-    color: #FFFFFF;
+    padding: 10px;
+    background-color: #007AFF;
+    color: #fff;
     border: none;
-    padding: 8px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
-.take-quest-btn:active {
-    transform: scale(0.98);
+.take-quest-btn:hover {
+    background-color: #005bb5;
 }
 
-.take-quest-btn.complete-btn {
-    background: #4CAF50;
+.take-quest-btn.complete {
+    background-color: #4CAF50;
 }
 
-.take-quest-btn.complete-btn:active {
-    background: #43A047;
-}
-
-.quest-progress {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: #007AFF;
-    width: 0%;
-    transition: width 0.3s ease;
-}
-
-@keyframes questComplete {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(0);
-        opacity: 0;
-    }
-}
-
-.quest-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.quest-header h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-}
-
-.quest-timer {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 8px 12px;
-    border-radius: 8px;
-}
-
-.quest-timer svg {
-    width: 16px;
-    height: 16px;
-    color: #FF6B6B;
-}
-
-.quest-timer span {
-    color: #FF6B6B;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 32px 0 20px;
-}
-
-.section-header h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-}
-
-.refresh-time {
-    color: #888;
-    font-size: 14px;
-}
-
-.quest-difficulty {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.quest-difficulty.easy {
-    background: rgba(76, 175, 80, 0.1);
-    color: #4CAF50;
-}
-
-.quest-difficulty.medium {
-    background: rgba(255, 152, 0, 0.1);
-    color: #FF9800;
-}
-
-.quest-difficulty.hard {
-    background: rgba(244, 67, 54, 0.1);
-    color: #F44336;
-}
-
-/* Светлая тема */
-body.light-theme .quest-card {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-body.light-theme .quest-card.active {
-    background: #f8f9fa;
-    border: 1px solid rgba(0, 122, 255, 0.3);
-}
-
-body.light-theme .quest-content h3 {
-    color: #121212;
-}
-
-body.light-theme .quest-content p {
-    color: #666;
-}
-
-body.light-theme .quest-timer {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .progress-bar {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-/* Анимации */
-@keyframes questAppear {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.quest-card {
-    animation: questAppear 0.2s ease forwards;
-}
-
-/* Модальное окно */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: #1E1E1E;
-    width: 90%;
-    max-width: 320px;
-    border-radius: 12px;
-    padding: 16px;
-    position: relative;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    color: #888;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.modal-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.quest-description {
-    color: #888;
-    font-size: 14px;
-    line-height: 1.4;
-    margin-bottom: 16px;
-}
-
-.quest-requirements h4,
-.quest-rewards h4 {
-    color: #fff;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.quest-requirements ul {
-    list-style: none;
-    padding: 0;
-    color: #888;
-    font-size: 14px;
-}
-
-.quest-requirements li {
-    margin-bottom: 4px;
-}
-
-.modal.show {
-    display: flex;
-}
-
-/* Анимация для перемещения квеста */
-@keyframes moveToActive {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-100%);
-    }
-}
-
-.quest-card.moving {
-    animation: moveToActive 0.3s ease forwards;
-    /* Убираем изменение формы при перемещении */
-    transform: none !important;
-}
+.take-quest-btn.complete:hover {
+    background-color: #388E3C;
+} 
