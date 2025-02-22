@@ -26,6 +26,7 @@
 .active-quest {
     flex: 0.8;
     margin-bottom: 10px;
+    height: 120px;
 }
 
 .available-quests {
