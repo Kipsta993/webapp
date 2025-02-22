@@ -77,4 +77,49 @@ body {
 
 .take-quest-btn.complete:hover {
     background-color: #388E3C;
+}
+
+.coin-counter, .streak-counter {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.coin-icon, .streak-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.nav-item {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+.details-btn {
+    background-color: transparent;
+    border: none;
+    color: #007AFF;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
 } 
