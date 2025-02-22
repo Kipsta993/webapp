@@ -63,21 +63,40 @@ document.addEventListener('DOMContentLoaded', function() {
     takeQuestButtons.forEach(button => {
         button.addEventListener('click', function() {
             const questCard = this.closest('.quest-card');
-            const questContent = questCard.innerHTML;
+            const questContent = questCard.querySelector('.quest-content').innerHTML;
+            
+            // Проверяем, нет ли уже активного квеста
+            const currentActiveQuest = activeQuestSection.querySelector('.quest-content h3').textContent;
+            if (currentActiveQuest !== 'Нет активного квеста') {
+                alert('Сначала завершите текущий квест');
+                return;
+            }
 
-            activeQuestSection.innerHTML = questContent;
+            // Обновляем содержимое активного квеста
+            activeQuestSection.querySelector('.quest-content').innerHTML = questContent;
+            
+            // Меняем кнопку на "Завершить"
             const completeButton = activeQuestSection.querySelector('.take-quest-btn');
             completeButton.textContent = 'Завершить квест';
             completeButton.classList.add('complete-btn');
 
+            // Удаляем кнопку деталей из активного квеста
+            const detailsBtn = activeQuestSection.querySelector('.details-btn');
+            if (detailsBtn) {
+                detailsBtn.remove();
+            }
+
+            // Обработчик завершения квеста
             completeButton.addEventListener('click', function() {
                 if (!this.classList.contains('completed')) {
                     this.classList.add('completed');
                     
-                    const reward = parseInt(questCard.querySelector('.quest-reward-badge span').textContent);
+                    // Получаем награду
+                    const reward = parseInt(activeQuestSection.querySelector('.quest-reward span').textContent);
                     const currentCoins = parseInt(coinCounter.textContent.replace(',', ''));
                     coinCounter.textContent = (currentCoins + reward).toLocaleString();
                     
+                    // Возвращаем исходное состояние
                     setTimeout(() => {
                         activeQuestSection.innerHTML = `
                             <div class="quest-content">
@@ -88,6 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 500);
                 }
             });
+
+            // Анимация исчезновения квеста из доступных
+            questCard.style.opacity = '0';
+            questCard.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                questCard.remove();
+            }, 200);
         });
     });
 
@@ -134,4 +160,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+
+    const modal = document.getElementById('questDetailsModal');
+    const detailsBtns = document.querySelectorAll('.details-btn');
+    const closeModal = document.querySelector('.close-modal');
+
+    // Данные квестов
+    const questDetails = {
+        'Утренняя зарядка': {
+            description: 'Выполни комплекс упражнений для поддержания здоровья',
+            requirements: [
+                '20 отжиманий',
+                '30 приседаний',
+                '10 подтягиваний'
+            ],
+            reward: 50
+        },
+        'Чтение книги': {
+            description: 'Прочитай определенное количество страниц для развития',
+            requirements: [
+                'Прочитать 50 страниц',
+                'Сделать заметки',
+                'Уделить минимум 1 час'
+            ],
+            reward: 30
+        }
+    };
+
+    detailsBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const questCard = this.closest('.quest-card');
+            const questName = questCard.querySelector('h3').textContent;
+            const details = questDetails[questName];
+
+            modal.querySelector('.modal-header h3').textContent = questName;
+            modal.querySelector('.quest-description').textContent = details.description;
+            
+            const requirementsList = modal.querySelector('.quest-requirements ul');
+            requirementsList.innerHTML = details.requirements
+                .map(req => `<li>${req}</li>`)
+                .join('');
+
+            modal.querySelector('.reward-details').innerHTML = `
+                <div class="quest-reward">
+                    <img src="image2.png" alt="Coin" class="reward-icon">
+                    <span>${details.reward}</span>
+                </div>
+            `;
+
+            modal.classList.add('show');
+        });
+    });
+
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
 }); 
