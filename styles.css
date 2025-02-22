@@ -437,44 +437,14 @@ body.light-theme .nav-item.active {
     font-weight: 500;
 }
 
-.quests-container {
-    padding: 20px 12px;
-    padding-bottom: 80px; /* Для нижней навигации */
-}
-
-.available-quests {
-    margin-top: 16px;
-    opacity: 0.8;
-}
-
-.quest-card {
-    background: linear-gradient(145deg, #232323, #1a1a1a);
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.quest-info {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* Стили для награды */
 .quest-reward {
-    align-self: flex-start;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     background: rgba(255, 255, 255, 0.05);
-    padding: 6px 10px;
+    padding: 4px 8px;
     border-radius: 6px;
-}
-
-.quest-reward img {
-    width: 16px;
-    height: 16px;
+    margin-bottom: 8px;
 }
 
 .quest-reward span {
@@ -483,69 +453,42 @@ body.light-theme .nav-item.active {
     font-size: 14px;
 }
 
-/* Стили для основного контента */
-.quest-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.coin-icon-small {
+    width: 16px;
+    height: 16px;
 }
 
-.quest-text {
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-.quest-desc {
+.task-desc {
     color: #888;
     font-size: 13px;
+    margin-top: 4px;
 }
 
-/* Стили для чекбокса */
-.quest-complete {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.complete-btn {
-    width: 24px;
-    height: 24px;
-    padding: 0;
+.take-quest-btn {
+    background: rgba(0, 122, 255, 0.1);
     border: none;
-    background: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: #007AFF;
+    font-weight: 600;
+    font-size: 13px;
     cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.complete-btn svg {
-    width: 24px;
-    height: 24px;
-    color: #666;
     transition: all 0.2s ease;
 }
 
-.complete-btn.completed svg {
-    color: #4CAF50;
-    fill: #4CAF50;
+.take-quest-btn:hover {
+    background: rgba(0, 122, 255, 0.2);
 }
 
-.complete-btn:active {
-    transform: scale(0.9);
+.take-quest-btn:active {
+    transform: scale(0.95);
 }
 
-/* Анимация при выполнении */
-.quest-card.completed {
-    animation: slideOut 0.5s ease forwards;
+/* Для светлой темы */
+body.light-theme .quest-reward {
+    background: rgba(0, 0, 0, 0.05);
 }
 
-@keyframes slideOut {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(120%);
-        opacity: 0;
-    }
+body.light-theme .task-desc {
+    color: #666;
 }
