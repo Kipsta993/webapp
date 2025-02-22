@@ -446,41 +446,62 @@ body.light-theme .nav-item.active {
     flex-direction: column;
     gap: 15px;
     padding: 20px;
+    margin-top: 80px;
 }
 
 .action-block {
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: #1E1E1E;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.action-block h3 {
-    margin: 0;
+.price-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.price-tag .coin-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.price-tag span {
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
-}
-
-.price {
-    color: #666;
-    margin: 0;
+    font-size: 14px;
 }
 
 .buy-button {
-    background: #4CAF50;
+    background: #007AFF;
     color: white;
     border: none;
-    padding: 8px 20px;
-    border-radius: 5px;
+    padding: 10px 30px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s;
-    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+    margin-top: 10px;
 }
 
 .buy-button:hover {
-    background: #45a049;
+    background: #0066CC;
+}
+
+.buy-button:active {
+    transform: scale(0.98);
 }
 
 /* Стили для ежедневного сундука */
@@ -510,4 +531,44 @@ body.light-theme .nav-item.active {
 
 .time-left {
     font-weight: 600;
+}
+
+/* Светлая тема */
+body.light-theme .action-block {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .price-tag span {
+    color: #121212;
+}
+
+/* Обновленные стили для карточек действий */
+.next-task .task-card {
+    margin-bottom: 15px;
+    position: relative;
+    padding: 20px;
+}
+
+.next-task .task-card:last-child {
+    margin-bottom: 0;
+}
+
+.next-task .task-card .price-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.next-task .task-card .buy-button {
+    margin-top: 15px;
+}
+
+.next-task .task-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
