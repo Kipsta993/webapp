@@ -47,12 +47,13 @@
     -webkit-tap-highlight-color: transparent;
     transition: all 0.3s ease;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .quest-card.active {
     border: 2px solid #007AFF;
+    padding: 10px;
 }
-
 
 .quest-content {
     display: flex;
