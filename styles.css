@@ -449,65 +449,14 @@ body.light-theme .nav-item.active {
     margin-top: 80px;
 }
 
-.action-block {
-    background: #1E1E1E;
-    border-radius: 8px;
-    padding: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.price-tag {
-    position: absolute;
-    right: 10px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.price-tag .coin-icon {
-    width: 16px;
-    height: 16px;
-}
-
-.price-tag span {
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.buy-button {
-    background: #007AFF;
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    transition: background 0.2s ease;
-    margin-top: 10px;
-}
-
-.buy-button:hover {
-    background: #0066CC;
-}
-
-.buy-button:active {
-    transform: scale(0.98);
-}
-
-/* Стили для ежедневного сундука */
 .daily-chest {
     text-align: center;
-    padding: 20px;
-    margin-top: 20px;
+    padding: 20px 8px;
+    margin: 15px 0;
+    background: #1E1E1E;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .daily-chest h2 {
@@ -612,4 +561,13 @@ body.light-theme .price-tag span {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Добавим общий контейнер */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 8px;
+    margin-top: 80px;
 }
