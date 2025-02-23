@@ -463,7 +463,6 @@ body.light-theme .nav-item.active {
 
 .price-tag {
     position: absolute;
-    top: 10px;
     right: 10px;
     display: flex;
     align-items: center;
@@ -560,12 +559,13 @@ body.light-theme .price-tag span {
 
 .next-task .task-card .price-tag {
     position: absolute;
-    bottom: 10px;
-    left: 3px;
+    bottom: 5px;
+    left: 5px;
 }
 
 .next-task .task-card .price-container {
     background: #FFD700;
+    opacity: 0.6;
     padding: 5px 5px;
     border-radius: 5px;
     display: flex;
@@ -612,4 +612,8 @@ body.light-theme .price-tag span {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.next-task .task-card .task-text {
+    padding-left: 5px;
 }
