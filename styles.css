@@ -467,7 +467,7 @@ body.light-theme .nav-item.active {
 
 .daily-chest h2 {
     font-weight: 600;
-    margin-bottom: -10px;
+    margin-bottom: -20px;
     font-size: 18px;
     font-family: 'Inter', sans-serif;
     color: #888;
@@ -475,17 +475,17 @@ body.light-theme .nav-item.active {
 
 .chest-image {
     max-width: 105px;
-    margin: 8px 0;
+    margin: 3px 0 8px;
 }
 
 .timer {
     padding: 4px 12px;
     border-radius: 6px;
-    margin-top: 5px;
+    margin-top: -2px;
     font-size: 14px;
     width: auto;
     display: inline-block;
-    color: #000;
+    color: #fff;
 }
 
 /* Светлая тема */
