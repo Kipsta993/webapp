@@ -560,8 +560,8 @@ body.light-theme .price-tag span {
 
 .next-task .task-card .price-tag {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: 10px;
+    left: 10px;
 }
 
 .next-task .task-card .price-container {
@@ -587,7 +587,25 @@ body.light-theme .price-tag span {
 
 .next-task .task-card .buy-button {
     margin-top: 10px;
-    width: 100%;
+    width: auto;
+    padding: 8px 16px;
+    background: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.next-task .task-card .buy-button:hover {
+    background: #0066CC;
+}
+
+.next-task .task-card .buy-button:active {
+    transform: scale(0.98);
 }
 
 .next-task .task-text {
