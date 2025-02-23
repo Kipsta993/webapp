@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для обновления таймера
     function updateTimer() {
         const now = new Date();
-        let nextNoon = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 12, 0, 0);
+        let nextNoon = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
         
         if (now.getHours() >= 12) {
             nextNoon.setDate(nextNoon.getDate() + 1);
