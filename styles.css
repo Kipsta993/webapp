@@ -465,6 +465,8 @@ body.light-theme .nav-item.active {
     font-weight: 600;
     margin-bottom: 10px;
     font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    color: #888;
 }
 
 .chest-image {
@@ -474,10 +476,13 @@ body.light-theme .nav-item.active {
 
 .timer {
     background: white;
-    padding: 6px;
+    padding: 6px 12px;
     border-radius: 6px;
     margin-top: 8px;
     font-size: 13px;
+    width: auto;
+    display: inline-block;
+    color: #000;
 }
 
 .time-left {
