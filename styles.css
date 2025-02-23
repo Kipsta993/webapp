@@ -456,7 +456,7 @@ body.light-theme .nav-item.active {
     width: 100%;
     max-width: 385px;
     position: absolute;
-    bottom: 85px;
+    bottom: 90px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -479,7 +479,6 @@ body.light-theme .nav-item.active {
 }
 
 .timer {
-    background: white;
     padding: 4px 12px;
     border-radius: 6px;
     margin-top: 5px;
