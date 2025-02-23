@@ -451,14 +451,14 @@ body.light-theme .nav-item.active {
 
 .daily-chest {
     text-align: center;
-    padding: 15px 8px;
-    margin: 20px 0 15px;
+    padding: 12px 8px;
+    margin: 55px 0 15px;
     background: #1E1E1E;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border: 1px solid rgba(255, 255, 255, 0.05);
     width: 90%;
-    max-width: 400px;
+    max-width: 385px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -470,16 +470,16 @@ body.light-theme .nav-item.active {
 }
 
 .chest-image {
-    max-width: 120px;
-    margin: 10px 0;
+    max-width: 105px;
+    margin: 8px 0;
 }
 
 .timer {
     background: white;
-    padding: 8px;
-    border-radius: 8px;
-    margin-top: 10px;
-    font-size: 14px;
+    padding: 6px;
+    border-radius: 6px;
+    margin-top: 8px;
+    font-size: 13px;
 }
 
 .time-left {
