@@ -467,7 +467,6 @@ body.light-theme .nav-item.active {
 
 .daily-chest h2 {
     font-weight: 600;
-    margin-bottom: -23px;
     font-size: 18px;
     font-family: 'Inter', sans-serif;
     color: #888;
@@ -482,7 +481,6 @@ body.light-theme .nav-item.active {
     padding: 4px 12px;
     border-radius: 6px;
     margin-top: -4px;
-    font-size: 14px;
     width: auto;
     display: inline-block;
     color: #fff;
