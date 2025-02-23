@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     background-color: #121212;
     color: #ffffff;
+    overflow: hidden;
 }
 
 .bottom-nav {
@@ -453,8 +454,6 @@ body.light-theme .nav-item.active {
     text-align: center;
     padding: 12px 8px;
     margin: auto auto 15px;
-    background: #1E1E1E;
-    border-radius: 8px;
     width: 100%;
     max-width: 385px;
     position: sticky;
@@ -574,5 +573,5 @@ body.light-theme .price-tag span {
     gap: 15px;
     padding: 0 8px;
     margin-top: 80px;
-    min-height: calc(100vh - 200px);
+    height: calc(100vh - 200px);
 }
