@@ -265,4 +265,30 @@ document.addEventListener('DOMContentLoaded', function() {
             // Здесь можно добавить логику для изменения состояния задачи
         });
     });
+
+    // Функция для обновления таймера
+    function updateTimer() {
+        const now = new Date();
+        let nextNoon = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 12, 0, 0);
+        
+        if (now.getHours() >= 12) {
+            nextNoon.setDate(nextNoon.getDate() + 1);
+        }
+        
+        const remainingTime = nextNoon - now;
+        
+        const hours = Math.floor(remainingTime / 3600000);
+        const minutes = Math.floor((remainingTime % 3600000) / 60000);
+        const seconds = Math.floor((remainingTime % 60000) / 1000);
+        
+        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        document.querySelector('.time-left').textContent = formattedTime;
+    }
+
+    // Вызываем функцию обновления таймера каждую секунду
+    setInterval(updateTimer, 1000);
+
+    // Вызываем функцию обновления таймера при загрузке страницы
+    updateTimer();
 }); 
