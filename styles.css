@@ -453,17 +453,21 @@ body.light-theme .nav-item.active {
 .daily-chest {
     text-align: center;
     padding: 12px 8px;
-    margin: 0 auto 15px;
     width: 100%;
     max-width: 385px;
-    position: sticky;
+    position: absolute;
     bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .daily-chest h2 {
     font-weight: 600;
-    margin-bottom: 0;
+    margin-bottom: -10px;
     font-size: 18px;
     font-family: 'Inter', sans-serif;
     color: #888;
@@ -476,17 +480,13 @@ body.light-theme .nav-item.active {
 
 .timer {
     background: white;
-    padding: 6px 12px;
+    padding: 4px 12px;
     border-radius: 6px;
-    margin-top: 8px;
-    font-size: 13px;
+    margin-top: 5px;
+    font-size: 14px;
     width: auto;
     display: inline-block;
     color: #000;
-}
-
-.time-left {
-    font-weight: 600;
 }
 
 /* Светлая тема */
