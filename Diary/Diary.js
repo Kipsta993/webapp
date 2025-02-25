@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const entryView = document.getElementById('entry-view');
     const entriesContainer = document.getElementById('entries-container');
     
+    // Явная инициализация стилей отображения
+    entriesList.style.display = 'block';
+    entryForm.style.display = 'none';
+    entryView.style.display = 'none';
+    
     // Кнопки
     const addEntryBtn = document.getElementById('add-entry-btn');
     const closeFormBtn = document.getElementById('close-form-btn');
@@ -26,12 +31,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const entryIdInput = document.getElementById('entry-id');
     
     // Обработчики событий
-    addEntryBtn.addEventListener('click', showAddEntryForm);
-    closeFormBtn.addEventListener('click', hideEntryForm);
-    cancelBtn.addEventListener('click', hideEntryForm);
-    diaryForm.addEventListener('submit', saveEntry);
-    closeViewBtn.addEventListener('click', hideEntryView);
-    editEntryBtn.addEventListener('click', editCurrentEntry);
+    if (addEntryBtn) {
+        addEntryBtn.addEventListener('click', showAddEntryForm);
+    }
+    if (closeFormBtn) {
+        closeFormBtn.addEventListener('click', hideEntryForm);
+    }
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', hideEntryForm);
+    }
+    if (diaryForm) {
+        diaryForm.addEventListener('submit', saveEntry);
+    }
+    if (closeViewBtn) {
+        closeViewBtn.addEventListener('click', hideEntryView);
+    }
+    if (editEntryBtn) {
+        editEntryBtn.addEventListener('click', editCurrentEntry);
+    }
     
     // Функция для загрузки общих данных
     function loadCommonData() {
