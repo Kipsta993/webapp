@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Actions.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Actions</h1>
+            <div class="stats">
+                <div class="coins">
+                    <img src="../Прочее/Монета.png" alt="Монеты">
+                    <span id="coin-count">100</span>
+                </div>
+                <div class="streak">
+                    <img src="../Прочее/Огонь.png" alt="Серия дней">
+                    <span id="streak-count">7</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="actions-list">
+                <h2>Доступные действия</h2>
+                
+                <div class="action-card">
+                    <div class="action-info">
+                        <div class="action-icon">
+                            <img src="../Прочее/Сундук.png" alt="Сундук">
+                        </div>
+                        <div class="action-details">
+                            <h3>Дополнительное время отдыха</h3>
+                            <div class="action-price">
+                                <img src="../Прочее/Монета.png" alt="Монеты">
+                                <span>50</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-controls">
+                        <button class="buy-btn" data-action="rest" data-price="50">Купить</button>
+                        <div class="more-info">
+                            <i class="fas fa-ellipsis-v"></i>
+                            <div class="info-popup">
+                                <p>Получите дополнительный час отдыха. Можно использовать для любых личных дел или просто для отдыха.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-card">
+                    <div class="action-info">
+                        <div class="action-icon">
+                            <img src="../Прочее/Сундук.png" alt="Сундук">
+                        </div>
+                        <div class="action-details">
+                            <h3>Пропуск задания</h3>
+                            <div class="action-price">
+                                <img src="../Прочее/Монета.png" alt="Монеты">
+                                <span>75</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-controls">
+                        <button class="buy-btn" data-action="skip" data-price="75">Купить</button>
+                        <div class="more-info">
+                            <i class="fas fa-ellipsis-v"></i>
+                            <div class="info-popup">
+                                <p>Пропустите одно ежедневное задание без потери серии дней. Идеально для особенно загруженных дней.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-card">
+                    <div class="action-info">
+                        <div class="action-icon">
+                            <img src="../Прочее/Сундук.png" alt="Сундук">
+                        </div>
+                        <div class="action-details">
+                            <h3>Бонус к серии дней</h3>
+                            <div class="action-price">
+                                <img src="../Прочее/Монета.png" alt="Монеты">
+                                <span>100</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-controls">
+                        <button class="buy-btn" data-action="streak" data-price="100">Купить</button>
+                        <div class="more-info">
+                            <i class="fas fa-ellipsis-v"></i>
+                            <div class="info-popup">
+                                <p>Увеличьте вашу серию дней на +1. Полезно, если вы пропустили день и хотите восстановить серию.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="../index.html">
+                <i class="fas fa-calendar-day"></i>
+                <span>Daily</span>
+            </a>
+            <a href="../Weekly/Weekly.html">
+                <i class="fas fa-calendar-week"></i>
+                <span>Weekly</span>
+            </a>
+            <a href="../Diary/Diary.html">
+                <i class="fas fa-book"></i>
+                <span>Diary</span>
+            </a>
+            <a href="../Actions/Actions.html" class="active">
+                <i class="fas fa-bolt"></i>
+                <span>Actions</span>
+            </a>
+            <a href="../Settings/Settings.html">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="Actions.js"></script>
+</body>
+</html>
