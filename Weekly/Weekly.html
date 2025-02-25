@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Tasks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Weekly.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weekly Tasks</h1>
+            <div class="stats">
+                <div class="coins">
+                    <img src="../Прочее/Монета.png" alt="Монеты">
+                    <span id="coin-count">100</span>
+                </div>
+                <div class="streak">
+                    <img src="../Прочее/Огонь.png" alt="Серия дней">
+                    <span id="streak-count">7</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="weekly-tasks">
+                <h2>Задания на неделю</h2>
+                <div class="task-list">
+                    <div class="task-item">
+                        <input type="checkbox" id="weekly-task1">
+                        <label for="weekly-task1">Закончить проект</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="weekly-task2">
+                        <label for="weekly-task2">Прочитать книгу</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="weekly-task3">
+                        <label for="weekly-task3">Сходить в спортзал 3 раза</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="weekly-task4">
+                        <label for="weekly-task4">Встретиться с друзьями</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="weekly-task5">
+                        <label for="weekly-task5">Подготовить презентацию</label>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="../index.html">
+                <i class="fas fa-calendar-day"></i>
+                <span>Daily</span>
+            </a>
+            <a href="../Weekly/Weekly.html" class="active">
+                <i class="fas fa-calendar-week"></i>
+                <span>Weekly</span>
+            </a>
+            <a href="../Actions/Actions.html">
+                <i class="fas fa-bolt"></i>
+                <span>Actions</span>
+            </a>
+            <a href="../Settings/Settings.html">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="Weekly.js"></script>
+</body>
+</html>
