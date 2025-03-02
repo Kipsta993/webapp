@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обновление времени до следующего дня
     updateTimeUntilTomorrow();
+
+    // Обновляем задание каждую минуту
+    setInterval(updateNextTask, 60000);
+    
+    // Обновляем время до завтра каждую минуту
+    setInterval(updateTimeUntilTomorrow, 60000);
+    
+    // Проверяем ежедневную серию
+    checkDailyStreak();
 });
 
 // Функция для загрузки сохраненных состояний задач
@@ -221,25 +230,159 @@ function adjustColor(color, amount) {
     return `#${adjustedR.toString(16).padStart(2, '0')}${adjustedG.toString(16).padStart(2, '0')}${adjustedB.toString(16).padStart(2, '0')}`;
 }
 
+// Расписание на неделю
+const weeklySchedule = {
+    "ПОНЕДЕЛЬНИК": [
+        { start: "07:00", end: "07:30", title: "Подъем, утренние процедуры" },
+        { start: "07:30", end: "07:40", title: "Прыгание на скакалке" },
+        { start: "07:40", end: "07:50", title: "Завтрак" },
+        { start: "08:00", end: "13:50", title: "Учеба" },
+        { start: "14:10", end: "14:40", title: "Обед" },
+        { start: "14:40", end: "14:50", title: "Отдых" },
+        { start: "14:50", end: "15:00", title: "Дорога до секции футбола" },
+        { start: "15:00", end: "16:30", title: "Секция по футболу" },
+        { start: "16:30", end: "16:40", title: "Дорога домой" },
+        { start: "16:40", end: "17:00", title: "Отдых, перекус" },
+        { start: "17:00", end: "19:00", title: "Выполнение домашних заданий" },
+        { start: "19:00", end: "19:30", title: "Ужин" },
+        { start: "19:30", end: "20:30", title: "Свободное время" },
+        { start: "20:30", end: "21:30", title: "Тренировка тела" },
+        { start: "21:30", end: "22:00", title: "Подготовка ко сну" },
+        { start: "22:00", end: "07:00", title: "Сон" }
+    ],
+    "ВТОРНИК": [
+        { start: "07:00", end: "07:30", title: "Подъем, утренние процедуры" },
+        { start: "07:30", end: "07:50", title: "Завтрак" },
+        { start: "08:00", end: "13:50", title: "Учеба" },
+        { start: "14:10", end: "14:40", title: "Обед" },
+        { start: "14:40", end: "15:30", title: "Отдых" },
+        { start: "15:30", end: "16:30", title: "Тренировка тела" },
+        { start: "16:30", end: "17:00", title: "Отдых, перекус" },
+        { start: "17:00", end: "19:00", title: "Выполнение домашних заданий" },
+        { start: "19:00", end: "19:30", title: "Ужин" },
+        { start: "19:30", end: "21:30", title: "Свободное время" },
+        { start: "21:30", end: "22:00", title: "Подготовка ко сну" },
+        { start: "22:00", end: "07:00", title: "Сон" }
+    ],
+    "СРЕДА": [
+        { start: "07:00", end: "07:30", title: "Подъем, утренние процедуры" },
+        { start: "07:30", end: "07:40", title: "Прыгание на скакалке" },
+        { start: "07:40", end: "07:50", title: "Завтрак" },
+        { start: "08:00", end: "13:50", title: "Учеба" },
+        { start: "14:10", end: "14:40", title: "Обед" },
+        { start: "14:40", end: "15:30", title: "Отдых" },
+        { start: "15:30", end: "16:30", title: "Тренировка тела" },
+        { start: "16:30", end: "17:00", title: "Отдых, перекус" },
+        { start: "17:00", end: "19:00", title: "Выполнение домашних заданий" },
+        { start: "19:00", end: "19:30", title: "Ужин" },
+        { start: "19:30", end: "21:30", title: "Свободное время" },
+        { start: "21:30", end: "22:00", title: "Подготовка ко сну" },
+        { start: "22:00", end: "07:00", title: "Сон" }
+    ],
+    "ЧЕТВЕРГ": [
+        { start: "07:00", end: "07:30", title: "Подъем, утренние процедуры" },
+        { start: "07:30", end: "07:50", title: "Завтрак" },
+        { start: "08:00", end: "13:50", title: "Учеба" },
+        { start: "14:10", end: "14:40", title: "Обед" },
+        { start: "14:40", end: "15:30", title: "Отдых" },
+        { start: "15:30", end: "16:30", title: "Тренировка тела" },
+        { start: "16:30", end: "17:00", title: "Отдых, перекус" },
+        { start: "17:00", end: "19:00", title: "Выполнение домашних заданий" },
+        { start: "19:00", end: "19:30", title: "Ужин" },
+        { start: "19:30", end: "21:30", title: "Свободное время" },
+        { start: "21:30", end: "22:00", title: "Подготовка ко сну" },
+        { start: "22:00", end: "07:00", title: "Сон" }
+    ],
+    "ПЯТНИЦА": [
+        { start: "07:00", end: "07:30", title: "Подъем, утренние процедуры" },
+        { start: "07:30", end: "07:40", title: "Прыгание на скакалке" },
+        { start: "07:40", end: "07:50", title: "Завтрак" },
+        { start: "08:00", end: "13:50", title: "Учеба" },
+        { start: "14:10", end: "14:40", title: "Обед" },
+        { start: "14:40", end: "15:30", title: "Отдых" },
+        { start: "15:30", end: "16:30", title: "Тренировка тела" },
+        { start: "16:30", end: "17:00", title: "Отдых, перекус" },
+        { start: "17:00", end: "19:00", title: "Выполнение домашних заданий" },
+        { start: "19:00", end: "19:30", title: "Ужин" },
+        { start: "19:30", end: "21:30", title: "Свободное время" },
+        { start: "21:30", end: "22:00", title: "Подготовка ко сну" },
+        { start: "22:00", end: "07:00", title: "Сон" }
+    ],
+    "СУББОТА": [
+        { start: "09:00", end: "09:30", title: "Подъем, утренние процедуры" },
+        { start: "09:30", end: "10:00", title: "Завтрак" },
+        { start: "10:00", end: "12:00", title: "Свободное время" },
+        { start: "12:00", end: "13:00", title: "Прогулка" },
+        { start: "13:00", end: "13:30", title: "Обед" },
+        { start: "13:30", end: "16:00", title: "Свободное время" },
+        { start: "16:00", end: "16:30", title: "Перекус" },
+        { start: "16:30", end: "19:00", title: "Свободное время" },
+        { start: "19:00", end: "19:30", title: "Ужин" },
+        { start: "19:30", end: "21:30", title: "Свободное время" },
+        { start: "21:30", end: "22:00", title: "Подготовка ко сну" },
+        { start: "22:00", end: "09:00", title: "Сон" }
+    ],
+    "ВОСКРЕСЕНЬЕ": [
+        { start: "09:00", end: "09:30", title: "Подъем, утренние процедуры" },
+        { start: "09:30", end: "10:00", title: "Завтрак" },
+        { start: "10:00", end: "12:00", title: "Свободное время" },
+        { start: "12:00", end: "13:00", title: "Прогулка" },
+        { start: "13:00", end: "13:30", title: "Обед" },
+        { start: "13:30", end: "16:00", title: "Свободное время" },
+        { start: "16:00", end: "16:30", title: "Перекус" },
+        { start: "16:30", end: "19:00", title: "Подготовка к учебной неделе" },
+        { start: "19:00", end: "19:30", title: "Ужин" },
+        { start: "19:30", end: "21:30", title: "Свободное время" },
+        { start: "21:30", end: "22:00", title: "Подготовка ко сну" },
+        { start: "22:00", end: "09:00", title: "Сон" }
+    ]
+};
+
 // Функция для обновления следующего задания
 function updateNextTask() {
-    const taskTimeElement = document.querySelector('.task-time');
-    const taskTitleElement = document.querySelector('.task-title');
-    
-    // Получаем текущее время
     const now = new Date();
-    const hours = now.getHours();
+    const days = ["ВОСКРЕСЕНЬЕ", "ПОНЕДЕЛЬНИК", "ВТОРНИК", "СРЕДА", "ЧЕТВЕРГ", "ПЯТНИЦА", "СУББОТА"];
+    const currentDay = days[now.getDay()];
     
-    // Обновляем задание в зависимости от времени суток
-    if (hours < 12) {
-        taskTimeElement.textContent = '10:00 - 11:30';
-        taskTitleElement.textContent = 'Встреча с командой';
-    } else if (hours < 17) {
-        taskTimeElement.textContent = '14:00 - 15:30';
-        taskTitleElement.textContent = 'Работа над проектом';
+    const currentHours = now.getHours();
+    const currentMinutes = now.getMinutes();
+    const currentTimeString = `${currentHours.toString().padStart(2, '0')}:${currentMinutes.toString().padStart(2, '0')}`;
+    
+    const daySchedule = weeklySchedule[currentDay];
+    if (!daySchedule) return;
+    
+    let currentTask = null;
+    
+    // Находим текущее задание
+    for (const task of daySchedule) {
+        // Преобразуем время в минуты для сравнения
+        const taskStartParts = task.start.split(':');
+        const taskEndParts = task.end.split(':');
+        
+        let taskStartMinutes = parseInt(taskStartParts[0]) * 60 + parseInt(taskStartParts[1]);
+        let taskEndMinutes = parseInt(taskEndParts[0]) * 60 + parseInt(taskEndParts[1]);
+        
+        // Обработка задач, которые переходят на следующий день (например, сон)
+        if (taskEndMinutes < taskStartMinutes) {
+            taskEndMinutes += 24 * 60; // Добавляем 24 часа в минутах
+        }
+        
+        const currentTimeMinutes = currentHours * 60 + currentMinutes;
+        
+        // Проверяем, находится ли текущее время в интервале задачи
+        if (currentTimeMinutes >= taskStartMinutes && currentTimeMinutes < taskEndMinutes) {
+            currentTask = task;
+            break;
+        }
+    }
+    
+    // Обновляем информацию о текущем задании
+    if (currentTask) {
+        document.querySelector('.task-time').textContent = `${currentTask.start} - ${currentTask.end}`;
+        document.querySelector('.task-title').textContent = currentTask.title;
     } else {
-        taskTimeElement.textContent = '18:00 - 19:00';
-        taskTitleElement.textContent = 'Вечерняя тренировка';
+        document.querySelector('.task-time').textContent = "Нет активных заданий";
+        document.querySelector('.task-title').textContent = "Проверьте расписание";
     }
 }
 
