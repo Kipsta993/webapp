@@ -114,9 +114,9 @@ h2 {
 }
 
 .task-icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,6 +124,7 @@ h2 {
     overflow: hidden;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
 }
 
 .task-icon img {
@@ -142,6 +143,7 @@ h2 {
 .task-item label {
     cursor: pointer;
     flex: 1;
+    margin-right: 10px;
 }
 
 .task-item input[type="checkbox"]:checked + label {
