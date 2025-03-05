@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Загрузка сохраненных данных
     loadTaskStates();
     
+    // Проверка на смену недели и сброс заданий при необходимости
+    checkWeekChange();
+    
     // Добавление обработчиков событий для чекбоксов
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
@@ -265,4 +268,27 @@ function updateTimeUntilMonday() {
     
     // Обновляем элемент
     document.getElementById('time-until-monday').textContent = timeString;
+    
+    // Если наступил понедельник (разница меньше 1 секунды), сбрасываем задания
+    if (diff < 1000) {
+        resetWeeklyTasks();
+    }
+}
+
+// Функция для проверки смены недели
+function checkWeekChange() {
+    const now = new Date();
+    const currentWeek = getWeekNumber(now);
+    const currentYear = now.getFullYear();
+    const weekYearKey = `${currentYear}-${currentWeek}`;
+    
+    // Получаем номер недели последнего сброса заданий
+    const lastResetWeek = localStorage.getItem('lastWeeklyReset');
+    
+    // Если номер недели последнего сброса не совпадает с текущим, сбрасываем задания
+    if (!lastResetWeek || lastResetWeek !== weekYearKey) {
+        resetWeeklyTasks();
+        // Сохраняем текущий номер недели как номер недели последнего сброса
+        localStorage.setItem('lastWeeklyReset', weekYearKey);
+    }
 }
