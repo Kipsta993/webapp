@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Загрузка сохраненных данных
     loadTaskStates();
     
+    // Проверка на смену дня и сброс заданий при необходимости
+    checkDayChange();
+    
     // Добавление обработчиков событий для чекбоксов
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
@@ -412,6 +415,48 @@ function updateTimeUntilTomorrow() {
     
     // Обновляем элемент
     document.getElementById('time-until-tomorrow').textContent = timeString;
+    
+    // Если наступила полночь (разница меньше 1 секунды), сбрасываем задания
+    if (diff < 1000) {
+        resetDailyTasks();
+    }
+}
+
+// Функция для сброса ежедневных заданий
+function resetDailyTasks() {
+    console.log('Сброс ежедневных заданий');
+    
+    // Получаем все чекбоксы
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    // Создаем объект для хранения состояний задач
+    const tasks = {};
+    
+    // Сбрасываем состояние каждого чекбокса
+    checkboxes.forEach(checkbox => {
+        // Снимаем отметку и делаем активным
+        checkbox.checked = false;
+        checkbox.disabled = false;
+        
+        // Сохраняем состояние в объект
+        tasks[checkbox.id] = false;
+        tasks[checkbox.id + '_disabled'] = false;
+        
+        // Удаляем стиль для метки
+        const label = document.querySelector(`label[for="${checkbox.id}"]`);
+        if (label) {
+            label.classList.remove('completed-task');
+        }
+        
+        // Возвращаем исходный цвет полосы слева
+        const taskItem = checkbox.closest('.task-item');
+        if (taskItem) {
+            taskItem.style.borderLeftColor = '#8e44ad';
+        }
+    });
+    
+    // Сохраняем обновленные состояния в localStorage
+    localStorage.setItem('dailyTasks', JSON.stringify(tasks));
 }
 
 // Обновляем время каждую секунду
@@ -431,5 +476,21 @@ function playCheckboxSound() {
                 console.error('Ошибка воспроизведения звука:', error);
             });
         }
+    }
+}
+
+// Функция для проверки смены дня
+function checkDayChange() {
+    const now = new Date();
+    const today = now.toDateString();
+    
+    // Получаем дату последнего сброса заданий
+    const lastResetDate = localStorage.getItem('lastDailyReset');
+    
+    // Если дата последнего сброса не совпадает с сегодняшней, сбрасываем задания
+    if (!lastResetDate || lastResetDate !== today) {
+        resetDailyTasks();
+        // Сохраняем текущую дату как дату последнего сброса
+        localStorage.setItem('lastDailyReset', today);
     }
 }
