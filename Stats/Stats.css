@@ -82,7 +82,7 @@ main {
 }
 
 .slider-arrow {
-    background-color: #8e44ad;
+    background-color: #4285f4;
     color: white;
     border: none;
     border-radius: 50%;
@@ -93,11 +93,11 @@ main {
     align-items: center;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s;
 }
 
 .slider-arrow:hover {
-    background-color: #9b59b6;
+    background-color: #3367d6;
 }
 
 .slider-arrow:active {
@@ -143,25 +143,10 @@ main {
     opacity: 1;
     transform: translateX(0);
     z-index: 1;
-    animation: slideAppear 0.5s forwards;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes slideAppear {
-    0% { transform: translateX(0) scale(0.95); opacity: 0.7; }
-    100% { transform: translateX(0) scale(1); opacity: 1; }
-}
-
-/* Анимация для предыдущего слайда */
 .stat-slide.prev {
     transform: translateX(-100%);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-/* Анимация для следующего слайда */
-.stat-slide:not(.active):not(.prev) {
-    transform: translateX(100%);
-    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 h2 {
@@ -185,18 +170,6 @@ h2 {
     background-color: #f0f7ff;
     border-radius: 8px;
     text-align: center;
-    animation: fadeIn 0.5s forwards;
-    opacity: 0;
-}
-
-.stat-row {
-    animation: fadeIn 0.5s forwards;
-    opacity: 0;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 .stat-value {
@@ -276,11 +249,7 @@ h2 {
     }
 }
 
-/* Удаляю дублирующиеся стили анимации */
-/* Задержка анимации для создания эффекта каскада */
-.stat-item:nth-child(1), .stat-row:nth-child(1) { animation-delay: 0.1s; }
-.stat-item:nth-child(2), .stat-row:nth-child(2) { animation-delay: 0.2s; }
-.stat-item:nth-child(3), .stat-row:nth-child(3) { animation-delay: 0.3s; }
-.stat-item:nth-child(4), .stat-row:nth-child(4) { animation-delay: 0.4s; }
-.stat-item:nth-child(5), .stat-row:nth-child(5) { animation-delay: 0.5s; }
-.stat-item:nth-child(6), .stat-row:nth-child(6) { animation-delay: 0.6s; } 
+/* Удаляю все лишние стили и комментарии */
+.slider-arrow:active {
+    transform: scale(0.9);
+} 
