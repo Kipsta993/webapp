@@ -133,7 +133,7 @@ h2 {
 /* Эффект пульсации при выполнении задачи */
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(0.96); }
     100% { transform: scale(1); }
 }
 
