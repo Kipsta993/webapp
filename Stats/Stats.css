@@ -71,36 +71,42 @@ main {
     flex-direction: column;
     height: 100%;
     position: relative;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .slider-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .slider-arrow {
-    background-color: #4285f4;
+    background-color: #8e44ad;
     color: white;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .slider-arrow:hover {
-    background-color: #3367d6;
+    background-color: #9b59b6;
+}
+
+.slider-arrow:active {
+    transform: scale(0.95);
 }
 
 .slider-indicator {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #666;
 }
 
@@ -118,12 +124,15 @@ main {
     height: 100%;
     background-color: #fff;
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transform: translateX(100%);
     transition: transform 0.5s ease, opacity 0.5s ease;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .stat-slide.active {
@@ -137,37 +146,47 @@ main {
 }
 
 h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
     font-weight: 500;
-    color: #4285f4;
+    color: #8e44ad;
 }
 
 .stat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 10px;
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
-    background-color: #f0f7ff;
+    padding: 10px;
+    background-color: #f9f0ff;
     border-radius: 10px;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 0.3s ease-out forwards;
+    animation-delay: calc(var(--item-index, 0) * 0.05s);
 }
 
+.stat-item:nth-child(1), .stat-row:nth-child(1) { --item-index: 1; }
+.stat-item:nth-child(2), .stat-row:nth-child(2) { --item-index: 2; }
+.stat-item:nth-child(3), .stat-row:nth-child(3) { --item-index: 3; }
+.stat-item:nth-child(4), .stat-row:nth-child(4) { --item-index: 4; }
+.stat-item:nth-child(5), .stat-row:nth-child(5) { --item-index: 5; }
+.stat-item:nth-child(6), .stat-row:nth-child(6) { --item-index: 6; }
+
 .stat-value {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: #4285f4;
-    margin-bottom: 5px;
+    color: #8e44ad;
+    margin-bottom: 3px;
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #666;
 }
 
@@ -175,12 +194,32 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
+    animation: fadeInUp 0.3s ease-out forwards;
+    animation-delay: calc(var(--item-index, 0) * 0.05s);
 }
 
 .stat-row:last-child {
     border-bottom: none;
+}
+
+/* Добавляю анимации для элементов статистики */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Добавляю эффект при нажатии на элементы статистики */
+.stat-item:active {
+    transform: scale(0.97);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .bottom-nav {
