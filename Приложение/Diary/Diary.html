@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Diary.css">
+    <link rel="stylesheet" href="../Прочее/underground-tab.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Diary</h1>
+            <div class="stats">
+                <div class="streak">
+                    <img src="../Прочее/Огонь.png" alt="Серия дней">
+                    <span id="streak-count">7</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="diary-entries">
+                <div class="section-header">
+                    <h2>Мои заметки</h2>
+                    <div class="filter-container">
+                        <button class="filter-toggle" title="Фильтр по дате">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <div class="filter-dropdown">
+                            <div class="filter-option active" data-filter="newest">
+                                <i class="fas fa-sort-amount-down"></i>
+                                Сначала новые
+                            </div>
+                            <div class="filter-option" data-filter="oldest">
+                                <i class="fas fa-sort-amount-up"></i>
+                                Сначала старые
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="entries-container" class="entries-container">
+                    <!-- Здесь будут отображаться заметки -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Кнопка добавления новой заметки -->
+        <button id="add-entry-btn" class="add-entry-btn">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- Модальное окно для добавления заметки -->
+        <div id="entry-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Новая заметка</h2>
+                <form id="entry-form">
+                    <div class="form-group">
+                        <label for="entry-title">Название</label>
+                        <input type="text" id="entry-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="entry-description">Описание</label>
+                        <textarea id="entry-description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="entry-images">Добавить фото (до 10 шт.)</label>
+                        <input type="file" id="entry-images" accept="image/*" multiple>
+                        <div id="image-preview-container" class="image-preview-container"></div>
+                    </div>
+                    <button type="submit" class="submit-btn">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Модальное окно для просмотра заметки -->
+        <div id="view-entry-modal" class="modal">
+            <div class="modal-content view-modal-content">
+                <span class="close-btn view-close-btn">&times;</span>
+                <div class="view-entry-header">
+                    <h2 id="view-entry-title">Название заметки</h2>
+                    <span id="edited-mark" class="edited-mark">(Редактировано)</span>
+                    <div class="entry-actions">
+                        <button id="edit-entry-btn" class="edit-entry-btn" title="Редактировать">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button id="delete-entry-btn" class="delete-entry-btn" title="Удалить">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="view-entry-date" id="view-entry-date">Дата</div>
+                <div class="view-entry-content">
+                    <p id="view-entry-description" class="view-entry-description">Описание заметки</p>
+                    <div id="view-entry-image-container" class="view-entry-image-container">
+                        <!-- Здесь будет отображаться слайдер изображений -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно для подтверждения удаления -->
+        <div id="confirm-delete-modal" class="confirm-modal">
+            <div class="confirm-modal-content">
+                <h3>Удаление заметки</h3>
+                <p>Вы уверены, что хотите удалить эту заметку? Это действие нельзя отменить.</p>
+                <div class="confirm-buttons">
+                    <button id="confirm-cancel-btn" class="confirm-cancel-btn">Отмена</button>
+                    <button id="confirm-delete-btn" class="confirm-delete-btn">Удалить</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="../../index.html">
+                <i class="fas fa-calendar-day"></i>
+                <span>Daily</span>
+            </a>
+            <a href="../Weekly/Weekly.html">
+                <i class="fas fa-calendar-week"></i>
+                <span>Weekly</span>
+            </a>
+            <a href="../Stats/Stats.html">
+                <i class="fas fa-chart-line"></i>
+                <span>Stats</span>
+            </a>
+            <a href="../Goals/Goals.html">
+                <i class="fas fa-trophy"></i>
+                <span>Goals</span>
+            </a>
+            <a href="./Diary.html" class="active">
+                <i class="fas fa-book"></i>
+                <span>Diary</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="Diary.js"></script>
+    <script src="../Прочее/underground-tab.js"></script>
+</body>
+</html>
