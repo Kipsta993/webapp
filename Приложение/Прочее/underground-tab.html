@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки</title>
+    <link rel="stylesheet" href="underground-tab.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Эта страница используется для предварительного просмотра подземной вкладки настроек -->
+    
+    <!-- Имитация нижней навигации -->
+    <div class="bottom-nav">
+        <a href="#" class="active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#">
+            <i class="fas fa-tasks"></i>
+            <span>Tasks</span>
+        </a>
+        <a href="#" class="stats-button">
+            <div class="stats-button-content">
+                <i class="fas fa-chart-bar"></i>
+                <span>Stats</span>
+            </div>
+        </a>
+        <a href="#">
+            <i class="fas fa-trophy"></i>
+            <span>Goals</span>
+        </a>
+        <a href="#">
+            <i class="fas fa-book"></i>
+            <span>Journal</span>
+        </a>
+    </div>
+    
+    <!-- Область для свайпа -->
+    <div class="swipe-handle"></div>
+    
+    <!-- Подсказка о свайпе -->
+    <div class="swipe-hint">
+        <i class="fas fa-arrow-down"></i> Свайпните вниз для настроек
+    </div>
+    
+    <!-- Подземная вкладка настроек -->
+    <div class="underground-tab visible">
+        <div class="pull-indicator"></div>
+        
+        <div class="underground-tab-header">
+            <h2>Настройки</h2>
+            <button class="underground-tab-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="underground-tab-content">
+            <section class="settings-section">
+                <!-- Настройка темы -->
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-moon"></i>
+                        <span>Темная тема</span>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="toggle-slider">
+                            <i class="fas fa-moon toggle-icon left"></i>
+                            <i class="fas fa-sun toggle-icon right"></i>
+                        </span>
+                    </label>
+                </div>
+                
+                <!-- Настройка звука -->
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-volume-up"></i>
+                        <span>Звуки</span>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="sounds-toggle">
+                        <span class="toggle-slider">
+                            <i class="fas fa-volume-up toggle-icon left"></i>
+                            <i class="fas fa-volume-mute toggle-icon right"></i>
+                        </span>
+                    </label>
+                </div>
+                
+                <!-- Кнопка настроек заданий -->
+                <button class="settings-button">
+                    <i class="fas fa-tasks"></i> Настройка заданий
+                </button>
+            </section>
+        </div>
+        
+        <div class="close-swipe-area">
+            <div class="close-swipe-indicator"></div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно настроек заданий -->
+    <div class="tasks-settings-modal" id="tasks-settings-modal">
+        <div class="tasks-settings-content">
+            <div class="tasks-settings-header">
+                <h2>Настройка заданий</h2>
+                <button class="tasks-settings-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="tasks-settings-tabs">
+                <div class="tasks-settings-tab active" data-tab="daily">Ежедневные</div>
+                <div class="tasks-settings-tab" data-tab="weekly">Еженедельные</div>
+            </div>
+            
+            <div class="tasks-settings-panel active" id="daily-tasks-panel">
+                <!-- Пример задания для редактирования -->
+                <div class="task-edit-item" data-index="0" data-type="daily">
+                    <input type="text" class="task-edit-input" value="Выпить воду">
+                    <div class="task-edit-actions">
+                        <button class="task-edit-button delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="task-edit-item" data-index="1" data-type="daily">
+                    <input type="text" class="task-edit-input" value="Сделать зарядку">
+                    <div class="task-edit-actions">
+                        <button class="task-edit-button delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="add-task-button">
+                    <i class="fas fa-plus"></i> Добавить задание
+                </button>
+            </div>
+            
+            <div class="tasks-settings-panel" id="weekly-tasks-panel">
+                <!-- Пример еженедельного задания -->
+                <div class="task-edit-item" data-index="0" data-type="weekly">
+                    <input type="text" class="task-edit-input" value="Прочитать книгу">
+                    <div class="task-edit-actions">
+                        <button class="task-edit-button delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="add-task-button">
+                    <i class="fas fa-plus"></i> Добавить задание
+                </button>
+            </div>
+            
+            <button class="save-tasks-button">Сохранить</button>
+        </div>
+    </div>
+    
+    <script src="underground-tab.js"></script>
+</body>
+</html> 
