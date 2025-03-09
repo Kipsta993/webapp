@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./Settings.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Settings</h1>
+            <div class="stats">
+                <div class="streak">
+                    <img src="../Прочее/Огонь.png" alt="Серия дней">
+                    <span id="streak-count">7</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="task-settings">
+                <h2>Настройки задач</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <span>Редактирование задач</span>
+                        <p class="setting-description">Изменение ежедневных, еженедельных и расписания задач</p>
+                    </div>
+                    <button id="edit-tasks-button" class="action-button">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+            </section>
+            
+            <section class="theme-settings">
+                <h2>Настройки темы</h2>
+                
+                <div class="setting-group">
+                    <h3>Выберите тему</h3>
+                    <div class="theme-options">
+                        <div class="theme-option" data-theme="light">
+                            <div class="theme-preview light-theme"></div>
+                            <span>Светлая</span>
+                        </div>
+                        <div class="theme-option" data-theme="dark">
+                            <div class="theme-preview dark-theme"></div>
+                            <span>Тёмная</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="app-settings">
+                <h2>Настройки приложения</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <span>Звуки</span>
+                        <p class="setting-description">Включить звуки при выполнении задач</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="sounds-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <span>Сбросить все данные</span>
+                        <p class="setting-description">Сбросить все данные приложения (задания, статистику, дневник, серию дней)</p>
+                    </div>
+                    <button id="reset-all-button" class="danger-button">Сбросить</button>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="../../index.html">
+                <i class="fas fa-calendar-day"></i>
+                <span>Daily</span>
+            </a>
+            <a href="../Weekly/Weekly.html">
+                <i class="fas fa-calendar-week"></i>
+                <span>Weekly</span>
+            </a>
+            <a href="../Stats/Stats.html">
+                <i class="fas fa-chart-bar"></i>
+                <span>Stats</span>
+            </a>
+            <a href="../Diary/Diary.html">
+                <i class="fas fa-book"></i>
+                <span>Diary</span>
+            </a>
+            <a href="./Settings.html" class="active">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Модальное окно для редактирования задач -->
+    <div id="tasks-edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Редактирование задач</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-tabs">
+                <button class="tab-button active" data-tab="daily-tasks">Ежедневные</button>
+                <button class="tab-button" data-tab="schedule-tasks">Расписание</button>
+                <button class="tab-button" data-tab="weekly-tasks">Еженедельные</button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content active" id="daily-tasks">
+                    <h3>Ежедневные задачи</h3>
+                    <div class="task-edit-list" id="daily-tasks-list">
+                        <!-- Здесь будут отображаться ежедневные задачи -->
+                    </div>
+                    <div class="task-add-form">
+                        <input type="text" id="new-daily-task" placeholder="Новая ежедневная задача">
+                        <button id="add-daily-task" class="add-task-button">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="tab-content" id="schedule-tasks">
+                    <h3>Расписание задач</h3>
+                    <div class="task-edit-list" id="schedule-tasks-list">
+                        <!-- Здесь будут отображаться задачи расписания -->
+                    </div>
+                    <div class="task-add-form">
+                        <div class="time-input-group">
+                            <input type="time" id="schedule-start-time" placeholder="Начало">
+                            <span>-</span>
+                            <input type="time" id="schedule-end-time" placeholder="Конец">
+                        </div>
+                        <input type="text" id="new-schedule-task" placeholder="Новая задача расписания">
+                        <button id="add-schedule-task" class="add-task-button">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="tab-content" id="weekly-tasks">
+                    <h3>Еженедельные задачи</h3>
+                    <div class="task-edit-list" id="weekly-tasks-list">
+                        <!-- Здесь будут отображаться еженедельные задачи -->
+                    </div>
+                    <div class="task-add-form">
+                        <input type="text" id="new-weekly-task" placeholder="Новая еженедельная задача">
+                        <button id="add-weekly-task" class="add-task-button">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-tasks-button" class="action-button">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./Settings.js"></script>
+</body>
+</html>
