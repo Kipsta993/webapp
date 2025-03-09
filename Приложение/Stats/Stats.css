@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+}
+
+.streak {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
+.streak img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+    overflow: hidden;
+    padding: 0 5px;
+}
+
+/* Обновляем стили для новой структуры */
+.stats-section {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Удаляем старый стиль, который больше не нужен */
+.stats-slider {
+    display: none;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.slider-arrow {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.slider-arrow:hover {
+    background-color: #3367d6;
+}
+
+.slider-arrow:active {
+    transform: scale(0.9);
+}
+
+.slider-indicator {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.stats-container {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 15px;
+}
+
+.stat-slide {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: none;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    overflow-y: auto;
+}
+
+.stat-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 1;
+}
+
+.stat-slide.prev {
+    transform: translateX(-100%);
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: #4285f4;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f7ff;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.stat-item:active {
+    transform: scale(0.96);
+    background-color: #e6f0ff;
+}
+
+.stat-value {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #4285f4;
+    margin-bottom: 3px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.stat-item:active .stat-value {
+    transform: scale(1.2);
+}
+
+/* Анимация увеличения значения при обновлении */
+.value-scale {
+    animation: value-pulse 0.3s ease-in-out;
+}
+
+@keyframes value-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #777;
+    font-size: 0.8rem;
+    padding: 5px 0;
+    width: 20%;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.bottom-nav a:active {
+    transform: scale(0.9);
+}
+
+.bottom-nav a i {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.bottom-nav a.active {
+    color: #8e44ad;
+}
+
+/* Новый медиа-запрос без изменения размера текста в bottom-nav */
+@media (max-width: 480px) {
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Удаляю все лишние стили и комментарии */
+.slider-arrow:active {
+    transform: scale(0.9);
+} 
