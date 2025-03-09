@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Tasks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./Weekly.css">
+    <link rel="stylesheet" href="../Прочее/underground-tab.css">
+    <link rel="stylesheet" href="../Прочее/animations.css">
+    <link rel="stylesheet" href="../Settings/TaskEditor.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weekly Tasks</h1>
+            <div class="stats">
+                <div class="streak">
+                    <img src="../Прочее/Огонь.png" alt="Серия дней">
+                    <span id="streak-count">7</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="понедельник" class="day-section">
+                <h2>Понедельник</h2>
+                <div class="tasks"></div>
+            </section>
+            
+            <section id="вторник" class="day-section">
+                <h2>Вторник</h2>
+                <div class="tasks"></div>
+            </section>
+            
+            <section id="среда" class="day-section">
+                <h2>Среда</h2>
+                <div class="tasks"></div>
+            </section>
+            
+            <section id="четверг" class="day-section">
+                <h2>Четверг</h2>
+                <div class="tasks"></div>
+            </section>
+            
+            <section id="пятница" class="day-section">
+                <h2>Пятница</h2>
+                <div class="tasks"></div>
+            </section>
+            
+            <section id="суббота" class="day-section">
+                <h2>Суббота</h2>
+                <div class="tasks"></div>
+            </section>
+            
+            <section id="воскресенье" class="day-section">
+                <h2>Воскресенье <span id="time-until-monday" class="time-remaining"></span></h2>
+                <div class="tasks"></div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="../../index.html">
+                <i class="fas fa-calendar-day"></i>
+                <span>Daily</span>
+            </a>
+            <a href="./Weekly.html" class="active">
+                <i class="fas fa-calendar-week"></i>
+                <span>Weekly</span>
+            </a>
+            <a href="../Stats/Stats.html">
+                <i class="fas fa-chart-bar"></i>
+                <span>Stats</span>
+            </a>
+            <a href="../Goals/Goals.html">
+                <i class="fas fa-trophy"></i>
+                <span>Goals</span>
+            </a>
+            <a href="../Diary/Diary.html">
+                <i class="fas fa-book"></i>
+                <span>Diary</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Плавающая кнопка для открытия редактора задач -->
+    <div class="floating-task-editor-button" id="floating-task-editor-button">
+        <i class="fas fa-tasks"></i>
+    </div>
+
+    <!-- Аудио-элемент для звука -->
+    <audio id="checkbox-sound" src="../Прочее/Sound.mp3" preload="auto"></audio>
+
+    <script src="./Weekly.js"></script>
+    <script src="../Прочее/underground-tab.js"></script>
+    <script src="../Прочее/animations.js"></script>
+</body>
+</html>
