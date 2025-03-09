@@ -1,0 +1,570 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+}
+
+.coins, .streak {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
+.coins img, .streak img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 70px;
+    overflow-y: auto;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.goals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.goal-item {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.goal-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.goal-item.completed {
+    border-left: 4px solid #4CAF50;
+    background-color: #f9fff9;
+}
+
+.goal-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: #333;
+}
+
+.goal-date {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.goal-deadline {
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.goal-deadline i {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.goal-deadline.urgent {
+    color: #f44336;
+    font-weight: 500;
+}
+
+.goal-deadline.completed {
+    color: #4CAF50;
+}
+
+.goal-preview {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.view-modal-content {
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#view-goal-title {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.view-goal-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.view-goal-deadline {
+    font-size: 1rem;
+    margin: 10px 0 15px;
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-goal-deadline i {
+    font-size: 1rem;
+    color: #666;
+}
+
+.view-goal-deadline.urgent {
+    background-color: #ffebee;
+    color: #f44336;
+}
+
+.view-goal-deadline.completed {
+    background-color: #e8f5e9;
+    color: #4CAF50;
+}
+
+.view-goal-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
+}
+
+.view-goal-description:empty::before {
+    content: "Нет описания";
+    color: #999;
+    font-style: italic;
+}
+
+.add-goal-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    z-index: 10;
+}
+
+.add-goal-btn:hover {
+    background-color: #ffb300;
+}
+
+.add-goal-btn:active {
+    transform: scale(0.95);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.deadline-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#deadline-status {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.submit-btn {
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #ffb300;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filter-container {
+    position: relative;
+}
+
+.filter-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.filter-toggle:hover {
+    color: #333;
+}
+
+.filter-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    z-index: 100;
+    min-width: 200px;
+    display: none;
+}
+
+.filter-dropdown.active {
+    display: block;
+}
+
+.filter-option {
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-option:hover {
+    background-color: #f5f5f5;
+}
+
+.filter-option.active {
+    background-color: #f0f7ff;
+    color: #4285f4;
+}
+
+.filter-option i {
+    font-size: 1rem;
+}
+
+.view-goal-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.view-goal-header h2 {
+    margin-bottom: 0;
+    flex: 1;
+    padding-right: 10px;
+}
+
+.edited-mark {
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+    display: none;
+}
+
+.goal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-goal-btn,
+.delete-goal-btn,
+.complete-goal-btn {
+    background: none;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-goal-btn {
+    background-color: #f0f7ff;
+    color: #4285f4;
+}
+
+.edit-goal-btn:hover {
+    background-color: #e3f2fd;
+}
+
+.delete-goal-btn {
+    background-color: #ffebee;
+    color: #f44336;
+}
+
+.delete-goal-btn:hover {
+    background-color: #ffcdd2;
+}
+
+.complete-goal-btn {
+    background-color: #e8f5e9;
+    color: #4CAF50;
+}
+
+.complete-goal-btn:hover {
+    background-color: #c8e6c9;
+}
+
+.confirm-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.confirm-modal-content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-modal-content h3 {
+    margin-bottom: 10px;
+}
+
+.confirm-modal-content p {
+    margin-bottom: 20px;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.confirm-cancel-btn {
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirm-cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.confirm-delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirm-delete-btn:hover {
+    background-color: #e53935;
+}
+
+.confirm-complete-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirm-complete-btn:hover {
+    background-color: #43A047;
+}
+
+/* Стили для выбора срока выполнения */
+.deadline-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.deadline-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deadline-option input[type="radio"] {
+    margin: 0;
+    width: auto;
+}
+
+.deadline-option label {
+    margin: 0;
+    font-weight: normal;
+} 
