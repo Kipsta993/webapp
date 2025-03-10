@@ -1,0 +1,327 @@
+/* Стили для режима редактирования заданий */
+
+/* Кнопка редактирования списка */
+.edit-list-btn {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #4285f4;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit-list-btn:active {
+    transform: scale(0.95);
+    background-color: #3367d6;
+}
+
+/* Стили для режима редактирования */
+.editing-mode .task-item {
+    padding-right: 80px;
+    position: relative;
+}
+
+.task-actions {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.editing-mode .task-actions {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.task-edit-btn,
+.task-delete-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.task-edit-btn {
+    background-color: #4285f4;
+    color: white;
+}
+
+.task-delete-btn {
+    background-color: #ea4335;
+    color: white;
+}
+
+.task-edit-btn:active,
+.task-delete-btn:active {
+    transform: scale(0.9);
+}
+
+/* Стили для модального окна редактирования */
+.task-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-modal.active {
+    display: flex;
+}
+
+.task-modal-content {
+    background-color: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.task-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.task-modal-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.task-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.task-close-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.task-form-group {
+    margin-bottom: 15px;
+}
+
+.task-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.task-form-group input,
+.task-form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+}
+
+.task-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.task-cancel-btn,
+.task-save-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.task-cancel-btn {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.task-save-btn {
+    background-color: #4285f4;
+    color: white;
+}
+
+.task-cancel-btn:active,
+.task-save-btn:active {
+    transform: scale(0.95);
+}
+
+/* Стили для модального окна подтверждения удаления */
+.task-confirm-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-confirm-modal.active {
+    display: flex;
+}
+
+.task-confirm-content {
+    background-color: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.task-confirm-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.task-confirm-message {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.task-confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.task-confirm-cancel,
+.task-confirm-delete {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.task-confirm-cancel {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.task-confirm-delete {
+    background-color: #ea4335;
+    color: white;
+}
+
+.task-confirm-cancel:active,
+.task-confirm-delete:active {
+    transform: scale(0.95);
+}
+
+/* Кнопка добавления нового задания */
+.add-task-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #4285f4;
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.editing-mode .add-task-btn {
+    display: flex;
+}
+
+.add-task-btn:active {
+    transform: scale(0.95);
+    background-color: #3367d6;
+}
+
+/* Темная тема */
+body.dark-theme .task-modal-content,
+body.dark-theme .task-confirm-content {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-theme .task-close-btn {
+    color: #ccc;
+}
+
+body.dark-theme .task-close-btn:hover {
+    background-color: #444;
+}
+
+body.dark-theme .task-form-group input,
+body.dark-theme .task-form-group textarea {
+    background-color: #444;
+    border-color: #555;
+    color: #fff;
+}
+
+body.dark-theme .task-cancel-btn {
+    background-color: #555;
+    color: #eee;
+}
+
+body.dark-theme .task-confirm-message {
+    color: #ccc;
+}
+
+body.dark-theme .task-confirm-cancel {
+    background-color: #555;
+    color: #eee;
+} 
