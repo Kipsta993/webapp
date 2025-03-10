@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Tasks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Приложение/Daily/Daily.css">
+    <link rel="stylesheet" href="Приложение/Прочее/underground-tab.css">
+    <link rel="stylesheet" href="Приложение/Прочее/task-editor.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Daily Tasks</h1>
+            <div class="stats">
+                <div class="streak">
+                    <img src="Приложение/Прочее/Огонь.png" alt="Серия дней">
+                    <span id="streak-count">7</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="timed-task">
+                <h2>Следующее задание</h2>
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-time">10:00 - 11:30</div>
+                        <div class="task-menu">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                    </div>
+                    <div class="task-title">Нет активных заданий</div>
+                </div>
+            </section>
+
+            <section class="all-day-tasks">
+                <h2>Задания на весь день <span id="time-until-tomorrow" class="time-remaining"></span></h2>
+                <div class="task-list">
+                    <div class="task-item">
+                        <input type="checkbox" id="task1">
+                        <label for="task1">Воркаут в "Lumosity"</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="task2">
+                        <label for="task2">Воркаут в "Peak"</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="task3">
+                        <label for="task3">Перевести 1 главу манги</label>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="active">
+                <i class="fas fa-calendar-day"></i>
+                <span>Daily</span>
+            </a>
+            <a href="Приложение/Weekly/Weekly.html">
+                <i class="fas fa-calendar-week"></i>
+                <span>Weekly</span>
+            </a>
+            <a href="Приложение/Stats/Stats.html">
+                <i class="fas fa-chart-bar"></i>
+                <span>Stats</span>
+            </a>
+            <a href="Приложение/Goals/Goals.html">
+                <i class="fas fa-trophy"></i>
+                <span>Goals</span>
+            </a>
+            <a href="Приложение/Diary/Diary.html">
+                <i class="fas fa-book"></i>
+                <span>Diary</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Аудио-элемент для звука -->
+    <audio id="checkbox-sound" src="Приложение/Прочее/Sound.mp3" preload="auto"></audio>
+
+    <script src="Приложение/Daily/Daily.js"></script>
+    <script src="Приложение/Прочее/underground-tab.js"></script>
+    <script src="Приложение/Прочее/task-editor.js"></script>
+</body>
+</html> 
