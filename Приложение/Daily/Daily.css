@@ -1,0 +1,220 @@
+/* Стили для Daily Page */
+
+/* Общие стили для страницы Daily */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  background-color: #FAFAFA;
+  color: #212121;
+  padding-bottom: 70px; /* Для нижней навигации */
+  font-size: 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  height: calc(100% - 70px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page {
+  display: none;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 550px;
+}
+
+.page.active {
+  display: block;
+}
+
+.page-content {
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  padding: 20px 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Специфичные стили для Daily */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #2196F3;
+  display: flex;
+  align-items: center;
+}
+
+.card-title i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.next-task {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 15px;
+  background-color: #E3F2FD;
+  border-radius: 8px;
+}
+
+.next-task-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.task-time-block {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+.task-time-icon {
+  color: #2196F3;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.task-time {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2196F3;
+  display: flex;
+  align-items: center;
+}
+
+.task-time-separator {
+  margin: 0 6px;
+  color: #90CAF9;
+  font-weight: normal;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.task-title {
+  font-weight: 600;
+  font-size: 18px;
+  color: #333;
+}
+
+.day-tasks {
+  margin-top: 12px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 5px;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-checkbox {
+  margin-right: 10px;
+  position: relative;
+}
+
+.task-checkbox input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.task-checkbox label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #2196F3;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.task-checkbox input[type="checkbox"]:checked + label:after {
+  content: '\f00c';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2196F3;
+  font-size: 14px;
+}
+
+.task-info {
+  flex-grow: 1;
+}
+
+/* Стили для прогресс-бара */
+.progress-container {
+  padding-top: 15px;
+  border-top: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress-label {
+  font-size: 14px;
+  color: #64B5F6;
+}
+
+.progress-percentage {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2196F3;
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: rgba(187, 222, 251, 0.5);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #2196F3;
+  border-radius: 3px;
+  width: 33%; /* Статический процент выполнения для демонстрации */
+  transition: width 0.3s ease;
+}
