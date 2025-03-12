@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyApp - To Do List</title>
+  <!-- Добавляем Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Стили для компонентов -->
+  <link rel="stylesheet" href="Приложение/Components/BottomNav.css">
+  <!-- Стили для страниц -->
+  <link rel="stylesheet" href="Приложение/Daily/Daily.css">
+  <link rel="stylesheet" href="Приложение/Weekly/Weekly.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Daily Page -->
+    <div id="daily-page" class="page active">
+      <div class="page-content">
+        <!-- Карточка следующего задания -->
+        <div class="card">
+          <div class="card-title">
+            <i class="fas fa-hourglass-half"></i>
+            Следующее задание
+          </div>
+          <div class="next-task">
+            <div class="task-content">
+              <div class="task-time-small">15:00 - 16:30</div>
+              <div class="task-title">Встреча с командой</div>
+            </div>
+            
+            <!-- Прогресс выполнения задач -->
+            <div class="progress-container">
+              <div class="progress-info">
+                <div class="progress-label">Выполнено задач на сегодня</div>
+                <div class="progress-percentage">33%</div>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка заданий на день -->
+        <div class="card tasks-card">
+          <div class="card-title">
+            <i class="fas fa-list"></i>
+            Задания на сегодня
+          </div>
+          <div class="day-tasks">
+            <!-- Задание 1 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="task1">
+                <label for="task1"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Подготовить отчет</div>
+              </div>
+            </div>
+            
+            <!-- Задание 2 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="task2">
+                <label for="task2"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Позвонить клиенту</div>
+              </div>
+            </div>
+            
+            <!-- Задание 3 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="task3">
+                <label for="task3"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Купить продукты</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weekly Page -->
+    <div id="weekly-page" class="page">
+      <div class="page-content">
+        <!-- Карточка заданий на неделю -->
+        <div class="card tasks-card">
+          <div class="card-title">
+            <i class="fas fa-calendar-week"></i>
+            Задания на неделю
+          </div>
+          <div class="week-tasks">
+            <!-- Задание 1 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task1">
+                <label for="week-task1"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Подготовить презентацию</div>
+              </div>
+            </div>
+            
+            <!-- Задание 2 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task2">
+                <label for="week-task2"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Встреча с партнерами</div>
+              </div>
+            </div>
+            
+            <!-- Задание 3 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task3">
+                <label for="week-task3"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Закончить проект</div>
+              </div>
+            </div>
+            
+            <!-- Задание 4 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task4">
+                <label for="week-task4"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Оплатить счета</div>
+              </div>
+            </div>
+            
+            <!-- Задание 5 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task5">
+                <label for="week-task5"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Записаться к врачу</div>
+              </div>
+            </div>
+            
+            <!-- Задание 6 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task6">
+                <label for="week-task6"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Купить подарок</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Stats Page -->
+    <div id="stats-page" class="page">
+      <h1 style="color: #4CAF50;">Stats</h1>
+      <div class="page-content">
+        <p>Вся статистика про приложение.</p>
+      </div>
+    </div>
+    
+    <!-- Goals Page -->
+    <div id="goals-page" class="page">
+      <h1 style="color: #FFD700;">Goals</h1>
+      <div class="page-content">
+        <p>Мои цели.</p>
+      </div>
+    </div>
+    
+    <!-- Diary Page -->
+    <div id="diary-page" class="page">
+      <h1 style="color: #673AB7;">Diary</h1>
+      <div class="page-content">
+        <p>Мои заметки.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Контейнер для нижней навигации -->
+  <div id="bottom-nav"></div>
+  
+  <script>
+    // Импортируем компонент BottomNav
+    // В реальном приложении здесь будет использоваться модульная система
+    document.addEventListener('DOMContentLoaded', function() {
+      // Временная реализация для демонстрации
+      const colors = {
+        blue: { 300: '#2196F3' },
+        deepPurple: { 300: '#673AB7' },
+        green: { 300: '#4CAF50' },
+        grey: { 50: '#FAFAFA', 400: '#9E9E9E' },
+        additionalColors: {
+          metallic: {
+            gold: '#FFD700'
+          }
+        }
+      };
+      
+      class BottomNav {
+        constructor() {
+          this.activeTab = 'daily';
+          this.tabs = [
+            {
+              id: 'daily',
+              label: 'Daily',
+              activeColor: colors.blue[300],
+              icon: this.createCalendarDailyIcon()
+            },
+            {
+              id: 'weekly',
+              label: 'Weekly',
+              activeColor: colors.deepPurple[300],
+              icon: this.createCalendarWeeklyIcon()
+            },
+            {
+              id: 'stats',
+              label: 'Stats',
+              activeColor: colors.green[300],
+              icon: this.createStatsIcon()
+            },
+            {
+              id: 'goals',
+              label: 'Goals',
+              activeColor: colors.additionalColors.metallic.gold,
+              icon: this.createTrophyIcon()
+            },
+            {
+              id: 'diary',
+              label: 'Diary',
+              activeColor: colors.deepPurple[300],
+              icon: this.createBookIcon()
+            }
+          ];
+        }
+        
+        createCalendarDailyIcon() {
+          return `<i class="fas fa-calendar-day" style="font-size: 1.2rem;"></i>`;
+        }
+        
+        createCalendarWeeklyIcon() {
+          return `<i class="fas fa-calendar-week" style="font-size: 1.2rem;"></i>`;
+        }
+        
+        createStatsIcon() {
+          return `<i class="fas fa-chart-bar" style="font-size: 1.2rem;"></i>`;
+        }
+        
+        createTrophyIcon() {
+          return `<i class="fas fa-trophy" style="font-size: 1.2rem;"></i>`;
+        }
+        
+        createBookIcon() {
+          return `<i class="fas fa-book" style="font-size: 1.2rem;"></i>`;
+        }
+        
+        setActiveTab(tabId) {
+          this.activeTab = tabId;
+          this.render();
+          
+          // Переключаем страницы
+          document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+          });
+          document.getElementById(`${tabId}-page`).classList.add('active');
+        }
+        
+        render() {
+          const navElement = document.getElementById('bottom-nav');
+          if (!navElement) return;
+          
+          navElement.innerHTML = '';
+          
+          const navContainer = document.createElement('div');
+          navContainer.className = 'bottom-nav-container';
+          
+          this.tabs.forEach(tab => {
+            const tabElement = document.createElement('div');
+            tabElement.className = 'nav-tab';
+            tabElement.id = `tab-${tab.id}`;
+            
+            if (this.activeTab === tab.id) {
+              tabElement.classList.add(`active-${tab.id}`);
+            }
+            
+            const isActive = this.activeTab === tab.id;
+            const color = isActive ? tab.activeColor : colors.grey[400];
+            
+            const iconContainer = document.createElement('div');
+            iconContainer.className = 'nav-icon';
+            iconContainer.innerHTML = tab.icon;
+            iconContainer.style.color = color;
+            
+            const labelElement = document.createElement('span');
+            labelElement.className = 'nav-label';
+            labelElement.textContent = tab.label;
+            labelElement.style.color = color;
+            
+            tabElement.addEventListener('click', () => {
+              this.setActiveTab(tab.id);
+            });
+            
+            tabElement.appendChild(iconContainer);
+            tabElement.appendChild(labelElement);
+            navContainer.appendChild(tabElement);
+          });
+          
+          navElement.appendChild(navContainer);
+        }
+        
+        init() {
+          this.render();
+        }
+      }
+      
+      const bottomNav = new BottomNav();
+      bottomNav.init();
+    });
+  </script>
+</body>
+</html> 
