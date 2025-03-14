@@ -1,0 +1,274 @@
+/* Стили для страницы Stats */
+
+/* Общие стили для страницы Stats */
+.stats-page {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Стили для верхней навигации */
+.stats-nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.stats-nav-tab {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #9E9E9E;
+}
+
+.stats-nav-tab i {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.stats-nav-tab.active {
+  color: #4CAF50;
+  background-color: #F1F8E9;
+}
+
+/* Стили для карточек */
+.stats-card {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Стили для контента вкладок */
+.stats-content {
+  display: none;
+}
+
+.stats-content.active {
+  display: block;
+}
+
+/* Стили для вкладки Time */
+.time-stats {
+  margin-bottom: 10px;
+}
+
+.stats-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #4CAF50;
+  display: flex;
+  align-items: center;
+}
+
+.stats-title i {
+  margin-right: 6px;
+  font-size: 16px;
+}
+
+/* Стили для графика времени по дням недели */
+.columns-container {
+  position: relative;
+  padding: 0 2px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  height: 160px;
+}
+
+.weekly-time-chart {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.day-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 13%;
+  position: relative;
+  justify-content: flex-end;
+}
+
+.day-bar {
+  width: 100%;
+  background-color: #81C784;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.day-time {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 600;
+  color: #4CAF50;
+  white-space: nowrap;
+}
+
+.day-label {
+  margin-top: 5px;
+  font-size: 10px;
+  color: #757575;
+}
+
+/* Стили для общего времени */
+.total-time {
+  background-color: #F1F8E9;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.time-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.time-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4CAF50;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-label {
+  font-size: 8px;
+  color: #757575;
+  margin-top: 2px;
+}
+
+.separator-wrapper {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.time-separator {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  margin: 0 3px;
+  display: inline-block;
+}
+
+/* Стили для вкладки Tasks */
+.tasks-stats {
+  margin-bottom: 10px;
+}
+
+/* Стили для общей статистики задач */
+.tasks-summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.task-stat-card {
+  flex: 1;
+  background-color: #F1F8E9;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 0 2px 6px 2px;
+  text-align: center;
+  min-width: 60px;
+}
+
+.task-stat-card:first-child {
+  margin-left: 0;
+}
+
+.task-stat-card:last-child {
+  margin-right: 0;
+}
+
+.task-stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4CAF50;
+  margin-bottom: 2px;
+}
+
+.task-stat-label {
+  font-size: 10px;
+  color: #757575;
+}
+
+/* Стили для серии дней */
+.streak-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.streak-card {
+  flex: 1;
+  background-color: #F1F8E9;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 0 2px 6px 2px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.streak-card:first-child {
+  margin-left: 0;
+}
+
+.streak-card:last-child {
+  margin-right: 0;
+}
+
+.streak-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4CAF50;
+  margin-bottom: 2px;
+}
+
+.streak-label {
+  font-size: 10px;
+  color: #757575;
+}
