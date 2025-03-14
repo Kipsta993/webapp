@@ -1,0 +1,390 @@
+/* Стили для страницы Diary */
+
+/* Общие стили для страницы Diary */
+.diary-page {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* Стили для заголовка страницы */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #673AB7;
+  display: flex;
+  align-items: center;
+}
+
+.page-title i {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+/* Стили для карточек */
+.diary-card {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 12px 15px;
+  margin-bottom: 15px;
+}
+
+/* Стили для формы добавления записи */
+.add-entry-form {
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+#entry-title {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+#entry-content {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+  transition: min-height 0.2s ease;
+}
+
+#entry-title:focus {
+  border-color: #673AB7;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.2);
+}
+
+#entry-content:focus {
+  min-height: 180px;
+  border-color: #673AB7;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.2);
+}
+
+.add-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #673AB7;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-button i {
+  margin-right: 5px;
+}
+
+/* Удалена анимация при наведении */
+.add-button:hover {
+  background-color: #673AB7;
+}
+
+/* Стили для сортировки */
+.sort-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.sort-options {
+  display: flex;
+}
+
+.sort-option {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 13px;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 5px;
+}
+
+.sort-option.active {
+  background-color: #EDE7F6;
+  color: #673AB7;
+  font-weight: 600;
+}
+
+.sort-option i {
+  margin-right: 3px;
+}
+
+/* Стили для списка записей */
+.entries-list {
+  margin-top: 10px;
+}
+
+.entry-item {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  /* Удалены трансформации при наведении */
+}
+
+/* Удалены стили для hover состояния */
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.entry-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.entry-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.entry-actions {
+  margin-left: 10px;
+}
+
+.entry-delete {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  z-index: 10;
+  position: relative;
+}
+
+/* Удалено изменение цвета при наведении */
+.entry-delete:hover {
+  color: #ccc;
+}
+
+/* Стили для пустого списка */
+.empty-list {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 14px;
+  display: none;
+}
+
+.empty-list i {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
+/* Стили для модального окна */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Стили для затемнения нижней навигации */
+body.modal-open .bottom-nav-container {
+  opacity: 0.3;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Добавляем плавный переход для нижней навигации в обычном состоянии */
+.bottom-nav-container {
+  transition: opacity 0.3s ease;
+}
+
+.modal-container {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.modal-date {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin-left: 10px;
+}
+
+/* Удалено изменение стилей при наведении */
+.modal-close:hover {
+  background-color: transparent;
+  color: #999;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.modal-content {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #444;
+  white-space: pre-wrap;
+}
+
+/* Стили для полосы прокрутки в модальном окне */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #c5b1e0;
+  border-radius: 3px;
+}
+
+/* Удалено изменение цвета при наведении */
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #c5b1e0;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 18px;
+  }
+  
+  .page-title i {
+    font-size: 20px;
+  }
+  
+  .diary-card {
+    padding: 10px 12px;
+  }
+  
+  #entry-title, #entry-content {
+    padding: 7px 8px;
+    font-size: 13px;
+  }
+  
+  .add-button {
+    padding: 8px;
+    font-size: 13px;
+  }
+  
+  .modal-header {
+    padding: 12px 15px;
+  }
+  
+  .modal-body {
+    padding: 15px;
+  }
+  
+  .modal-title {
+    font-size: 16px;
+  }
+  
+  .modal-content {
+    font-size: 14px;
+  }
+}
