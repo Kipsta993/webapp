@@ -1,0 +1,311 @@
+/* Стили для Daily Page */
+
+/* Общие стили для страницы Daily */
+* {
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  background-color: #FAFAFA;
+  color: #212121;
+  padding-bottom: 70px; /* Для нижней навигации */
+  font-size: 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  height: calc(100% - 70px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page {
+  display: none;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 550px;
+}
+
+.page.active {
+  display: block;
+}
+
+.page-content {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+/* Специфичные стили для Daily */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 20px 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Специальные стили для карточки заданий */
+.card.tasks-card {
+  background-color: #FFFFFF;
+  padding-bottom: 15px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #2196F3;
+  display: flex;
+  align-items: center;
+}
+
+.card-title i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.next-task {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 12px;
+  background-color: #E3F2FD;
+  border-radius: 8px;
+}
+
+.task-content {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+/* Стиль для заголовка задачи в карточке "Следующее задание" */
+.next-task .task-title {
+  font-weight: 600;
+  font-size: 18px;
+  color: #333;
+}
+
+.day-tasks {
+  margin-top: 15px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 12px;
+  background-color: #F8F9FA;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid #EEEEEE;
+  transition: transform 0.2s ease;
+}
+
+.task-item:last-child {
+  margin-bottom: 0;
+}
+
+.task-checkbox {
+  margin-right: 15px;
+  position: relative;
+}
+
+.task-checkbox input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.task-checkbox label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #2196F3;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  background-color: #F5F9FF;
+}
+
+.task-checkbox input[type="checkbox"]:checked + label:after {
+  content: '\f00c';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2196F3;
+  font-size: 14px;
+}
+
+.task-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+}
+
+/* Стиль для названия задачи в списке */
+.task-info .task-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #424242;
+}
+
+/* Общий стиль для маленького текста времени */
+.task-time-small {
+  font-size: 12px;
+  color: #9E9E9E;
+  margin-bottom: 4px;
+}
+
+/* Стили для прогресс-бара */
+.progress-container {
+  padding-top: 10px;
+  border-top: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.progress-label {
+  font-size: 12px;
+  color: #64B5F6;
+}
+
+.progress-percentage {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2196F3;
+}
+
+.progress-bar {
+  height: 4px;
+  background-color: rgba(187, 222, 251, 0.5);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #2196F3;
+  border-radius: 2px;
+  width: 33%; /* Статический процент выполнения для демонстрации */
+  transition: width 0.3s ease;
+}
+
+/* Добавляем стили для интерактивных элементов */
+.task-item,
+.task-checkbox,
+.task-checkbox label,
+.card-title,
+.progress-bar,
+input[type="checkbox"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Стили для страницы Daily */
+
+/* Общие стили для страницы Daily */
+.daily-page {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  padding-bottom: 70px; /* Отступ для нижней навигации */
+}
+
+/* Стили для темной темы */
+body.dark-theme .daily-card {
+  background-color: #1E1E1E;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .page-title {
+  color: #BB86FC;
+}
+
+body.dark-theme #task-title,
+body.dark-theme #task-deadline {
+  background-color: #2D2D2D;
+  border-color: #444444;
+  color: #E0E0E0;
+}
+
+body.dark-theme #task-title:focus,
+body.dark-theme #task-deadline:focus {
+  border-color: #BB86FC;
+  box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.2);
+}
+
+body.dark-theme .add-button {
+  background-color: #BB86FC;
+  color: #121212;
+}
+
+body.dark-theme .sort-label {
+  color: #BBBBBB;
+}
+
+body.dark-theme .sort-option {
+  color: #999999;
+}
+
+body.dark-theme .sort-option.active {
+  background-color: #2D2D2D;
+  color: #BB86FC;
+}
+
+body.dark-theme .task-item {
+  background-color: #1E1E1E;
+  border-bottom-color: #333333;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .task-checkbox label {
+  border-color: #BB86FC;
+  background-color: #2D2D2D;
+}
+
+body.dark-theme .task-checkbox input[type="checkbox"]:checked + label:after {
+  color: #BB86FC;
+}
+
+body.dark-theme .task-title {
+  color: #E0E0E0;
+}
+
+body.dark-theme .task-deadline {
+  color: #AAAAAA;
+}
+
+body.dark-theme .task-delete:hover {
+  color: #ff6b6b;
+}
+
+body.dark-theme .empty-list {
+  color: #999999;
+}
+
+body.dark-theme .empty-list i {
+  color: #444444;
+}
