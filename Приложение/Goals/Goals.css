@@ -1,0 +1,666 @@
+/* Стили для страницы Goals */
+
+/* Общие стили для страницы Goals */
+.goals-page {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  padding-bottom: 70px; /* Отступ для нижней навигации */
+}
+
+/* Стили для заголовка страницы */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+}
+
+.page-title i {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+/* Стили для карточек */
+.goals-card {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+}
+
+/* Стили для формы добавления цели */
+.add-goal-form {
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Обновляем стили для группы с дедлайном */
+.deadline-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.custom-date-picker {
+  flex: 1;
+  position: relative;
+  margin-right: 10px;
+}
+
+#goal-deadline {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  margin-right: 10px;
+}
+
+.permanent-checkbox {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.permanent-checkbox input {
+  margin-right: 5px;
+}
+
+#goal-title {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+#goal-title:focus, #goal-deadline:focus {
+  outline: none;
+}
+
+
+.goals-add-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FFD700;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-button i, .goals-add-button i {
+  margin-right: 5px;
+}
+
+/* Стили для сортировки */
+.sort-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.sort-options {
+  display: flex;
+  margin-left: auto;
+}
+
+.sort-option {
+  background: none;
+  color: #666;
+  font-size: 16px;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+
+.sort-option.active {
+  background-color: #FFF8E1;
+  color: #FFD700;
+  font-weight: 600;
+}
+
+
+.sort-option i {
+  margin-right: 0;
+}
+
+/* Стили для списка целей */
+.goals-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Обновленные стили для элементов целей, соответствующие Daily */
+.goal-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.goal-item:last-child {
+  margin-bottom: 0;
+}
+
+.goal-checkbox {
+  margin-right: 12px;
+  position: relative;
+}
+
+.goal-checkbox input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.goal-checkbox label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  background-color: #FFF8E1;
+}
+
+.goal-checkbox input[type="checkbox"]:checked + label:after {
+  content: '\f00c';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFD700;
+  font-size: 12px;
+}
+
+.goal-content {
+  flex-grow: 1;
+  padding-right: 40px; /* Добавляем отступ справа для кнопки удаления */
+}
+
+.goal-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.goal-deadline {
+  font-size: 13px;
+  color: #888;
+}
+
+.goal-actions {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-delete {
+  background: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Стили для пустого списка */
+.empty-list {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 14px;
+  display: none;
+}
+
+.empty-list i {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 18px;
+  }
+  
+  .page-title i {
+    font-size: 20px;
+  }
+  
+  .goals-card {
+    padding: 10px 12px;
+  }
+  
+  #goal-title, #goal-deadline {
+    padding: 7px 8px;
+    font-size: 13px;
+  }
+  
+  .add-button {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+/* Стили для темной темы */
+body.dark-theme .goals-card {
+  background-color: #1E1E1E;
+}
+
+body.dark-theme .page-title {
+  color: #FFD700;
+}
+
+body.dark-theme #goal-title,
+body.dark-theme #goal-deadline {
+  background-color: #2D2D2D;
+  color: #E0E0E0;
+}
+
+body.dark-theme #goal-title:focus,
+body.dark-theme #goal-deadline:focus {
+  outline: none;
+}
+
+body.dark-theme .permanent-checkbox {
+  color: #E0E0E0;
+}
+
+body.dark-theme .add-button {
+  background-color: #FFD700;
+  color: #121212;
+}
+
+body.dark-theme .sort-label {
+  color: #BBBBBB;
+}
+
+body.dark-theme .sort-option {
+  color: #999999;
+}
+
+body.dark-theme .sort-option.active {
+  background-color: #2D2D2D;
+  color: #BB86FC;
+}
+
+body.dark-theme .goal-item {
+  background-color: #1E1E1E;
+}
+
+body.dark-theme .goal-checkbox label {
+  background-color: #2D2D2D;
+}
+
+body.dark-theme .goal-checkbox input[type="checkbox"]:checked + label:after {
+  color: #FFD700;
+}
+
+body.dark-theme .goal-title {
+  color: #E0E0E0;
+}
+
+body.dark-theme .goal-deadline {
+  color: #AAAAAA;
+}
+
+body.dark-theme .goal-delete {
+  color: #555555;
+}
+
+body.dark-theme .empty-list {
+  color: #999999;
+}
+
+body.dark-theme .empty-list i {
+  color: #444444;
+}
+
+body.dark-theme .goal-item.completed .goal-title {
+  color: #777777;
+}
+
+/* Стили для кастомного селектора даты */
+.custom-date-picker {
+  flex: 1;
+}
+
+.date-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  height: 38px; /* Фиксированная высота для соответствия другим полям */
+}
+
+/* Стили для модального окна календаря */
+.calendar-modal {
+  max-width: 350px;
+}
+
+.calendar-container {
+  padding: 10px;
+}
+
+.custom-date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.month-nav {
+  background: none;
+  color: #FFD700;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+body.dark-theme .month-nav {
+  color: #FFD700;
+}
+
+.current-month {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.weekdays div {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  padding: 5px 0;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.day.selected {
+  background-color: #FFD700;
+  color: #fff;
+  font-weight: 600;
+}
+
+.day.today {
+  border-radius: 4px;
+}
+
+.day.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.day.other-month {
+  color: #aaa;
+}
+
+/* Стили для темной темы */
+body.dark-theme .date-display {
+  background-color: #2D2D2D;
+  color: #E0E0E0;
+}
+
+body.dark-theme .calendar-modal .modal-container {
+  background-color: #1E1E1E;
+}
+
+
+body.dark-theme .calendar-modal .modal-title {
+  color: #E0E0E0;
+}
+
+body.dark-theme .calendar-modal .modal-close {
+  color: #999999;
+}
+
+body.dark-theme .current-month {
+  color: #E0E0E0;
+}
+
+body.dark-theme .weekdays div {
+  color: #AAAAAA;
+}
+
+body.dark-theme .day.selected {
+  background-color: #FFD700;
+  color: #121212;
+}
+
+
+body.dark-theme .day.disabled {
+  color: #555555;
+}
+
+body.dark-theme .day.other-month {
+  color: #777777;
+}
+
+.date-actions {
+  display: flex;
+  align-items: center;
+}
+
+.clear-date {
+  background: none;
+  color: #999999;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+body.dark-theme .clear-date {
+  color: #999999;
+}
+
+/* Стили для модального окна */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal-container {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  color: #999999;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Стили для темной темы модального окна */
+body.dark-theme .modal-container {
+  background-color: #1E1E1E;
+}
+
+
+body.dark-theme .modal-title {
+  color: #E0E0E0;
+}
+
+body.dark-theme .modal-close {
+  color: #999999;
+}
+
+/* Специфичные стили для модального окна календаря */
+.calendar-modal .modal-container {
+  max-width: 350px;
+}
+
+.calendar-container {
+  padding: 10px;
+}
+
+/* Делаем крестик закрытия модального окна календаря красным */
+.calendar-modal .modal-close {
+  color: #999999;
+}
+
+body.dark-theme .calendar-modal .modal-close {
+  color: #999999;
+}
+
+/* Стили для сообщений об ошибках */
+.error-message {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 5px;
+  padding-left: 5px;
+  display: none;
+  font-weight: 500;
+}
+
+.error-message.active {
+  display: block;
+}
+
+/* Стили для полей с ошибками */
+input.error, textarea.error {
+  background-color: rgba(255, 107, 107, 0.05);
+}
+
+body.dark-theme input.error, 
+body.dark-theme textarea.error {
+  background-color: rgba(255, 107, 107, 0.1);
+}
