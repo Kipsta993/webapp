@@ -1,0 +1,9 @@
+{
+  "name": "Мое Расписание",
+  "short_name": "Расписание",
+  "description": "Приложение для управления ежедневными задачами и расписанием",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#673ab7"
+} 
