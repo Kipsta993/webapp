@@ -1,0 +1,681 @@
+/* Стили для панели настроек */
+
+/* Предотвращаем стандартное поведение браузера при свайпе сверху вниз */
+html, body {
+  overscroll-behavior-y: contain;
+  touch-action: pan-x pan-y;
+}
+
+.settings-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background-color: #FFFFFF;
+  border-radius: 0 0 15px 15px;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.settings-panel.active {
+  display: flex;
+}
+
+.settings-handle {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+  cursor: grab;
+  background-color: transparent;
+  border-radius: 0 0 16px 16px;
+  position: relative;
+  margin-top: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.handle-indicator {
+  width: 60px;
+  height: 5px;
+  background-color: #BBBBBB;
+  border-radius: 3px;
+}
+
+.settings-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 20px 10px 20px;
+  overscroll-behavior: contain;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 0;
+  margin-bottom: 5px;
+}
+
+.close-settings {
+  background: none;
+  color: #999999;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* Новые стили для компактных настроек */
+.settings-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.setting-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.setting-label i {
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #673AB7;
+}
+
+/* Стили для выпадающего меню темы */
+.theme-dropdown {
+  position: relative;
+  width: 120px;
+}
+
+.theme-select {
+  width: 100%;
+  padding: 8px 30px 8px 10px;
+  border-radius: 8px;
+  background-color: #F8F9FA;
+  color: #333;
+  font-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #673AB7;
+}
+
+/* Темная тема для выпадающего меню */
+body.dark-theme .theme-select {
+  background-color: #2D2D2D;
+  color: #E0E0E0;
+}
+
+body.dark-theme .select-arrow {
+  color: #BB86FC;
+}
+
+/* Стили для переключателя (switch) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+}
+
+input:checked + .slider {
+  background-color: #673AB7;
+}
+
+input:checked + .slider:before {
+  left: 30px;
+}
+
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Стили для иконок темы */
+.theme-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: white;
+}
+
+.theme-icon.light {
+  left: 6px;
+  opacity: 1;
+}
+
+.theme-icon.dark {
+  right: 6px;
+  opacity: 0;
+}
+
+input:checked + .slider .theme-icon.light {
+  opacity: 0;
+}
+
+input:checked + .slider .theme-icon.dark {
+  opacity: 1;
+}
+
+/* Стили для меток языка */
+.lang-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.lang-label.ru {
+  left: 6px;
+}
+
+.lang-label.en {
+  right: 6px;
+}
+
+/* Стили для секции редакторов */
+.editors-section {
+  margin-top: 10px;
+}
+
+.settings-section {
+  margin-bottom: 25px;
+}
+
+.settings-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #555555;
+  margin: 0 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: none;
+}
+
+/* Стили для выбора темы */
+.theme-options {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme-preview {
+  width: 80px;
+  height: 120px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.theme-preview::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.theme-preview::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 5px;
+}
+
+.light-theme {
+  background-color: #F5F5F5;
+}
+
+.light-theme::before {
+  background-color: #673AB7;
+}
+
+.light-theme::after {
+  background-color: #FFFFFF;
+}
+
+.dark-theme {
+  background-color: #121212;
+}
+
+.dark-theme::before {
+  background-color: #BB86FC;
+}
+
+.dark-theme::after {
+  background-color: #1E1E1E;
+}
+
+.system-theme {
+  background: linear-gradient(to right, #F5F5F5 50%, #121212 50%);
+}
+
+.system-theme::before {
+  background: linear-gradient(to right, #673AB7 50%, #BB86FC 50%);
+}
+
+.system-theme::after {
+  background: linear-gradient(to right, #FFFFFF 50%, #1E1E1E 50%);
+}
+
+.theme-label {
+  font-size: 14px;
+  color: #333333;
+}
+
+/* Темная тема */
+body.dark-theme {
+  background-color: #121212;
+  color: #E0E0E0;
+}
+
+body.dark-theme .settings-panel {
+  background-color: #1E1E1E;
+}
+
+body.dark-theme .settings-section-title {
+  color: #E0E0E0;
+  border-bottom: none;
+}
+
+body.dark-theme .handle-indicator {
+  background-color: #444444;
+}
+
+body.dark-theme .setting-label {
+  color: #E0E0E0;
+}
+
+body.dark-theme .setting-label i {
+  color: #BB86FC;
+}
+
+body.dark-theme .settings-handle {
+  background-color: transparent;
+}
+
+body.dark-theme .slider {
+  background-color: #555555;
+}
+
+body.dark-theme input:checked + .slider {
+  background-color: #BB86FC;
+}
+
+body.dark-theme .settings-button {
+  background-color: #2D2D2D;
+  color: #E0E0E0;
+}
+
+body.dark-theme .settings-button i {
+  color: #BB86FC;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 480px) {
+  .settings-panel {
+    height: 70vh;
+  }
+  
+  .theme-preview {
+    width: 70px;
+    height: 100px;
+  }
+  
+  .setting-item {
+    padding: 8px 0;
+  }
+  
+  .setting-label {
+    font-size: 15px;
+  }
+}
+
+/* Стили для переключателя языка */
+.language-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.language-label {
+  font-size: 14px;
+  color: #333333;
+  margin: 0 10px;
+}
+
+/* Стили для кнопок редактора заданий */
+.tasks-editor-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.settings-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-button i {
+  margin-right: 12px;
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+  color: #673AB7;
+}
+
+/* Улучшенные стили для кнопок закрытия модальных окон */
+.modal-close {
+  background: none;
+  color: #999;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  margin: -10px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+body.dark-theme .modal-close {
+  color: #aaa;
+}
+
+body.dark-theme .modal-close:hover {
+  color: #fff;
+}
+
+/* Стили для настроек размера */
+.size-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  max-width: 110px;
+}
+
+.size-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #673AB7;
+  min-width: 40px;
+  text-align: center;
+}
+
+.size-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F5F5;
+  color: #673AB7;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.size-btn:active {
+  background-color: #E0E0E0;
+}
+
+body.dark-theme .size-value {
+  color: #BB86FC;
+}
+
+body.dark-theme .size-btn {
+  background-color: #2D2D2D;
+  color: #BB86FC;
+}
+
+body.dark-theme .size-btn:active {
+  background-color: #333333;
+}
+
+/* Стили для кнопки тестового уведомления */
+.notification-test-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.notification-test-btn i {
+  margin-right: 8px;
+}
+
+/* Стили для темной темы */
+body.dark-theme .notification-test-btn {
+  background-color: #81C784;
+  color: #121212;
+}
+
+/* Стили для кнопки отладки */
+.debug-console-btn {
+  background-color: #FF5722;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.debug-console-btn i {
+  margin-right: 8px;
+}
+
+.debug-console-btn.active {
+  background-color: #E64A19;
+}
+
+/* Стили для темной темы */
+body.dark-theme .debug-console-btn {
+  background-color: #FF7043;
+  color: #121212;
+}
+
+body.dark-theme .debug-console-btn.active {
+  background-color: #E64A19;
+  color: white;
+}
+
+/* Стили для контейнера с логами */
+.console-logs-container {
+  margin-top: 15px;
+  background-color: #333;
+  color: #FFF;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: monospace;
+  height: 300px;
+  overflow-y: auto;
+  display: none;
+}
+
+.console-logs-container.visible {
+  display: block;
+}
+
+.console-log-entry {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  word-break: break-word;
+}
+
+.console-log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-level-info {
+  color: #8BC34A;
+}
+
+.log-level-warn {
+  color: #FFC107;
+}
+
+.log-level-error {
+  color: #FF5252;
+}
+
+.console-clear-btn {
+  background-color: #212121;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Стили для темной темы */
+body.dark-theme .console-logs-container {
+  background-color: #212121;
+  color: #E0E0E0;
+}
+
+body.dark-theme .console-clear-btn {
+  background-color: #424242;
+}
+
+/* Стили для секции отладки */
+.debug-section {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+body.dark-theme .debug-section {
+  border-top-color: #444;
+}
+
+/* Стили для отображения версии */
+.version-info {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  padding: 5px;
+  border-top: 1px solid #ddd;
+}
+
+body.dark-theme .version-info {
+  color: #aaa;
+  border-top-color: #444;
+}

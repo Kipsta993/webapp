@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#673AB7">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>MyApp - To Do List</title>
+  
+  <!-- Ссылка на манифест для Progressive Web App -->
+  <link rel="manifest" href="Приложение/PWA/manifest.json">
+  
+  <!-- Иконки для iOS -->
+  <link rel="apple-touch-icon" href="icon-192x192.png">
+  
+  <!-- Добавляем Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Добавляем сброс стилей -->
+  <link rel="stylesheet" href="Приложение/reset.css">
+  <!-- Стили для компонентов -->
+  <link rel="stylesheet" href="Приложение/Components/BottomNav.css">
+  <!-- Стили для страниц -->
+  <link rel="stylesheet" href="Приложение/Daily/Daily.css">
+  <link rel="stylesheet" href="Приложение/Weekly/Weekly.css">
+  <link rel="stylesheet" href="Приложение/Stats/Stats.css">
+  <link rel="stylesheet" href="Приложение/Goals/Goals.css">
+  <link rel="stylesheet" href="Приложение/Diary/Diary.css">
+  <!-- Добавляем стили для настроек -->
+  <link rel="stylesheet" href="Приложение/Settings/Settings.css">
+  <!-- Добавляем стили для редактора заданий -->
+  <link rel="stylesheet" href="Приложение/Components/TasksEditor.css">
+  <!-- Добавляем стили для редактора расписания -->
+  <link rel="stylesheet" href="Приложение/Components/ScheduleEditor.css">
+</head>
+<body>
+  <!-- Контейнер для настроек (свайп сверху вниз) -->
+  <div id="settings-panel" class="settings-panel">
+    <div class="settings-content">
+      <div class="settings-header">
+        <!-- Убран заголовок "Настройки" -->
+      </div>
+      
+      <!-- Общие настройки -->
+      <div class="settings-section">
+        <h3 class="settings-section-title">Общее</h3>
+      
+      <!-- Компактные настройки -->
+      <div class="settings-compact">
+        <!-- Выбор темы через выпадающее меню -->
+        <div class="setting-item">
+          <div class="setting-label">
+            <i class="fas fa-sun"></i>
+            <span>Тема</span>
+          </div>
+          <div class="theme-dropdown">
+            <select id="theme-select" class="theme-select">
+              <option value="light">Светлая</option>
+              <option value="dark">Темная</option>
+              <option value="system">Системная</option>
+            </select>
+            <div class="select-arrow">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+          
+          <!-- Настройка размера страницы -->
+          <div class="setting-item">
+            <div class="setting-label">
+              <i class="fas fa-expand-arrows-alt"></i>
+              <span>Размер страницы</span>
+            </div>
+            <div class="size-controls">
+              <button id="page-size-decrease" class="size-btn"><i class="fas fa-minus"></i></button>
+              <div id="page-size-value" class="size-value">100%</div>
+              <button id="page-size-increase" class="size-btn"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+          
+          <!-- Настройка размера текста -->
+          <div class="setting-item">
+            <div class="setting-label">
+              <i class="fas fa-text-height"></i>
+              <span>Размер текста</span>
+            </div>
+            <div class="size-controls">
+              <button id="text-size-decrease" class="size-btn"><i class="fas fa-minus"></i></button>
+              <div id="text-size-value" class="size-value">100%</div>
+              <button id="text-size-increase" class="size-btn"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        
+        <!-- Переключатель языка -->
+        <div class="setting-item">
+          <div class="setting-label">
+            <i class="fas fa-language"></i>
+            <span>Язык навигации</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="language-toggle">
+            <span class="slider round">
+              <span class="lang-label ru">RU</span>
+              <span class="lang-label en">EN</span>
+            </span>
+          </label>
+        </div>
+        
+        <!-- Переключатель звука -->
+        <div class="setting-item">
+          <div class="setting-label">
+            <i class="fas fa-volume-up"></i>
+            <span>Звуки</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="sound-toggle" checked>
+            <span class="slider round"></span>
+          </label>
+          </div>
+          
+          <!-- Переключатель уведомлений о заданиях -->
+          <div class="setting-item">
+            <div class="setting-label">
+              <i class="fas fa-bell"></i>
+              <span>Уведомления о заданиях</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="schedule-notifications-toggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <button id="test-notification-btn" class="notification-test-btn">
+            <i class="fas fa-paper-plane"></i> Отправить тестовое уведомление
+          </button>
+        </div>
+      </div>
+      
+      <!-- Управление заданиями -->
+      <div class="settings-section editors-section">
+        <h3 class="settings-section-title">Редакторы</h3>
+        <div class="tasks-editor-buttons">
+          <button id="edit-daily-tasks" class="settings-button">
+            <i class="fas fa-tasks"></i> Ежедневные задания
+          </button>
+          <button id="edit-weekly-tasks" class="settings-button">
+            <i class="fas fa-calendar-week"></i> Еженедельные задания
+          </button>
+          <button id="edit-schedule-btn" class="settings-button">
+            <i class="fas fa-clock"></i> Расписание
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="settings-handle">
+      <div class="handle-indicator"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Daily Page -->
+    <div id="daily-page" class="page active">
+      <div class="page-content">
+        <!-- Карточка следующего задания -->
+        <div class="card">
+          <div class="daily-card-title">
+            <i class="fas fa-hourglass-half"></i>
+            Следующее задание
+          </div>
+          <div class="next-task">
+            <div class="task-content">
+              <div class="task-time-small">Ближайшее невыполненное задание</div>
+              <div class="task-title">Выполните все задания на сегодня</div>
+            </div>
+            
+            <!-- Прогресс выполнения задач -->
+            <div class="progress-container">
+              <div class="progress-info">
+                <div class="progress-label">Выполнено задач на сегодня</div>
+                <div class="progress-percentage">33%</div>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка заданий на день -->
+        <div class="card tasks-card">
+          <div class="daily-card-title">
+            <i class="fas fa-list"></i>
+            Задания на сегодня
+          </div>
+          <div class="day-tasks">
+            <!-- Задание 1 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="task1">
+                <label for="task1"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Подготовить отчет</div>
+              </div>
+            </div>
+            
+            <!-- Задание 2 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="task2">
+                <label for="task2"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Позвонить клиенту</div>
+              </div>
+            </div>
+            
+            <!-- Задание 3 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="task3">
+                <label for="task3"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Купить продукты</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weekly Page -->
+    <div id="weekly-page" class="page">
+      <div class="page-content">
+        <!-- Карточка заданий на неделю -->
+        <div class="card tasks-card">
+          <div class="weekly-card-title">
+            <i class="fas fa-calendar-week"></i>
+            Задания на неделю
+          </div>
+          <div class="week-tasks">
+            <!-- Задание 1 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task1">
+                <label for="week-task1"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Подготовить презентацию</div>
+              </div>
+            </div>
+            
+            <!-- Задание 2 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task2">
+                <label for="week-task2"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Встреча с партнерами</div>
+              </div>
+            </div>
+            
+            <!-- Задание 3 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task3">
+                <label for="week-task3"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Закончить проект</div>
+              </div>
+            </div>
+            
+            <!-- Задание 4 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task4">
+                <label for="week-task4"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Оплатить счета</div>
+              </div>
+            </div>
+            
+            <!-- Задание 5 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task5">
+                <label for="week-task5"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Записаться к врачу</div>
+              </div>
+            </div>
+            
+            <!-- Задание 6 -->
+            <div class="task-item">
+              <div class="task-checkbox">
+                <input type="checkbox" id="week-task6">
+                <label for="week-task6"></label>
+              </div>
+              <div class="task-info">
+                <div class="task-title">Купить подарок</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Stats Page -->
+    <div id="stats-page" class="page">
+      <div class="page-content stats-page">
+        <!-- Удаляем контейнер stats-nav и оставляем только точки -->
+        <div class="page-dots">
+          <span class="page-dot active" data-page="1"></span>
+          <span class="page-dot" data-page="2"></span>
+        </div>
+        
+        <!-- Контент вкладки Time -->
+        <div id="time-content" class="stats-content">
+          <!-- Статистика времени по дням недели -->
+          <div class="stats-card">
+            <div class="stats-title">
+              <i class="fas fa-chart-bar"></i>
+              Время использования по дням недели
+            </div>
+            
+            <!-- Селектор недели -->
+            <div class="week-selector">
+              <button class="week-nav-btn week-prev-btn">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="week-display">
+                <span class="week-value">15 - 21 мая 2023</span>
+              </div>
+              <button class="week-nav-btn week-next-btn">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <button class="week-current-btn">
+                Текущая
+              </button>
+            </div>
+            
+            <div class="columns-container">
+              <!-- Столбчатая диаграмма -->
+              <div class="weekly-time-chart">
+                <div class="day-column">
+                  <div class="day-bar" style="height: 40%;">
+                    <div class="day-time">1ч 20м</div>
+                  </div>
+                  <div class="day-label">Пн</div>
+                </div>
+                <div class="day-column">
+                  <div class="day-bar" style="height: 65%;">
+                    <div class="day-time">2ч 10м</div>
+                  </div>
+                  <div class="day-label">Вт</div>
+                </div>
+                <div class="day-column">
+                  <div class="day-bar" style="height: 30%;">
+                    <div class="day-time">1ч 00м</div>
+                  </div>
+                  <div class="day-label">Ср</div>
+                </div>
+                <div class="day-column">
+                  <div class="day-bar" style="height: 80%;">
+                    <div class="day-time">2ч 40м</div>
+                  </div>
+                  <div class="day-label">Чт</div>
+                </div>
+                <div class="day-column">
+                  <div class="day-bar" style="height: 55%;">
+                    <div class="day-time">1ч 50м</div>
+                  </div>
+                  <div class="day-label">Пт</div>
+                </div>
+                <div class="day-column">
+                  <div class="day-bar" style="height: 25%;">
+                    <div class="day-time">0ч 50м</div>
+                  </div>
+                  <div class="day-label">Сб</div>
+                </div>
+                <div class="day-column">
+                  <div class="day-bar" style="height: 45%;">
+                    <div class="day-time">1ч 30м</div>
+                  </div>
+                  <div class="day-label">Вс</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Общее время в приложении -->
+          <div class="stats-card">
+            <div class="stats-title">
+              <i class="fas fa-hourglass-half"></i>
+              Общее время в приложении
+              <button id="time-settings-btn" class="time-settings-btn" aria-label="Настройки отображения времени">
+                <i class="fas fa-cog"></i>
+              </button>
+            </div>
+            
+            <div class="total-time">
+              <div class="time-counter">
+                <div class="time-unit" data-time-unit="seconds">
+                  <div class="time-value">0</div>
+                  <div class="time-label">Секунды</div>
+                </div>
+                <div class="separator-wrapper">
+                  <span class="time-separator"></span>
+                </div>
+                <div class="time-unit" data-time-unit="minutes">
+                  <div class="time-value">0</div>
+                  <div class="time-label">Минуты</div>
+                </div>
+                <div class="separator-wrapper">
+                  <span class="time-separator"></span>
+                </div>
+                <div class="time-unit" data-time-unit="hours">
+                  <div class="time-value">0</div>
+                  <div class="time-label">Часы</div>
+                </div>
+                <div class="separator-wrapper">
+                  <span class="time-separator"></span>
+                </div>
+                <div class="time-unit" data-time-unit="days">
+                  <div class="time-value">0</div>
+                  <div class="time-label">Дни</div>
+                </div>
+                <div class="separator-wrapper">
+                  <span class="time-separator"></span>
+                </div>
+                <div class="time-unit" data-time-unit="weeks">
+                  <div class="time-value">0</div>
+                  <div class="time-label">Недели</div>
+                </div>
+                <div class="separator-wrapper">
+                  <span class="time-separator"></span>
+                </div>
+                <div class="time-unit" data-time-unit="months">
+                  <div class="time-value">0</div>
+                  <div class="time-label">Месяцы</div>
+                </div>
+                <div class="separator-wrapper">
+                  <span class="time-separator"></span>
+                </div>
+                <div class="time-unit" data-time-unit="years">
+                  <div class="time-value">0</div>
+                  <div class="time-label">Годы</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Контент вкладки Tasks -->
+        <div id="tasks-content" class="stats-content">
+          <!-- Общая статистика задач -->
+          <div class="stats-card">
+            <div class="stats-title">
+              <i class="fas fa-check-circle"></i>
+              Выполненные задания
+            </div>
+            
+            <div class="tasks-summary">
+              <div class="task-stat-card">
+                <div class="task-stat-value">42</div>
+                <div class="task-stat-label">Всего</div>
+              </div>
+              <div class="task-stat-card">
+                <div class="task-stat-value">28</div>
+                <div class="task-stat-label">Ежедневных</div>
+              </div>
+              <div class="task-stat-card">
+                <div class="task-stat-value">14</div>
+                <div class="task-stat-label">Еженедельных</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Серии дней -->
+          <div class="stats-card">
+            <div class="stats-title">
+              <i class="fas fa-fire"></i>
+              Серии дней
+            </div>
+            
+            <div class="streak-container">
+              <div class="streak-card">
+                <div class="streak-value">7</div>
+                <div class="streak-label">Текущая серия</div>
+              </div>
+              <div class="streak-card">
+                <div class="streak-value">21</div>
+                <div class="streak-label">Максимальная серия</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Статистика целей -->
+          <div class="stats-card">
+            <div class="stats-title">
+              <i class="fas fa-trophy"></i>
+              Цели
+        </div>
+            
+            <div class="tasks-summary">
+              <div class="task-stat-card">
+                <div class="task-stat-value" id="goals-total">0</div>
+                <div class="task-stat-label">Всего</div>
+              </div>
+              <div class="task-stat-card">
+                <div class="task-stat-value" id="goals-completed">0</div>
+                <div class="task-stat-label">Выполнено</div>
+              </div>
+              <div class="task-stat-card">
+                <div class="task-stat-value" id="goals-deleted">0</div>
+                <div class="task-stat-label">Удалено</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Статистика дневника -->
+          <div class="stats-card">
+            <div class="stats-title">
+              <i class="fas fa-book"></i>
+              Дневник
+            </div>
+            
+            <div class="tasks-summary">
+              <div class="task-stat-card">
+                <div class="task-stat-value" id="diary-total">0</div>
+                <div class="task-stat-label">Всего записей</div>
+              </div>
+              <div class="task-stat-card">
+                <div class="task-stat-value" id="diary-deleted">0</div>
+                <div class="task-stat-label">Удалено</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Goals Page -->
+    <div id="goals-page" class="page">
+      <div class="page-content goals-page">
+        <!-- Форма добавления цели -->
+        <div class="goals-card">
+          <form id="add-goal-form" class="add-goal-form" autocomplete="off" novalidate>
+            <div class="form-group">
+              <input type="text" id="goal-title" placeholder="Введите новую цель" required autocomplete="off">
+              <div class="error-message" id="goal-title-error"></div>
+            </div>
+            <div class="form-group deadline-group">
+              <div class="custom-date-picker">
+                <div class="date-display" id="date-display-button">
+                  <span id="selected-date">Выберите срок</span>
+                  <div class="date-actions">
+                    <button type="button" id="clear-date" class="clear-date" title="Очистить дату">
+                      <i class="fas fa-times"></i>
+                    </button>
+                    <i class="fas fa-calendar-alt"></i>
+                  </div>
+                </div>
+                <input type="hidden" id="goal-deadline" name="goal-deadline">
+              </div>
+              <!-- Перемещаем сортировку сюда -->
+              <div class="sort-options">
+                <button id="goals-sort-newest" class="sort-option active" type="button">
+                  <i class="fas fa-sort-amount-down"></i>
+                </button>
+                <button id="goals-sort-oldest" class="sort-option" type="button">
+                  <i class="fas fa-sort-amount-up"></i>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="goals-add-button">
+              <i class="fas fa-plus"></i> Добавить цель
+            </button>
+          </form>
+        </div>
+
+        <!-- Список целей -->
+        <div id="goals-list" class="goals-list">
+          <!-- Здесь будут отображаться цели -->
+        </div>
+        
+        <!-- Сообщение о пустом списке -->
+        <div id="goals-empty-list" class="empty-list">
+          <i class="fas fa-clipboard-list"></i>
+          <p>У вас пока нет целей</p>
+          <p>Добавьте свою первую цель выше</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diary Page -->
+    <div id="diary-page" class="page">
+      <div class="page-content diary-page">
+        <!-- Форма добавления записи -->
+        <div class="diary-card">
+          <form id="add-entry-form" class="add-entry-form" autocomplete="off" novalidate>
+            <div class="form-group">
+              <input type="text" id="entry-title" placeholder="Заголовок записи" required autocomplete="off">
+              <div class="error-message" id="entry-title-error"></div>
+            </div>
+            <div class="form-group">
+              <textarea id="entry-content" placeholder="Текст записи" rows="4" required autocomplete="off"></textarea>
+              <div class="error-message" id="entry-content-error"></div>
+            </div>
+            <!-- Добавление загрузки фотографий и сортировка -->
+            <div class="form-group photo-upload-container">
+              <label for="entry-photos" class="photo-upload-label">
+                <i class="fas fa-camera"></i> Добавить фото
+                <span id="photo-counter" class="photo-counter">(0/10)</span>
+              </label>
+              <div class="sort-options">
+                <button id="diary-sort-newest" class="sort-option active" type="button">
+                  <i class="fas fa-sort-amount-down"></i>
+                </button>
+                <button id="diary-sort-oldest" class="sort-option" type="button">
+                  <i class="fas fa-sort-amount-up"></i>
+                </button>
+              </div>
+              <input type="file" id="entry-photos" class="photo-upload-input" accept="image/*" multiple>
+              <div id="photo-preview" class="photo-preview-container"></div>
+            </div>
+            <button type="submit" class="add-button">
+              <i class="fas fa-plus"></i> Добавить запись
+            </button>
+          </form>
+        </div>
+
+        <!-- Список записей -->
+        <div id="entries-list" class="entries-list">
+          <!-- Пример записи (будет заменен динамически) -->
+          <div class="entry-item" style="display: none;">
+            <div class="entry-header">
+              <h3 class="entry-title">Заголовок записи</h3>
+              <div class="entry-actions">
+                <button class="entry-delete" aria-label="Удалить запись">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+            <div class="entry-date">01.01.2023 12:00</div>
+            <!-- Индикатор наличия фотографий -->
+            <div class="entry-photos-indicator">
+              <i class="fas fa-camera"></i> 3 фото
+            </div>
+          </div>
+        </div>
+        
+        <!-- Сообщение о пустом списке -->
+        <div id="diary-empty-list" class="empty-list">
+          <i class="fas fa-book-open"></i>
+          <p>У вас пока нет записей в дневнике</p>
+          <p>Добавьте свою первую запись выше</p>
+        </div>
+        
+        <!-- Модальное окно для просмотра записи -->
+        <div id="entry-modal" class="modal-overlay">
+          <div class="modal-container">
+            <div class="modal-header">
+              <div>
+                <h3 class="modal-title">Заголовок записи</h3>
+                <div class="modal-date">01.01.2023 12:00</div>
+              </div>
+              <button class="modal-close" aria-label="Закрыть">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-content">Содержимое записи...</div>
+              <!-- Контейнер для фотографий -->
+              <div class="modal-photos"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Полноэкранный просмотр фотографий -->
+        <div id="fullscreen-photo" class="fullscreen-photo">
+          <div class="fullscreen-photo-container">
+            <img src="" alt="" class="fullscreen-photo-img">
+            <button class="fullscreen-close">
+              <i class="fas fa-times"></i>
+            </button>
+            <button class="fullscreen-arrow fullscreen-arrow-prev">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="fullscreen-arrow fullscreen-arrow-next">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="fullscreen-nav"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Контейнер для нижней навигации -->
+  <div id="bottom-nav"></div>
+  
+  <script>
+    // Инициализация нижней навигации
+    document.addEventListener('DOMContentLoaded', function() {
+      // Создаем нижнюю навигацию
+      const bottomNav = document.getElementById('bottom-nav');
+      bottomNav.innerHTML = `
+        <div class="bottom-nav-container">
+          <div class="bottom-nav">
+            <a href="#" class="nav-item active" data-page="daily">
+              <i class="fas fa-calendar-day"></i>
+              <span>Ежедневные</span>
+            </a>
+            <a href="#" class="nav-item" data-page="weekly">
+              <i class="fas fa-calendar-week"></i>
+              <span>Еженедельные</span>
+            </a>
+            <a href="#" class="nav-item" data-page="stats">
+              <i class="fas fa-chart-bar"></i>
+              <span>Статистика</span>
+            </a>
+            <a href="#" class="nav-item" data-page="goals">
+              <i class="fas fa-trophy"></i>
+              <span>Цели</span>
+            </a>
+            <a href="#" class="nav-item" data-page="diary">
+              <i class="fas fa-book"></i>
+              <span>Дневник</span>
+            </a>
+          </div>
+        </div>
+      `;
+      
+      // Получаем все страницы
+      const pages = document.querySelectorAll('.page');
+      
+      // Получаем все элементы навигации
+      const navItems = document.querySelectorAll('.nav-item');
+      
+      // Функция для переключения между страницами
+      function switchPage(pageId) {
+        // Скрываем все страницы
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => page.classList.remove('active'));
+        
+        // Показываем выбранную страницу
+        const selectedPage = document.getElementById(pageId + '-page');
+        if (selectedPage) {
+          selectedPage.classList.add('active');
+          
+          // Сохраняем активную страницу в localStorage
+          localStorage.setItem('activePage', pageId);
+          
+          // Обновляем активный пункт меню
+          const navItems = document.querySelectorAll('.nav-item');
+          navItems.forEach(item => {
+            if (item.getAttribute('data-page') === pageId) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+          
+          // Устанавливаем правильную функцию loadTasks в зависимости от страницы
+          if (pageId === 'daily' && window.dailyLoadTasks) {
+            window.loadTasks = window.dailyLoadTasks;
+            window.dailyLoadTasks(); // Обновляем задания
+          } else if (pageId === 'weekly' && window.weeklyLoadTasks) {
+            window.loadTasks = window.weeklyLoadTasks;
+            window.weeklyLoadTasks(); // Обновляем задания
+          }
+        }
+      }
+      
+      // Добавляем обработчики событий для элементов навигации
+      navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          const pageId = this.getAttribute('data-page');
+          switchPage(pageId);
+        });
+      });
+      
+      // Проверяем, есть ли сохраненная страница в localStorage
+      const savedPage = localStorage.getItem('activePage');
+      if (savedPage) {
+        switchPage(savedPage);
+      } else {
+        // По умолчанию показываем страницу Daily
+        switchPage('daily');
+      }
+      
+      // Применяем сохраненный язык навигации при загрузке
+      const savedLanguage = localStorage.getItem('navLanguage') || 'ru';
+      if (savedLanguage === 'en') {
+        // Определяем тексты для навигации на английском
+        const navTexts = {
+          daily: 'Daily',
+          weekly: 'Weekly',
+          stats: 'Stats',
+          goals: 'Goals',
+          diary: 'Diary'
+        };
+        
+        // Обновляем тексты
+        navItems.forEach(item => {
+          const page = item.getAttribute('data-page');
+          const textSpan = item.querySelector('span');
+          
+          if (textSpan && navTexts[page]) {
+            textSpan.textContent = navTexts[page];
+          }
+        });
+      }
+    });
+  </script>
+  
+  <!-- Подключаем JavaScript для настроек -->
+  <script src="Приложение/Settings/Settings.js"></script>
+  <!-- Подключаем JavaScript для редактора заданий -->
+  <script src="Приложение/Components/TasksEditor.js"></script>
+  <!-- Подключаем JavaScript для редактора расписания -->
+  <script src="Приложение/Components/ScheduleEditor.js"></script>
+
+  <!-- Модальное окно для настроек отображения времени -->
+  <div id="time-settings-modal" class="modal-overlay">
+    <div class="modal-container time-settings-modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Настройки отображения времени</h3>
+        </div>
+        <button id="time-settings-close" class="modal-close" aria-label="Закрыть">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="time-settings-content">
+          <p class="time-settings-description">Выберите, какие единицы времени отображать:</p>
+          <div class="time-settings-options">
+            <div class="time-setting-option">
+              <div class="time-setting-checkbox-wrapper">
+                <input type="checkbox" id="show-seconds" class="time-setting-checkbox" data-unit="seconds" checked>
+                <label for="show-seconds"></label>
+              </div>
+              <span class="time-setting-label">Секунды</span>
+            </div>
+            <div class="time-setting-option">
+              <div class="time-setting-checkbox-wrapper">
+                <input type="checkbox" id="show-minutes" class="time-setting-checkbox" data-unit="minutes" checked>
+                <label for="show-minutes"></label>
+              </div>
+              <span class="time-setting-label">Минуты</span>
+            </div>
+            <div class="time-setting-option">
+              <div class="time-setting-checkbox-wrapper">
+                <input type="checkbox" id="show-hours" class="time-setting-checkbox" data-unit="hours" checked>
+                <label for="show-hours"></label>
+              </div>
+              <span class="time-setting-label">Часы</span>
+            </div>
+            <div class="time-setting-option">
+              <div class="time-setting-checkbox-wrapper">
+                <input type="checkbox" id="show-days" class="time-setting-checkbox" data-unit="days" checked>
+                <label for="show-days"></label>
+              </div>
+              <span class="time-setting-label">Дни</span>
+            </div>
+            <div class="time-setting-option">
+              <div class="time-setting-checkbox-wrapper">
+                <input type="checkbox" id="show-weeks" class="time-setting-checkbox" data-unit="weeks" checked>
+                <label for="show-weeks"></label>
+              </div>
+              <span class="time-setting-label">Недели</span>
+            </div>
+            <div class="time-setting-option">
+              <div class="time-setting-checkbox-wrapper">
+                <input type="checkbox" id="show-months" class="time-setting-checkbox" data-unit="months" checked>
+                <label for="show-months"></label>
+              </div>
+              <span class="time-setting-label">Месяцы</span>
+            </div>
+            <div class="time-setting-option">
+              <div class="time-setting-checkbox-wrapper">
+                <input type="checkbox" id="show-years" class="time-setting-checkbox" data-unit="years" checked>
+                <label for="show-years"></label>
+              </div>
+              <span class="time-setting-label">Годы</span>
+            </div>
+          </div>
+          <div class="time-settings-actions">
+            <button id="time-settings-save" class="time-settings-save">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно с календарем -->
+  <div id="calendar-modal" class="modal-overlay">
+    <div class="modal-container calendar-modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Выберите дату</h3>
+        </div>
+        <button id="calendar-close" class="modal-close" aria-label="Закрыть">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="calendar-container">
+          <div class="custom-date-header">
+            <button class="month-nav prev-month"><i class="fas fa-chevron-left"></i></button>
+            <div class="current-month">Июнь 2023</div>
+            <button class="month-nav next-month"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="weekdays">
+            <div>Пн</div>
+            <div>Вт</div>
+            <div>Ср</div>
+            <div>Чт</div>
+            <div>Пт</div>
+            <div>Сб</div>
+            <div>Вс</div>
+          </div>
+          <div class="days-grid" id="days-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно для редактора заданий -->
+  <div id="tasks-editor-modal" class="modal-overlay">
+    <div class="modal-container tasks-editor-modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="tasks-editor-title">Редактор заданий</h3>
+        </div>
+        <button id="tasks-editor-close" class="modal-close" aria-label="Закрыть">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="tasks-editor-content">
+          <div class="tasks-editor-description">Здесь вы можете добавлять, редактировать и удалять задания.</div>
+          
+          <!-- Форма добавления нового задания -->
+          <form id="add-task-form" class="add-task-form" autocomplete="off">
+            <div class="form-group">
+              <input type="text" id="new-task-title" placeholder="Введите новое задание" required autocomplete="off">
+            </div>
+            <button type="submit" class="add-button">
+              <i class="fas fa-plus"></i> Добавить задание
+            </button>
+          </form>
+          
+          <!-- Список заданий для редактирования -->
+          <div class="tasks-list-editor">
+            <h4 class="tasks-list-title">Текущие задания</h4>
+            <div id="editable-tasks-list" class="editable-tasks-list">
+              <!-- Здесь будут отображаться задания для редактирования -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Модальное окно для редактора расписания -->
+  <div id="schedule-editor-modal" class="modal-overlay">
+    <div class="modal-container schedule-editor-modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Редактор расписания</h3>
+        </div>
+        <button id="schedule-editor-close" class="modal-close" aria-label="Закрыть">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="schedule-editor-content">
+          <div class="schedule-editor-description">Здесь вы можете добавлять, редактировать и удалять задания в расписании.</div>
+          
+          <!-- Форма добавления нового задания в расписание -->
+          <form id="add-schedule-form" class="add-schedule-form" autocomplete="off">
+            <div class="form-group">
+              <input type="text" id="new-schedule-title" placeholder="Название задания" required autocomplete="off">
+            </div>
+            <div class="time-group">
+              <div class="time-input-wrapper">
+                <label for="schedule-start-time">Время начала:</label>
+                <input type="time" id="schedule-start-time" required autocomplete="off">
+              </div>
+              <div class="time-input-wrapper">
+                <label for="schedule-end-time">Время окончания:</label>
+                <input type="time" id="schedule-end-time" required autocomplete="off">
+              </div>
+            </div>
+            <button type="submit" class="add-button">
+              <i class="fas fa-plus"></i> Добавить в расписание
+            </button>
+          </form>
+          
+          <!-- Список заданий в расписании -->
+          <div class="schedule-list-editor">
+            <h4 class="schedule-list-title">Текущее расписание</h4>
+            <div id="editable-schedule-list" class="editable-schedule-list">
+              <!-- Здесь будут отображаться задания расписания для редактирования -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Скрипт для улучшения работы кнопок закрытия на мобильных устройствах -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Находим все кнопки закрытия модальных окон
+      const closeButtons = document.querySelectorAll('.modal-close');
+      
+      // Добавляем обработчики событий для каждой кнопки
+      closeButtons.forEach(button => {
+        // Добавляем обработчики для мобильных устройств
+        button.addEventListener('touchstart', function(e) {
+          e.preventDefault(); // Предотвращаем стандартное поведение
+        });
+        
+        button.addEventListener('touchend', function(e) {
+          e.preventDefault(); // Предотвращаем стандартное поведение
+          
+          // Находим ближайшее модальное окно
+          const modalOverlay = this.closest('.modal-overlay');
+          if (modalOverlay) {
+            // Закрываем модальное окно
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      });
+    });
+  </script>
+  
+  <!-- Подключаем трекер активности -->
+  <script src="Приложение/Tracking/ActivityTracker.js"></script>
+  
+  <!-- Подключаем компоненты -->
+  <script src="Приложение/Components/BottomNav.js"></script>
+  <!-- Удаляем дублированное подключение скриптов компонентов, которые уже были подключены выше -->
+  <!-- <script src="Приложение/Components/TimeSelector.js"></script> -->
+  <!-- <script src="Приложение/Components/TasksEditor.js"></script> -->
+  <!-- <script src="Приложение/Components/ScheduleEditor.js"></script> -->
+  
+  <!-- Подключаем страницы -->
+  <!-- Удаляем дублированное подключение скриптов страниц, которые уже были подключены выше -->
+  <!-- <script src="Приложение/Daily/Daily.js"></script> -->
+  <!-- <script src="Приложение/Weekly/Weekly.js"></script> -->
+  <!-- <script src="Приложение/Stats/Stats.js"></script> -->
+  <!-- <script src="Приложение/Goals/Goals.js"></script> -->
+  <!-- <script src="Приложение/Diary/Diary.js"></script> -->
+  <!-- <script src="Приложение/Settings/Settings.js"></script> -->
+  
+  <!-- Регистрация Service Worker для уведомлений -->
+  <script>
+    // Регистрируем Service Worker если он поддерживается
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('Приложение/PWA/service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker успешно зарегистрирован с областью видимости: ', registration.scope);
+          })
+          .catch(function(error) {
+            console.log('Ошибка при регистрации ServiceWorker: ', error);
+            // В случае ошибки пытаемся зарегистрировать с другим путем, если мы находимся в поддиректории
+            if (location.pathname.includes('/')) {
+              const pathSegments = location.pathname.split('/');
+              // Удаляем последний сегмент, если это имя файла
+              if (pathSegments[pathSegments.length - 1].includes('.')) {
+                pathSegments.pop();
+              }
+              const basePath = pathSegments.join('/');
+              navigator.serviceWorker.register(`${basePath}/service-worker.js`)
+                .then(function(registration) {
+                  console.log('ServiceWorker успешно зарегистрирован со вторым путем: ', registration.scope);
+                })
+                .catch(function(secondError) {
+                  console.log('Ошибка при повторной регистрации ServiceWorker: ', secondError);
+                });
+            }
+          });
+      });
+    }
+  </script>
+</body>
+</html> 
