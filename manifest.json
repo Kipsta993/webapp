@@ -1,0 +1,10 @@
+{
+  "name": "MyApp - To Do List",
+  "short_name": "MyApp",
+  "description": "Приложение для управления ежедневными и еженедельными задачами, целями и дневником",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+} 
