@@ -1,0 +1,24 @@
+/**
+ * Стили для PWA компонентов
+ */
+
+/* Стиль для иконки установки приложения */
+#pwa-install-icon {
+  margin-left: 10px;
+  color: #4CAF50;
+  cursor: pointer;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+/* Стили для темной темы */
+body.dark-theme #pwa-install-icon {
+  color: #81C784 !important;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  #pwa-install-icon {
+    font-size: 16px;
+  }
+} 

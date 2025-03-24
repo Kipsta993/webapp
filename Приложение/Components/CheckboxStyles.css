@@ -1,0 +1,105 @@
+/**
+ * CheckboxStyles.css
+ * Стили для различных типов чекбоксов
+ */
+
+/* Стиль чекбоксов в стиле Gold (как в Goals) */
+body.gold-checkboxes .task-checkbox label {
+  background-color: #FFF8E1 !important;
+}
+
+/* Убираем крестик для пустых чекбоксов */
+body.empty-checkboxes .task-checkbox label:after {
+  content: '' !important;
+}
+
+/* Стандартные чекбоксы со значком (крестик) */
+body:not(.empty-checkboxes) .task-checkbox label:after {
+  content: '\f00d' !important; /* крестик */
+  font-family: 'Font Awesome 5 Free' !important;
+  font-weight: 900 !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: 14px !important;
+}
+
+/* Цвет крестика для стандартного стиля */
+body:not(.gold-checkboxes):not(.empty-checkboxes) .task-checkbox label:after {
+  color: #FFFFFF !important;
+}
+
+/* Цвет крестика для золотого стиля */
+body.gold-checkboxes:not(.empty-checkboxes) .task-checkbox label:after {
+  color: #FFD700 !important;
+  font-size: 14px !important;
+}
+
+/* Галочка для выполненных заданий */
+body .task-checkbox input[type="checkbox"]:checked + label:after {
+  content: '\f00c' !important; /* галочка */
+  font-family: 'Font Awesome 5 Free' !important;
+  font-weight: 900 !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: 14px !important;
+}
+
+/* Цвет галочки для золотого стиля */
+body.gold-checkboxes .task-checkbox input[type="checkbox"]:checked + label:after {
+  color: #FFD700 !important;
+  font-size: 14px !important;
+}
+
+/* Цвет галочки для стандартного стиля */
+body:not(.gold-checkboxes) .task-checkbox input[type="checkbox"]:checked + label:after {
+  color: #FFFFFF !important;
+}
+
+/* Стиль чекбоксов для Gold в темной теме */
+body.dark-theme.gold-checkboxes .task-checkbox label {
+  background-color: #423800 !important; 
+}
+
+body.dark-theme.gold-checkboxes .task-checkbox input[type="checkbox"]:checked + label:after {
+  color: #FFD700 !important;
+}
+
+/* Темный фон не меняет цвет крестика в золотом стиле */
+body.dark-theme.gold-checkboxes:not(.empty-checkboxes) .task-checkbox label:after {
+  color: #FFD700 !important;
+}
+
+/* Стили для специфичных страниц при использовании gold-checkboxes */
+body.gold-checkboxes .daily-page .task-checkbox label,
+body.gold-checkboxes #daily-page .task-checkbox label,
+body.gold-checkboxes .weekly-page .task-checkbox label,
+body.gold-checkboxes #weekly-page .task-checkbox label {
+  background-color: #FFF8E1 !important;
+}
+
+body.gold-checkboxes .daily-page .task-checkbox input[type="checkbox"]:checked + label:after,
+body.gold-checkboxes #daily-page .task-checkbox input[type="checkbox"]:checked + label:after,
+body.gold-checkboxes .weekly-page .task-checkbox input[type="checkbox"]:checked + label:after,
+body.gold-checkboxes #weekly-page .task-checkbox input[type="checkbox"]:checked + label:after {
+  color: #FFD700 !important;
+}
+
+/* Цвет крестика для специфичных страниц в золотом стиле */
+body.gold-checkboxes:not(.empty-checkboxes) .daily-page .task-checkbox label:after,
+body.gold-checkboxes:not(.empty-checkboxes) #daily-page .task-checkbox label:after,
+body.gold-checkboxes:not(.empty-checkboxes) .weekly-page .task-checkbox label:after,
+body.gold-checkboxes:not(.empty-checkboxes) #weekly-page .task-checkbox label:after {
+  color: #FFD700 !important;
+}
+
+/* Темная тема для специфичных страниц */
+body.dark-theme.gold-checkboxes .daily-page .task-checkbox label,
+body.dark-theme.gold-checkboxes #daily-page .task-checkbox label,
+body.dark-theme.gold-checkboxes .weekly-page .task-checkbox label,
+body.dark-theme.gold-checkboxes #weekly-page .task-checkbox label {
+  background-color: #423800 !important;
+} 
