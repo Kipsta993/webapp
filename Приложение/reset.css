@@ -1,0 +1,155 @@
+/* 
+ * reset.css - Сброс стилей браузера по умолчанию
+ * Этот файл эффективно отключает стили браузера по умолчанию, 
+ * включая проблемный border-color: buttonborder
+ */
+
+/* Базовый сброс стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Глобальное отключение border-color: buttonborder */
+button,
+input,
+select,
+textarea,
+a[role="button"],
+[type="button"],
+[type="submit"],
+[type="reset"],
+[type="checkbox"],
+[type="radio"] {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  
+  /* Принудительная отмена стилей браузера по умолчанию */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Переопределение системных цветов для всех браузеров */
+:root {
+  /* Переопределение системных цветов */
+  color-scheme: light dark;
+  --button-border: transparent;
+  --buttonborder: transparent;
+  --system-button-border: transparent;
+  --system-buttonborder: transparent;
+}
+
+/* Исправление для конкретной проблемы с border-color: buttonborder */
+:where(button, input, select) {
+  border-color: transparent !important;
+  /* Важный флаг для переопределения стилей браузера */
+}
+
+/* Восстановление стандартного поведения для текстовых полей */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  /* Добавляйте здесь свои стили для текстовых полей */
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+/* Кастомные стили для чекбоксов и радиокнопок */
+input[type="checkbox"],
+input[type="radio"] {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Дополнительная защита от стилей браузера */
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  button, input[type="button"], input[type="submit"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-color: transparent !important;
+  }
+}
+
+/* Различные браузерные хаки для устаревших браузеров */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS */
+  button, input, select {
+    border: 0;
+    outline: none;
+  }
+}
+
+@supports (-ms-ime-align: auto) {
+  /* Edge CSS */
+  button, input, select {
+    border: 0;
+    outline: none;
+  }
+}
+
+/* Стили для фокуса и состояния наведения */
+:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+/* Дополнительные сбросы для веб-компонентов и других элементов */
+:where(input[type="search"])::-webkit-search-decoration,
+:where(input[type="search"])::-webkit-search-cancel-button,
+:where(input[type="search"])::-webkit-search-results-button,
+:where(input[type="search"])::-webkit-search-results-decoration {
+  display: none;
+}
+
+:where(input[type="number"])::-webkit-inner-spin-button,
+:where(input[type="number"])::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+:where(input[type="number"]) {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Фиксы для Firefox */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/* Фиксы для Safari и Chrome */
+[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  outline-offset: -2px;
+}
+
+/* Запрет текстового выделения интерактивных элементов */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+} 
