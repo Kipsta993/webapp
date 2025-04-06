@@ -1,0 +1,649 @@
+/**
+ * JavaScript для страницы Diary
+ * Обеспечивает функциональность добавления, удаления и сортировки записей дневника
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Инициализация хранилища записей
+  let entries = JSON.parse(localStorage.getItem('diary-entries')) || [];
+  let currentSort = 'newest'; // По умолчанию сортировка по новизне
+  let currentEntry = null; // Текущая открытая запись
+  let selectedPhotos = []; // Массив для хранения выбранных фотографий
+  let currentPhotoIndex = 0; // Индекс текущей фотографии в полноэкранном режиме
+  let lastDeletedPhoto = null; // Последнее удаленное фото
+
+  // Получение элементов DOM
+  const entryForm = document.getElementById('add-entry-form');
+  const entriesList = document.getElementById('entries-list');
+  let entryTitle = document.getElementById('entry-title');
+  let entryContent = document.getElementById('entry-content');
+  const entryPhotos = document.getElementById('entry-photos');
+  const photoPreview = document.getElementById('photo-preview');
+  const sortNewest = document.getElementById('diary-sort-newest');
+  const sortOldest = document.getElementById('diary-sort-oldest');
+  const emptyList = document.getElementById('diary-empty-list');
+  
+  // Исправление проблемы с полем ввода
+  if (entryTitle) {
+    // Запоминаем родительский элемент и стили оригинального поля
+    const parentElement = entryTitle.parentElement;
+    const originalId = entryTitle.id;
+    const originalClasses = entryTitle.className;
+    const originalPlaceholder = entryTitle.placeholder;
+    const originalRequired = entryTitle.required;
+    const originalAutocomplete = entryTitle.autocomplete;
+    
+    // Удаляем проблемное поле
+    entryTitle.remove();
+    
+    // Создаем новое поле с теми же атрибутами
+    const newEntryTitle = document.createElement('input');
+    newEntryTitle.type = 'text';
+    newEntryTitle.id = originalId;
+    newEntryTitle.className = originalClasses;
+    newEntryTitle.placeholder = originalPlaceholder;
+    newEntryTitle.required = originalRequired;
+    newEntryTitle.autocomplete = originalAutocomplete;
+    
+    // Добавляем дополнительные стили и атрибуты для гарантии работы
+    newEntryTitle.style.zIndex = '100';
+    newEntryTitle.style.position = 'relative';
+    newEntryTitle.style.pointerEvents = 'auto';
+    
+    // Добавляем новое поле в DOM
+    parentElement.prepend(newEntryTitle);
+    
+    // Обновляем ссылку на поле
+    entryTitle = newEntryTitle;
+  }
+  
+  if (entryContent) {
+    // Запоминаем родительский элемент и стили оригинального поля
+    const parentElement = entryContent.parentElement;
+    const originalId = entryContent.id;
+    const originalClasses = entryContent.className;
+    const originalPlaceholder = entryContent.placeholder;
+    const originalRequired = entryContent.required;
+    const originalAutocomplete = entryContent.autocomplete;
+    const originalRows = entryContent.rows;
+    
+    // Удаляем проблемное поле
+    entryContent.remove();
+    
+    // Создаем новое поле с теми же атрибутами
+    const newEntryContent = document.createElement('textarea');
+    newEntryContent.id = originalId;
+    newEntryContent.className = originalClasses;
+    newEntryContent.placeholder = originalPlaceholder;
+    newEntryContent.required = originalRequired;
+    newEntryContent.autocomplete = originalAutocomplete;
+    newEntryContent.rows = originalRows;
+    
+    // Добавляем дополнительные стили и атрибуты для гарантии работы
+    newEntryContent.style.zIndex = '100';
+    newEntryContent.style.position = 'relative';
+    newEntryContent.style.pointerEvents = 'auto';
+    
+    // Добавляем новое поле в DOM
+    parentElement.prepend(newEntryContent);
+    
+    // Обновляем ссылку на поле
+    entryContent = newEntryContent;
+  }
+  
+  // Элементы модального окна
+  const modal = document.getElementById('diary-modal-overlay');
+  const modalClose = document.getElementById('diary-modal-close');
+  
+  // Элементы полноэкранного просмотра
+  const fullscreenPhoto = document.getElementById('fullscreen-photo');
+  const fullscreenImg = document.getElementById('fullscreen-img');
+  const fullscreenClose = document.getElementById('fullscreen-close');
+  const fullscreenPrev = document.getElementById('fullscreen-prev');
+  const fullscreenNext = document.getElementById('fullscreen-next');
+  const fullscreenNav = document.getElementById('fullscreen-nav');
+  
+  // Проверка наличия элементов на странице
+  if (!entryForm || !entriesList) return;
+
+  // Максимальное количество фотографий
+  const MAX_PHOTOS = 10;
+
+  // Функция для генерации уникального ID
+  function generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  }
+
+  // Функция для форматирования даты и времени
+  function formatDateTime(dateString) {
+    const date = new Date(dateString);
+    
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    
+    return `${day}.${month}.${year} ${hours}:${minutes}`;
+  }
+
+  // Функция для преобразования файла в Data URL
+  function fileToDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        // Добавляем фото в массив
+        selectedPhotos.push({
+          file: file,
+          preview: e.target.result
+        });
+        resolve(e.target.result);
+      };
+      
+      reader.onerror = function(error) {
+        reject(error);
+      };
+      
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Функция для обработки выбора фотографий
+  async function handlePhotoSelect(event) {
+    const files = Array.from(event.target.files);
+    
+    // Проверка на максимальное количество фотографий
+    if (selectedPhotos.length + files.length > MAX_PHOTOS) {
+      alert(`Вы можете загрузить максимум ${MAX_PHOTOS} фотографий. Выбрано: ${selectedPhotos.length}`);
+      return;
+    }
+    
+    // Преобразование файлов в Data URL
+    for (const file of files) {
+      if (file.type.startsWith('image/')) {
+        try {
+          await fileToDataUrl(file);
+        } catch (error) {
+          console.error('Ошибка чтения файла:', error);
+        }
+      }
+    }
+    
+    // Обновляем превью фотографий
+    updatePhotoPreview();
+    
+    // Сброс input для возможности повторного выбора тех же файлов
+    event.target.value = '';
+  }
+
+  // Функция для добавления новой записи
+  function addEntry(event) {
+    event.preventDefault();
+    
+    // Получаем элементы сообщений об ошибках
+    const titleError = document.getElementById('entry-title-error');
+    const contentError = document.getElementById('entry-content-error');
+    
+    // Сбрасываем предыдущие ошибки
+    entryTitle.classList.remove('error');
+    entryContent.classList.remove('error');
+    titleError.classList.remove('active');
+    contentError.classList.remove('active');
+    titleError.textContent = '';
+    contentError.textContent = '';
+    
+    const title = entryTitle.value.trim();
+    const content = entryContent.value.trim();
+    
+    let hasError = false;
+    
+    if (!title) {
+      // Показываем красивое уведомление об ошибке для заголовка
+      entryTitle.classList.add('error');
+      titleError.textContent = 'Пожалуйста, введите заголовок записи';
+      titleError.classList.add('active');
+      hasError = true;
+    }
+    
+    if (!content) {
+      // Показываем красивое уведомление об ошибке для содержания
+      entryContent.classList.add('error');
+      contentError.textContent = 'Пожалуйста, введите текст записи';
+      contentError.classList.add('active');
+      hasError = true;
+    }
+    
+    if (hasError) {
+      // Фокусируемся на первом поле с ошибкой
+      if (!title) {
+        entryTitle.focus();
+      } else {
+        entryContent.focus();
+      }
+      return;
+    }
+    
+    // Подготавливаем массив фотографий для сохранения
+    const entryPhotos = selectedPhotos.map(photo => photo.preview);
+    
+    const newEntry = {
+      id: generateId(),
+      title: title,
+      content: content,
+      photos: entryPhotos, // Сохраняем только URL-адреса фотографий
+      createdAt: new Date().toISOString()
+    };
+    
+    entries.unshift(newEntry);
+    saveEntries();
+    renderEntries();
+    
+    // Сброс формы
+    entryTitle.value = '';
+    entryContent.value = '';
+    selectedPhotos = [];
+    
+    // Обновляем счетчик фото в кнопке
+    const photoUploadText = document.querySelector('.photo-upload-text');
+    if (photoUploadText) {
+      photoUploadText.textContent = `Добавить фото (0/${MAX_PHOTOS})`;
+    }
+    
+    // Скрываем контейнер предпросмотра
+    photoPreview.style.display = 'none';
+    photoPreview.innerHTML = '';
+  }
+
+  // Функция для удаления записи
+  function deleteEntry(id) {
+    entries = entries.filter(entry => entry.id !== id);
+    saveEntries();
+    renderEntries();
+  }
+
+  // Функция для сохранения записей в localStorage
+  function saveEntries() {
+    localStorage.setItem('diary-entries', JSON.stringify(entries));
+  }
+
+  // Функция для сортировки записей
+  function sortEntries() {
+    if (currentSort === 'newest') {
+      entries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else {
+      entries.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    }
+  }
+
+  // Функция для отображения записей
+  function renderEntries() {
+    sortEntries();
+    
+    // Очистка списка
+    entriesList.innerHTML = '';
+    
+    // Проверка на пустой список
+    if (entries.length === 0) {
+      emptyList.style.display = 'block';
+      entriesList.style.display = 'none';
+    } else {
+      emptyList.style.display = 'none';
+      entriesList.style.display = 'block';
+      
+      // Отображение записей
+      entries.forEach(entry => {
+        const entryItem = createEntryElement(entry);
+        entriesList.appendChild(entryItem);
+      });
+      
+      // Прокрутка к началу
+      window.scrollTo(0, 0);
+    }
+  }
+
+  // Функция для создания элемента записи
+  function createEntryElement(entry) {
+    const entryElement = document.createElement('div');
+    entryElement.className = 'entry-item';
+    entryElement.setAttribute('data-id', entry.id);
+
+    const formattedDate = formatDateTime(entry.createdAt);
+    const hasPhotos = entry.photos && entry.photos.length > 0;
+
+    entryElement.innerHTML = `
+      <div class="entry-content">
+        <div class="entry-title">${escapeHtml(entry.title)}</div>
+        <div class="entry-date">${formattedDate}</div>
+        ${hasPhotos ? `<div class="entry-photos-indicator"><i class="fas fa-camera"></i> ${entry.photos.length} фото</div>` : ''}
+      </div>
+      <div class="entry-actions">
+        <button class="entry-delete" aria-label="Удалить запись">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    `;
+
+    // Добавляем обработчик для просмотра записи в модальном окне
+    const entryContent = entryElement.querySelector('.entry-content');
+    entryContent.addEventListener('click', function() {
+      openModal(entry);
+    });
+
+    // Оставляем обработчик для удаления записи
+    const deleteButton = entryElement.querySelector('.entry-delete');
+    if (deleteButton) {
+      deleteButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (confirm('Вы уверены, что хотите удалить эту запись?')) {
+          deleteEntry(entry.id);
+        }
+      });
+    }
+
+    return entryElement;
+  }
+
+  // Функция для открытия модального окна
+  function openModal(entry) {
+    const modal = document.getElementById('diary-modal-overlay');
+    if (!modal) return;
+    
+    // Заполняем модальное окно данными
+    const modalTitle = document.getElementById('diary-modal-title');
+    const modalDate = document.getElementById('diary-modal-date');
+    const modalContent = document.getElementById('diary-modal-content');
+    const modalPhotos = document.getElementById('diary-modal-photos');
+    
+    if (modalTitle) modalTitle.textContent = entry.title;
+    if (modalDate) modalDate.textContent = formatDateTime(entry.createdAt);
+    if (modalContent) modalContent.textContent = entry.content || 'Нет описания';
+    
+    // Очищаем и заполняем блок с фотографиями
+    if (modalPhotos) {
+      modalPhotos.innerHTML = '';
+      
+      if (entry.photos && entry.photos.length > 0) {
+        entry.photos.forEach((photo, index) => {
+          const photoElement = document.createElement('div');
+          photoElement.className = 'modal-photo';
+          photoElement.innerHTML = `<img src="${photo}" alt="Фото ${index + 1}">`;
+          
+          // Обработчик для открытия фото в полноэкранном режиме
+          photoElement.addEventListener('click', () => {
+            openFullscreen(entry.photos, index);
+          });
+          
+          modalPhotos.appendChild(photoElement);
+        });
+      }
+    }
+    
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+  }
+
+  // Функция для закрытия модального окна
+  function closeModal() {
+    const modal = document.getElementById('diary-modal-overlay');
+    if (!modal) return;
+    
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+  }
+  
+  // Функция для открытия полноэкранного просмотра фото
+  function openFullscreen(photos, index) {
+    const fullscreenPhoto = document.getElementById('fullscreen-photo');
+    const fullscreenImg = document.getElementById('fullscreen-img');
+    if (!fullscreenPhoto || !fullscreenImg) return;
+    
+    // Сохраняем массив фотографий и текущий индекс
+    currentPhotos = photos;
+    currentPhotoIndex = index;
+    
+    // Устанавливаем изображение
+    fullscreenImg.src = photos[index];
+    
+    // Обновляем навигацию
+    updateFullscreenNav();
+    
+    // Отображаем полноэкранный просмотр
+    fullscreenPhoto.classList.add('active');
+  }
+  
+  // Функция для закрытия полноэкранного просмотра
+  function closeFullscreen() {
+    const fullscreenPhoto = document.getElementById('fullscreen-photo');
+    if (!fullscreenPhoto) return;
+    
+    fullscreenPhoto.classList.remove('active');
+  }
+  
+  // Функция для обновления навигации в полноэкранном режиме
+  function updateFullscreenNav() {
+    const fullscreenNav = document.getElementById('fullscreen-nav');
+    const fullscreenPrev = document.getElementById('fullscreen-prev');
+    const fullscreenNext = document.getElementById('fullscreen-next');
+    if (!fullscreenNav || !currentPhotos) return;
+    
+    // Очищаем навигацию
+    fullscreenNav.innerHTML = '';
+    
+    // Создаем точки для каждой фотографии
+    currentPhotos.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = i === currentPhotoIndex ? 'fullscreen-nav-dot active' : 'fullscreen-nav-dot';
+      
+      dot.addEventListener('click', () => {
+        currentPhotoIndex = i;
+        fullscreenImg.src = currentPhotos[i];
+        updateFullscreenNav();
+      });
+      
+      fullscreenNav.appendChild(dot);
+    });
+    
+    // Обновляем видимость кнопок навигации
+    if (fullscreenPrev && fullscreenNext) {
+      fullscreenPrev.style.visibility = currentPhotoIndex > 0 ? 'visible' : 'hidden';
+      fullscreenNext.style.visibility = currentPhotoIndex < currentPhotos.length - 1 ? 'visible' : 'hidden';
+    }
+  }
+
+  // Обновление превью фотографий
+  function updatePhotoPreview() {
+    photoPreview.innerHTML = '';
+    
+    // Обновляем текст кнопки загрузки фото с добавлением счетчика
+    const photoUploadText = document.querySelector('.photo-upload-text');
+    if (photoUploadText) {
+      photoUploadText.textContent = `Добавить фото (${selectedPhotos.length}/${MAX_PHOTOS})`;
+    }
+    
+    // Скрываем контейнер предпросмотра, даже если есть фотографии
+    photoPreview.style.display = 'none';
+  }
+  
+  // Добавляем обработчики свайпов для фото
+  function addSwipeHandlers(element, index) {
+    let startX = 0;
+    let currentX = 0;
+    
+    // Обработчики только для сенсорных устройств
+    element.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    element.addEventListener('touchmove', function(e) {
+      currentX = e.touches[0].clientX;
+      const diffX = currentX - startX;
+      
+      // Ограничиваем смещение до 30px
+      const translateX = Math.min(Math.max(diffX, -30), 30);
+      element.style.transform = `translateX(${translateX}px)`;
+    }, { passive: true });
+    
+    element.addEventListener('touchend', function(e) {
+      const diffX = currentX - startX;
+      
+      if (diffX > 20) {
+        // Свайп вправо - удаляем фото (порог 20px)
+        lastDeletedPhoto = selectedPhotos[index];
+        selectedPhotos.splice(index, 1);
+        updatePhotoPreview();
+      } else if (diffX < -20) {
+        // Свайп влево - восстанавливаем последнее удаленное фото (порог 20px)
+        if (lastDeletedPhoto) {
+          selectedPhotos.push(lastDeletedPhoto);
+          lastDeletedPhoto = null;
+          updatePhotoPreview();
+        }
+      } else {
+        // Возвращаем элемент на место, если свайп был недостаточным
+        element.style.transform = 'translateX(0)';
+      }
+    });
+  }
+
+  // Инициализация обработчиков событий для формы
+  entryForm.addEventListener('submit', addEntry);
+  entryPhotos.addEventListener('change', handlePhotoSelect);
+  
+  // Обработчики для сортировки
+  sortNewest.addEventListener('click', function(e) {
+    e.stopPropagation(); // Останавливаем распространение события
+    currentSort = 'newest';
+    sortNewest.classList.add('active');
+    sortOldest.classList.remove('active');
+    renderEntries();
+  });
+  
+  sortOldest.addEventListener('click', function(e) {
+    e.stopPropagation(); // Останавливаем распространение события
+    currentSort = 'oldest';
+    sortOldest.classList.add('active');
+    sortNewest.classList.remove('active');
+    renderEntries();
+  });
+  
+  // Инициализация модальных окон
+  if (modal && modalClose) {
+    modalClose.addEventListener('click', closeModal);
+    
+    // Закрытие по клику вне модального окна
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  }
+  
+  // Инициализация полноэкранного просмотра
+  if (fullscreenPhoto && fullscreenClose) {
+    fullscreenClose.addEventListener('click', closeFullscreen);
+    
+    // Обработчики для навигации между фото
+    if (fullscreenPrev) {
+      fullscreenPrev.addEventListener('click', function() {
+        if (currentPhotoIndex > 0) {
+          currentPhotoIndex--;
+          fullscreenImg.src = currentPhotos[currentPhotoIndex];
+          updateFullscreenNav();
+        }
+      });
+    }
+    
+    if (fullscreenNext) {
+      fullscreenNext.addEventListener('click', function() {
+        if (currentPhotoIndex < currentPhotos.length - 1) {
+          currentPhotoIndex++;
+          fullscreenImg.src = currentPhotos[currentPhotoIndex];
+          updateFullscreenNav();
+        }
+      });
+    }
+  }
+  
+  // Глобальные обработчики клавиатуры
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      // Закрытие полноэкранного просмотра фото
+      if (fullscreenPhoto && fullscreenPhoto.classList.contains('active')) {
+        closeFullscreen();
+      }
+      // Закрытие модального окна дневника
+      else if (modal && modal.classList.contains('active')) {
+        closeModal();
+      }
+    } 
+    else if (event.key === 'ArrowLeft') {
+      // Навигация влево в полноэкранном просмотре
+      if (fullscreenPhoto && fullscreenPhoto.classList.contains('active') && currentPhotoIndex > 0) {
+        currentPhotoIndex--;
+        fullscreenImg.src = currentPhotos[currentPhotoIndex];
+        updateFullscreenNav();
+      }
+    } 
+    else if (event.key === 'ArrowRight') {
+      // Навигация вправо в полноэкранном просмотре
+      if (fullscreenPhoto && fullscreenPhoto.classList.contains('active') && 
+          currentPhotos && currentPhotoIndex < currentPhotos.length - 1) {
+        currentPhotoIndex++;
+        fullscreenImg.src = currentPhotos[currentPhotoIndex];
+        updateFullscreenNav();
+      }
+    }
+  });
+
+  // Добавляем обработчики свайпа для кнопки добавления фото
+  if (document.querySelector('.photo-upload-label')) {
+    const photoUploadLabel = document.querySelector('.photo-upload-label');
+    let startX = 0;
+    let currentX = 0;
+    
+    // Устанавливаем начальный текст с счетчиком
+    const photoUploadText = photoUploadLabel.querySelector('.photo-upload-text');
+    if (photoUploadText) {
+      photoUploadText.textContent = `Добавить фото (0/${MAX_PHOTOS})`;
+    }
+    
+    photoUploadLabel.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    photoUploadLabel.addEventListener('touchmove', function(e) {
+      currentX = e.touches[0].clientX;
+      const diffX = currentX - startX;
+      
+      // Ограничиваем смещение до 30px
+      const translateX = Math.min(Math.max(diffX, -30), 30);
+      photoUploadLabel.style.transform = `translateX(${translateX}px)`;
+    }, { passive: true });
+    
+    photoUploadLabel.addEventListener('touchend', function(e) {
+      const diffX = currentX - startX;
+      
+      if (diffX > 20) {
+        // Свайп вправо - удаляем последнее добавленное фото
+        if (selectedPhotos.length > 0) {
+          lastDeletedPhoto = selectedPhotos.pop();
+          updatePhotoPreview();
+        }
+      } else if (diffX < -20) {
+        // Свайп влево - восстанавливаем последнее удаленное фото
+        if (lastDeletedPhoto) {
+          selectedPhotos.push(lastDeletedPhoto);
+          lastDeletedPhoto = null;
+          updatePhotoPreview();
+        }
+      }
+      
+      // Возвращаем элемент на место в любом случае
+      photoUploadLabel.style.transform = 'translateX(0)';
+    });
+  }
+
+  // Инициализация
+  renderEntries();
+});

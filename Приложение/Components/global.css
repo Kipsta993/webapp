@@ -1,0 +1,123 @@
+/* Запрет выделения текста на мобильных устройствах */
+@media (max-width: 768px) {
+  body, div, p, h1, h2, h3, h4, h5, h6, span, 
+  button, input, textarea, select, 
+  .task-title, .goal-title, .entry-title,
+  .page-title-text, .card-title, .daily-card-title, .weekly-card-title,
+  .modal-title, .task-weekday, .task-info, .goal-content, .entry-content {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+  }
+  
+  /* Разрешаем выделение только в полях ввода */
+  input[type="text"], 
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  [contenteditable="true"] {
+    -webkit-touch-callout: text; /* iOS Safari */
+    -webkit-user-select: text; /* Safari */
+    -khtml-user-select: text; /* Konqueror HTML */
+    -moz-user-select: text; /* Firefox */
+    -ms-user-select: text; /* Internet Explorer/Edge */
+    user-select: text; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1); /* Легкое подсвечивание при тапе */
+  }
+}
+
+/* Добавляем стиль для отключения подсветки при тапе на мобильных устройствах */
+* {
+  -webkit-tap-highlight-color: transparent; /* Отключаем стандартное подсвечивание при тапе */
+}
+
+/* Стили для уведомлений */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 16px;
+  background-color: #FFFFFF;
+  color: #333333;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  min-width: 250px;
+  max-width: 90%;
+  z-index: 1000;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.notification i {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.notification span {
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.notification.info {
+  background-color: #E3F2FD;
+  border-left: 4px solid #2196F3;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+}
+
+.notification-close:hover {
+  color: #333;
+}
+
+/* Темная тема для уведомлений */
+body.dark-theme .notification {
+  background-color: #1E1E1E;
+  color: #E0E0E0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .notification.info {
+  background-color: #0D47A1;
+  border-left: 4px solid #2196F3;
+}
+
+body.dark-theme .notification-close {
+  color: #BBBBBB;
+}
+
+body.dark-theme .notification-close:hover {
+  color: #FFFFFF;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 480px) {
+  .notification {
+    min-width: auto;
+    width: 90%;
+    padding: 10px 12px;
+  }
+} 

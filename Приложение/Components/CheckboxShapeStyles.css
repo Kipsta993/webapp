@@ -1,0 +1,280 @@
+/**
+ * CheckboxShapeStyles.css
+ * Стили для различных форм чекбоксов
+ */
+
+/* Стили по умолчанию для форм чекбоксов */
+/* По умолчанию все чекбоксы квадратные */
+body:not([class*='circle-checkboxes']) .task-checkbox label {
+  border-radius: 5px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Круглая форма чекбоксов */
+body.circle-checkboxes-all .task-checkbox label,
+body.circle-checkboxes-all .goal-checkbox label,
+body.circle-checkboxes-daily #daily-page .task-checkbox label,
+body.circle-checkboxes-daily .daily-page .task-checkbox label,
+body.circle-checkboxes-weekly #weekly-page .task-checkbox label,
+body.circle-checkboxes-weekly .weekly-page .task-checkbox label,
+body.circle-checkboxes-goals #goals-page .goal-checkbox label,
+body.circle-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Квадратная форма чекбоксов (по умолчанию) */
+body.square-checkboxes-all .task-checkbox label,
+body.square-checkboxes-all .goal-checkbox label,
+body.square-checkboxes-daily #daily-page .task-checkbox label,
+body.square-checkboxes-daily .daily-page .task-checkbox label,
+body.square-checkboxes-weekly #weekly-page .task-checkbox label,
+body.square-checkboxes-weekly .weekly-page .task-checkbox label,
+body.square-checkboxes-goals #goals-page .goal-checkbox label,
+body.square-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Сочетания стилей для разных страниц */
+
+/* Сочетание с синим стилем */
+body.circle-checkboxes-all.blue-checkboxes-all .task-checkbox label,
+body.circle-checkboxes-all.blue-checkboxes-all .goal-checkbox label,
+body.circle-checkboxes-daily.blue-checkboxes-daily #daily-page .task-checkbox label,
+body.circle-checkboxes-daily.blue-checkboxes-daily .daily-page .task-checkbox label,
+body.circle-checkboxes-weekly.blue-checkboxes-weekly #weekly-page .task-checkbox label,
+body.circle-checkboxes-weekly.blue-checkboxes-weekly .weekly-page .task-checkbox label,
+body.circle-checkboxes-goals.blue-checkboxes-goals #goals-page .goal-checkbox label,
+body.circle-checkboxes-goals.blue-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #2196F3 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.square-checkboxes-all.blue-checkboxes-all .task-checkbox label,
+body.square-checkboxes-all.blue-checkboxes-all .goal-checkbox label,
+body.square-checkboxes-daily.blue-checkboxes-daily #daily-page .task-checkbox label,
+body.square-checkboxes-daily.blue-checkboxes-daily .daily-page .task-checkbox label,
+body.square-checkboxes-weekly.blue-checkboxes-weekly #weekly-page .task-checkbox label,
+body.square-checkboxes-weekly.blue-checkboxes-weekly .weekly-page .task-checkbox label,
+body.square-checkboxes-goals.blue-checkboxes-goals #goals-page .goal-checkbox label,
+body.square-checkboxes-goals.blue-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #2196F3 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Сочетание с пурпурным стилем */
+body.circle-checkboxes-all.purple-checkboxes-all .task-checkbox label,
+body.circle-checkboxes-all.purple-checkboxes-all .goal-checkbox label,
+body.circle-checkboxes-daily.purple-checkboxes-daily #daily-page .task-checkbox label,
+body.circle-checkboxes-daily.purple-checkboxes-daily .daily-page .task-checkbox label,
+body.circle-checkboxes-weekly.purple-checkboxes-weekly #weekly-page .task-checkbox label,
+body.circle-checkboxes-weekly.purple-checkboxes-weekly .weekly-page .task-checkbox label,
+body.circle-checkboxes-goals.purple-checkboxes-goals #goals-page .goal-checkbox label,
+body.circle-checkboxes-goals.purple-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #673AB7 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.square-checkboxes-all.purple-checkboxes-all .task-checkbox label,
+body.square-checkboxes-all.purple-checkboxes-all .goal-checkbox label,
+body.square-checkboxes-daily.purple-checkboxes-daily #daily-page .task-checkbox label,
+body.square-checkboxes-daily.purple-checkboxes-daily .daily-page .task-checkbox label,
+body.square-checkboxes-weekly.purple-checkboxes-weekly #weekly-page .task-checkbox label,
+body.square-checkboxes-weekly.purple-checkboxes-weekly .weekly-page .task-checkbox label,
+body.square-checkboxes-goals.purple-checkboxes-goals #goals-page .goal-checkbox label,
+body.square-checkboxes-goals.purple-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #673AB7 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Сочетание с золотым стилем */
+body.circle-checkboxes-all.gold-checkboxes-all .task-checkbox label,
+body.circle-checkboxes-all.gold-checkboxes-all .goal-checkbox label,
+body.circle-checkboxes-daily.gold-checkboxes-daily #daily-page .task-checkbox label,
+body.circle-checkboxes-daily.gold-checkboxes-daily .daily-page .task-checkbox label,
+body.circle-checkboxes-weekly.gold-checkboxes-weekly #weekly-page .task-checkbox label,
+body.circle-checkboxes-weekly.gold-checkboxes-weekly .weekly-page .task-checkbox label,
+body.circle-checkboxes-goals.gold-checkboxes-goals #goals-page .goal-checkbox label,
+body.circle-checkboxes-goals.gold-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #FFF8E1 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.square-checkboxes-all.gold-checkboxes-all .task-checkbox label,
+body.square-checkboxes-all.gold-checkboxes-all .goal-checkbox label,
+body.square-checkboxes-daily.gold-checkboxes-daily #daily-page .task-checkbox label,
+body.square-checkboxes-daily.gold-checkboxes-daily .daily-page .task-checkbox label,
+body.square-checkboxes-weekly.gold-checkboxes-weekly #weekly-page .task-checkbox label,
+body.square-checkboxes-weekly.gold-checkboxes-weekly .weekly-page .task-checkbox label,
+body.square-checkboxes-goals.gold-checkboxes-goals #goals-page .goal-checkbox label,
+body.square-checkboxes-goals.gold-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #FFF8E1 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Сочетание с рубиновым стилем */
+body.circle-checkboxes-all.ruby-checkboxes-all .task-checkbox label,
+body.circle-checkboxes-all.ruby-checkboxes-all .goal-checkbox label,
+body.circle-checkboxes-daily.ruby-checkboxes-daily #daily-page .task-checkbox label,
+body.circle-checkboxes-daily.ruby-checkboxes-daily .daily-page .task-checkbox label,
+body.circle-checkboxes-weekly.ruby-checkboxes-weekly #weekly-page .task-checkbox label,
+body.circle-checkboxes-weekly.ruby-checkboxes-weekly .weekly-page .task-checkbox label,
+body.circle-checkboxes-goals.ruby-checkboxes-goals #goals-page .goal-checkbox label,
+body.circle-checkboxes-goals.ruby-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #FFEBEE !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.square-checkboxes-all.ruby-checkboxes-all .task-checkbox label,
+body.square-checkboxes-all.ruby-checkboxes-all .goal-checkbox label,
+body.square-checkboxes-daily.ruby-checkboxes-daily #daily-page .task-checkbox label,
+body.square-checkboxes-daily.ruby-checkboxes-daily .daily-page .task-checkbox label,
+body.square-checkboxes-weekly.ruby-checkboxes-weekly #weekly-page .task-checkbox label,
+body.square-checkboxes-weekly.ruby-checkboxes-weekly .weekly-page .task-checkbox label,
+body.square-checkboxes-goals.ruby-checkboxes-goals #goals-page .goal-checkbox label,
+body.square-checkboxes-goals.ruby-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #FFEBEE !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Сочетание с темной темой */
+body.dark-theme.circle-checkboxes-all .task-checkbox label,
+body.dark-theme.circle-checkboxes-all .goal-checkbox label,
+body.dark-theme.circle-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.circle-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.dark-theme.square-checkboxes-all .task-checkbox label,
+body.dark-theme.square-checkboxes-all .goal-checkbox label,
+body.dark-theme.square-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.square-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Сочетание с темной темой и синим стилем */
+body.dark-theme.circle-checkboxes-all.blue-checkboxes-all .task-checkbox label,
+body.dark-theme.circle-checkboxes-all.blue-checkboxes-all .goal-checkbox label,
+body.dark-theme.circle-checkboxes-daily.blue-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-daily.blue-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.blue-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.blue-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-goals.blue-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.circle-checkboxes-goals.blue-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #0D47A1 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.dark-theme.square-checkboxes-all.blue-checkboxes-all .task-checkbox label,
+body.dark-theme.square-checkboxes-all.blue-checkboxes-all .goal-checkbox label,
+body.dark-theme.square-checkboxes-daily.blue-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-daily.blue-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.blue-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.blue-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-goals.blue-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.square-checkboxes-goals.blue-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #0D47A1 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Сочетание с темной темой и пурпурным стилем */
+body.dark-theme.circle-checkboxes-all.purple-checkboxes-all .task-checkbox label,
+body.dark-theme.circle-checkboxes-all.purple-checkboxes-all .goal-checkbox label,
+body.dark-theme.circle-checkboxes-daily.purple-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-daily.purple-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.purple-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.purple-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-goals.purple-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.circle-checkboxes-goals.purple-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #4A148C !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.dark-theme.square-checkboxes-all.purple-checkboxes-all .task-checkbox label,
+body.dark-theme.square-checkboxes-all.purple-checkboxes-all .goal-checkbox label,
+body.dark-theme.square-checkboxes-daily.purple-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-daily.purple-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.purple-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.purple-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-goals.purple-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.square-checkboxes-goals.purple-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #4A148C !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Сочетание с темной темой и золотым стилем */
+body.dark-theme.circle-checkboxes-all.gold-checkboxes-all .task-checkbox label,
+body.dark-theme.circle-checkboxes-all.gold-checkboxes-all .goal-checkbox label,
+body.dark-theme.circle-checkboxes-daily.gold-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-daily.gold-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.gold-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.gold-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-goals.gold-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.circle-checkboxes-goals.gold-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #423800 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.dark-theme.square-checkboxes-all.gold-checkboxes-all .task-checkbox label,
+body.dark-theme.square-checkboxes-all.gold-checkboxes-all .goal-checkbox label,
+body.dark-theme.square-checkboxes-daily.gold-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-daily.gold-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.gold-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.gold-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-goals.gold-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.square-checkboxes-goals.gold-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #423800 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Сочетание с темной темой и рубиновым стилем */
+body.dark-theme.circle-checkboxes-all.ruby-checkboxes-all .task-checkbox label,
+body.dark-theme.circle-checkboxes-all.ruby-checkboxes-all .goal-checkbox label,
+body.dark-theme.circle-checkboxes-daily.ruby-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-daily.ruby-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.ruby-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-weekly.ruby-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.circle-checkboxes-goals.ruby-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.circle-checkboxes-goals.ruby-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 50% !important;
+  background-color: #5D0000 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.dark-theme.square-checkboxes-all.ruby-checkboxes-all .task-checkbox label,
+body.dark-theme.square-checkboxes-all.ruby-checkboxes-all .goal-checkbox label,
+body.dark-theme.square-checkboxes-daily.ruby-checkboxes-daily #daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-daily.ruby-checkboxes-daily .daily-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.ruby-checkboxes-weekly #weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-weekly.ruby-checkboxes-weekly .weekly-page .task-checkbox label,
+body.dark-theme.square-checkboxes-goals.ruby-checkboxes-goals #goals-page .goal-checkbox label,
+body.dark-theme.square-checkboxes-goals.ruby-checkboxes-goals .goals-page .goal-checkbox label {
+  border-radius: 5px !important;
+  background-color: #5D0000 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+} 
